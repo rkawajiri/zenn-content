@@ -4,15 +4,15 @@ topics: ["frepple", "docker", "python", "ortools", "scm"]
 published: false
 price: 0
 chapters:
-  - 00-intro
-  - 01-public-demo
-  - 02-setup
-  - 03-first-plan
-  - 04-read-reports
-  - 05-constrained-plan
-  - 06-build-model
-  - 07-adjust-plan
-  - 08-gantt-view
-  - 09-what-if
-  - 10-cpsat-scheduling
-  - 11-glossary
+  - 01-intro
+  - 02-public-demo
+  - 03-setup
+  - 04-first-plan
+  - 05-read-reports
+  - 06-constrained-plan
+  - 07-build-model
+  - 08-adjust-plan
+  - 09-gantt-view
+  - 10-what-if
+  - 11-cpsat-scheduling
+  - 12-glossary
