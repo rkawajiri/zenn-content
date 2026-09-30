@@ -49,7 +49,7 @@ Execute 画面で押したタスクは、非同期に実行されます。画面
 :::
 
 :::message alert
-02 章の構成で最初に起動したときは、Docker イメージが起動時にデモデータを用意します。Execute 画面の Task status には、起動時の計画の実行や、scenario1(distribution demo)と scenario2(manufacturing demo)へのコピーが残っています。`loaddata` で読み込み直しても問題ありません。
+03 章の構成で最初に起動したときは、Docker イメージが起動時にデモデータを用意します。Execute 画面の Task status には、起動時の計画の実行や、scenario1(distribution demo)と scenario2(manufacturing demo)へのコピーが残っています。`loaddata` で読み込み直しても問題ありません。
 :::
 
 読み込みが終わったら、Sales メニューの Items / Locations / Customers や、Sales orders(受注)を開いてデータが入っていることを確認しましょう。
@@ -111,7 +111,7 @@ curl -u admin:admin "http://localhost:9000/execute/api/status/?id=6"
 - そのために、機械の能力を超えて仕事を詰め込んだり、過去の日付に製造・購買を計画したりします。
 - 「部品が足りない」「能力が足りない」といった問題は、**問題レポート** で警告として示されます。
 
-つまり「理想的にはこう作りたい」という計画で、実行可能かどうかは別の話です。現実に守れる計画(制約あり計画)は 05 章で作ります。
+つまり「理想的にはこう作りたい」という計画で、実行可能かどうかは別の話です。現実に守れる計画(制約あり計画)は 06 章で作ります。
 
 ## 生成された計画の中身
 
@@ -136,7 +136,7 @@ curl -u admin:admin "http://localhost:9000/execute/api/status/?id=6"
 
 問題レポートには、`material shortage`(部品の不足)が 5 件出ます。件数は日付や frePPLe のバージョンで変わるので、目安として読んでください。
 
-それぞれのオーダーは status を持ちます。計画エンジンが出した提案は `proposed` です。プランナーが承認したものは `approved`、実行が確定したものは `confirmed` になります。status の意味は 07 章で詳しく説明します。
+それぞれのオーダーは status を持ちます。計画エンジンが出した提案は `proposed` です。プランナーが承認したものは `approved`、実行が確定したものは `confirmed` になります。status の意味は 08 章で詳しく説明します。
 
 まず、Manufacturing メニューの **Manufacturing orders**(製造オーダー)と、Purchasing メニューの **Purchase orders**(購買オーダー)を開いて、生成されたオーダーの一覧を眺めてみましょう。
 
