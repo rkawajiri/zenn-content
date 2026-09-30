@@ -93,10 +93,10 @@ curl -u admin:admin -X POST "http://localhost:9000/execute/api/scenario_copy/?co
 
 - シート名はレポート名（`Demand report`）で、1 枚だけです。
 - 1 行目が見出しで、左から `Scenario`、`Item`、`Count Of Late Demands`、`Quantity Of Late Demands`、`Value Of Late Demand`、`Data field`、そのあと日付の列が並びます。
-- **1 列目の `Scenario` に、シナリオの Label（`Production`、`distribution demo` など）が入ります。**選んだシナリオが、同じシートに縦に連なります（手元では 2 シナリオで 28 行ずつ、合計 56 行）。
+- **1 列目の `Scenario` に、シナリオの Label（`Production`、`distribution demo` など）が入ります。** 選んだシナリオが、同じシートに縦に連なります（手元では 2 シナリオで 28 行ずつ、合計 56 行）。
 - `Data field` の行は `Net forecast`、`Sales orders`、`Total demand`、`Supply` などです。
 
-そのため、`Scenario`列をピボットテーブルの列（または行）に置けば、シナリオごとの数値を並べて比べられます。たとえば `Count Of Late Demands`（遅れた受注の件数）や `Quantity Of Late Demands`（遅れた数量）が、そのまま比較の指標になります。
+そのため、`Scenario` 列をピボットテーブルの列（または行）に置けば、シナリオごとの数値を並べて比べられます。たとえば `Count Of Late Demands`（遅れた受注の件数）や `Quantity Of Late Demands`（遅れた数量）が、そのまま比較の指標になります。
 
 比べるときの見どころ:
 
