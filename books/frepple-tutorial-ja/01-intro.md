@@ -78,6 +78,7 @@ frePPLe は、受注(需要)・在庫・購買・製造・リソース(機械や
 
 この本のリポジトリ（https://github.com/rkawajiri/zenn-content）の `examples/` に、サンプルコードを置いています。`git clone` で手元に取得してください。
 
+- `examples/docker/`: 4 章の `docker-compose.yml`
 - `examples/frepple-api/`: 計画の実行（`plan.sh`）、5 章のモデルの登録（`setup-model.sh`）、10 章の倉庫と配送の登録（`setup-distribution.sh`）
 - `examples/cpsat/`: 14 章の CP-SAT スクリプト
 

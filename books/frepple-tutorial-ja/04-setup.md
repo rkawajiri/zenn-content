@@ -13,7 +13,7 @@ title: "環境構築とログイン"
 
 ## 起動する
 
-作業用のフォルダを作り、次の内容で `docker-compose.yml` を保存します。これは 公式ドキュメント `installation-guide/advanced/docker-compose` のサンプルを、最小限に絞ったものです。
+次の内容の `docker-compose.yml` を使います。これは 公式ドキュメント `installation-guide/advanced/docker-compose` のサンプルを、最小限に絞ったものです。同じものを、この本のリポジトリの `examples/docker/docker-compose.yml` に置いています。`git clone` したあと、`examples/docker` に移動して、次の「起動します」のコマンドを実行できます。自分でフォルダを作る場合は、下の内容を `docker-compose.yml` として保存してください。
 
 ```yaml
 services:
@@ -66,6 +66,7 @@ networks:
 起動します。
 
 ```bash
+cd examples/docker    # 自分でフォルダを作った場合は、そのフォルダへ移動
 docker compose up -d
 docker compose logs -f frepple    # 起動ログを確認(Ctrl+C で抜ける)
 ```
