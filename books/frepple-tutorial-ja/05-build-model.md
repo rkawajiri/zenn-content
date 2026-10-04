@@ -93,18 +93,18 @@ flowchart LR
 
 | 名前 | 種類 | 商品 | 地域 | 単位ごとにかかる時間 |
 |---|---|---|---|---|
-| Make table | time_per | table | factory | `01:00:00`（1 時間） |
+| Make table | ごとの時間（`time_per`） | table | factory | `01:00:00`（1 時間） |
 
-`time_per` は、数量に比例して時間がかかる作業です。「商品」は、この作業が作る品目です。
+「種類」はプルダウンで選びます。「ごとの時間」（DB やAPIの値は `time_per`）は、数量に比例して時間がかかる作業です。「固定時間」（`fixed_time`）は数量に関係なく一定の時間がかかる作業で、既定値です。「商品」は、この作業が作る品目です。
 
 次に **作業材料**（Operation materials）で、材料の消費を登録します。**消費は負の数** で書きます。
 
 | 作業 | 商品 | 数量 | 種類 |
 |---|---|---|---|
-| Make table | plank | -1 | start |
-| Make table | screw | -4 | start |
+| Make table | plank | -1 | 開始（`start`） |
+| Make table | screw | -4 | 開始（`start`） |
 
-`table` を作る側（`end` で生産）は、作業の「商品」から暗黙に決まるので、登録は不要です。
+`table` を作る側（「終了」（`end`）で生産）は、作業の「商品」から暗黙に決まるので、登録は不要です。
 
 最後に **作業リソース**（Operation resources）で、この作業が使うリソースを登録します。
 

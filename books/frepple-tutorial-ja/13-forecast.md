@@ -79,7 +79,7 @@ curl -u admin:admin -X POST "http://localhost:9000/execute/api/loaddata/" \
 
 ## 予測の方法と精度
 
-予測の方法（`method`）は、既定で `automatic` です。frePPLe が複数の方法を試して、予測の誤差が小さいものを選びます。選ばれた方法は `out_method`、誤差（SMAPE）は `out_smape` に入ります。この 2 つは、計画を実行するまでは入っていません（読み込み直後は、24 行のうち `out_smape` は 0 行、`out_method` は 7 行だけでした）。手元の実行後の例です。
+予測の方法（`method`）は、既定で「自動」（`automatic`）です。frePPLe が複数の方法を試して、予測の誤差が小さいものを選びます。選ばれた方法は `out_method`、誤差（SMAPE）は `out_smape` に入ります。この 2 つは、計画を実行するまでは入っていません（読み込み直後は、24 行のうち `out_smape` は 0 行、`out_method` は 7 行だけでした）。手元の実行後の例です。
 
 | 品目 @ 拠点（All customers） | 選ばれた方法 | SMAPE（%） |
 |---|---|---|
@@ -92,14 +92,14 @@ curl -u admin:admin -X POST "http://localhost:9000/execute/api/loaddata/" \
 
 方法の意味は、公式ドキュメントでは次のように説明されています。
 
-| 方法 | 向いているデータ |
+| 方法（画面の表示） | 向いているデータ |
 |---|---|
 | constant | 需要が時間でほぼ変わらない |
 | trend | 増加または減少の傾向がある |
 | seasonal | 季節による周期がある |
 | intermittent | 売れない期間（ゼロ）が多い |
 | moving average | 履歴が短い（新しい品目など） |
-| manual | 統計予測を計算しない。上書きだけで予測を与える |
+| manual（「マニュアル」） | 統計予測を計算しない。上書きだけで予測を与える |
 
 SMAPE は、値が小さいほど、予測が過去の実績に近いことを表します。倉庫向けの `intermittent` は、実績がまばらなため、誤差が大きくなっています。
 

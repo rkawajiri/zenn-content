@@ -38,7 +38,7 @@ frePPLe では、これを **シナリオ(scenario)** という、データベ�
 1. 管理（Admin）メニューの **実行**（Execute）を開く。
 2. 下の「シナリオ管理」（Scenario management）のカードを開く。Default / Scenario1 / Scenario2 の一覧が出て、各行に「操作」の **Manage** メニュー、「ステータス」、「ラベル」があります。
 3. コピー先にしたい行が `In use` なら、Manage のメニューから「Release: You will lose ALL data in this scenario!」(英語のまま)を選ぶ。使用中の枠のメニューには、この項目だけが出ました。
-4. `Free`(無料)になった行の Manage のメニューには「Copy from default」が出ます。これを選ぶとコピーが始まります。(この手順書では、メニュー項目の中身は画面の DOM で確認しました。項目を実際にクリックしての実行は、同じ操作を Web API `POST /execute/api/scenario_copy/?copy=1&source=default&destination=scenario1` で行って確認しています。)
+4. `Free`（空いた状態）になった行の Manage のメニューには「Copy from default」が出ます。これを選ぶとコピーが始まります。(この手順書では、メニュー項目の中身は画面の DOM で確認しました。項目を実際にクリックしての実行は、同じ操作を Web API `POST /execute/api/scenario_copy/?copy=1&source=default&destination=scenario1` で行って確認しています。)
 5. コピーは、デモデータの規模なら数秒で終わります(手元では約 4 秒)。データ量が増えると長くなります。
 6. 終わると、画面右上のドロップダウン(「Production」と表示されているもの)に新しいシナリオが現れます。表示名は、その枠の Label です（手元では「distribution demo」「manufacturing demo」）。それを選ぶ。
 
