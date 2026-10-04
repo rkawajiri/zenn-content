@@ -21,7 +21,7 @@ frePPLe では、これを **シナリオ(scenario)** という、データベ�
 - 気に入らなければ、シナリオを破棄(release)するだけで元どおりです。
 - 気に入れば、シナリオの内容を元へ戻す(promote)こともできます。
 
-シナリオの枠(slot)の数は管理者が決めます(公式ドキュメント `installation-guide/multi-model`)。03 章の構成で起動した Docker イメージには、`scenario1` と `scenario2` の **2 つ** の枠がありました。どちらも起動時にデモデータがコピーされていて、最初から状態が `In use`(使用中)になっています。
+シナリオの枠(slot)の数は管理者が決めます(公式ドキュメント `installation-guide/multi-model`)。04 章の構成で起動した Docker イメージには、`scenario1` と `scenario2` の **2 つ** の枠がありました。どちらも起動時にデモデータがコピーされていて、最初から状態が `In use`(使用中)になっています。
 
 | シナリオ | 起動直後の中身 | データベース名 |
 |---|---|---|
@@ -60,7 +60,7 @@ curl -u admin:admin -X POST "http://localhost:9000/execute/api/scenario_copy/?co
 
 ## 実験してみよう
 
-07 章のモデル(または 06 章のデモデータ)で、次の実験をしてみましょう。
+08 章のモデル(または 07 章のデモデータ)で、次の実験をしてみましょう。
 
 **実験 A: 作業台が 2 台になったら?**
 
@@ -77,7 +77,7 @@ curl -u admin:admin -X POST "http://localhost:9000/execute/api/scenario_copy/?co
 
 **実験 B: 機械が 1 週間止まったら?**
 
-08 章の「機械が止まった」の手順で、シナリオの中で `maximum` を 0 にして再計画します。
+09 章の「機械が止まった」の手順で、シナリオの中で `maximum` を 0 にして再計画します。
 
 ## 結果を比べる
 
@@ -94,7 +94,7 @@ curl -u admin:admin -X POST "http://localhost:9000/execute/api/scenario_copy/?co
 - シート名はレポート名（`Demand report`）で、1 枚だけです。
 - 1 行目が見出しで、左から `Scenario`、`Item`、`Count Of Late Demands`、`Quantity Of Late Demands`、`Value Of Late Demand`、`Data field`、そのあと日付の列が並びます。
 - **1 列目の `Scenario` に、シナリオの Label（`Production`、`distribution demo` など）が入ります。** 選んだシナリオが、同じシートに縦に連なります（手元では 2 シナリオで 28 行ずつ、合計 56 行）。
-- `Data field` の行は `Net forecast`、`Sales orders`、`Total demand`、`Supply` などです。
+- `Data field` の行は `Net forecast`、`Sales orders`、`Total demand`、`Supply` などです。`Net forecast` は、予測から受注の消費分を引いた、計画の対象になる予測です（14 章）。
 
 そのため、`Scenario` 列をピボットテーブルの列（または行）に置けば、シナリオごとの数値を並べて比べられます。たとえば `Count Of Late Demands`（遅れた受注の件数）や `Quantity Of Late Demands`（遅れた数量）が、そのまま比較の指標になります。
 

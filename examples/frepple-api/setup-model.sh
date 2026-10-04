@@ -1,6 +1,6 @@
 #!/bin/bash
-# 6 章の最小モデル(テーブルを作る小さな工場)を、REST API でまとめて登録する。
-# 先に 6 章の手順で「Clear all data」を実行して、データを空にしておくこと。
+# 8 章の最小モデル(テーブルを作る小さな工場)を、REST API でまとめて登録する。
+# 先に 8 章の手順で「Clear all data」を実行して、データを空にしておくこと。
 #
 # 環境変数: FREPPLE_URL(既定 http://localhost:9000)、FREPPLE_USER(既定 admin:admin)
 URL=${FREPPLE_URL:-http://localhost:9000}

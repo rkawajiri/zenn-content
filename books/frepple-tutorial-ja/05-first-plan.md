@@ -38,18 +38,27 @@ frePPLe には、いくつかのデモデータセットが同梱されていま
 3. 「Purge all data before loading(読み込み前に全データを消去)」にチェックが入っていることを確認します。
 4. 「Execute plan after loading(読み込み後に計画を実行)」は、この章では計画を自分で作るので **チェックを外して** `Launch` を押します。
 
-**コマンドラインから**(同じことです)
+**コマンドラインから**
 
 ```bash
 docker exec frepple-community-webserver frepplectl loaddata manufacturing_demo
 ```
+
+:::message alert
+`frepplectl loaddata` は、既存のデータを **消さずに** 追加します（画面の「Purge all data before loading」にあたる動作はありません）。データが残っている環境で実行すると、残っているデータはそのままで、デモデータが追加されます（手元では、別のモデルの品目や受注が残りました）。消してから読み込みたいときは、画面を使うか、Web API で `emptybefore=true` を付けます。
+
+```bash
+curl -u admin:admin -X POST "http://localhost:9000/execute/api/loaddata/" \
+  --data "fixture=manufacturing_demo&emptybefore=true&regenerateplan=false"
+```
+:::
 
 :::message
 Execute 画面で押したタスクは、非同期に実行されます。画面上部のステータス欄が 5 秒ごとに更新され、終わると `Done` になります。
 :::
 
 :::message alert
-03 章の構成で最初に起動したときは、Docker イメージが起動時にデモデータを用意します。Execute 画面の Task status には、起動時の計画の実行や、scenario1(distribution demo)と scenario2(manufacturing demo)へのコピーが残っています。`loaddata` で読み込み直しても問題ありません。
+04 章の構成で最初に起動したときは、Docker イメージが起動時にデモデータを用意します。Execute 画面の Task status には、起動時の計画の実行や、scenario1(distribution demo)と scenario2(manufacturing demo)へのコピーが残っています。`loaddata` で読み込み直しても問題ありません。
 :::
 
 読み込みが終わったら、Sales メニューの Items / Locations / Customers や、Sales orders(受注)を開いてデータが入っていることを確認しましょう。
@@ -58,7 +67,7 @@ Execute 画面で押したタスクは、非同期に実行されます。画面
 
 同じ Execute 画面の「Create a plan(計画を作成)」カードを使います。まずは違いを体感するために、**制約なし** で実行します。
 
-1. 「Planning steps」で「Generate supply plan(日本語表示では「サプライチェーンを生成」)」にチェックが入っていることを確認します。これがオフだと、購買オーダー(PO)などの供給計画が生成されません。(「Generate forecast」は需要予測の機能で、Enterprise Edition 限定です。オフのままにします。)
+1. 「Planning steps」で「Generate supply plan(日本語表示では「サプライチェーンを生成」)」にチェックが入っていることを確認します。これがオフだと、購買オーダー(PO)などの供給計画が生成されません。(「Generate forecast」は需要予測の機能です。この章ではオフのままにします。使い方は 14 章で扱います。)
 2. 「Plan type」で「Unconstrained plan」を選びます。
 3. 「Constraints(制約)」の3つ(Capacity / Manufacturing lead time / Purchasing lead time)は、この章では **すべてオフ** にします。
 4. `Launch`(日本語表示では「起動」)を押します。
@@ -111,7 +120,7 @@ curl -u admin:admin "http://localhost:9000/execute/api/status/?id=6"
 - そのために、機械の能力を超えて仕事を詰め込んだり、過去の日付に製造・購買を計画したりします。
 - 「部品が足りない」「能力が足りない」といった問題は、**問題レポート** で警告として示されます。
 
-つまり「理想的にはこう作りたい」という計画で、実行可能かどうかは別の話です。現実に守れる計画(制約あり計画)は 06 章で作ります。
+つまり「理想的にはこう作りたい」という計画で、実行可能かどうかは別の話です。現実に守れる計画(制約あり計画)は 07 章で作ります。
 
 ## 生成された計画の中身
 
@@ -136,7 +145,7 @@ curl -u admin:admin "http://localhost:9000/execute/api/status/?id=6"
 
 問題レポートには、`material shortage`(部品の不足)が 5 件出ます。件数は日付や frePPLe のバージョンで変わるので、目安として読んでください。
 
-それぞれのオーダーは status を持ちます。計画エンジンが出した提案は `proposed` です。プランナーが承認したものは `approved`、実行が確定したものは `confirmed` になります。status の意味は 08 章で詳しく説明します。
+それぞれのオーダーは status を持ちます。計画エンジンが出した提案は `proposed` です。プランナーが承認したものは `approved`、実行が確定したものは `confirmed` になります。status の意味は 09 章で詳しく説明します。
 
 まず、Manufacturing メニューの **Manufacturing orders**(製造オーダー)と、Purchasing メニューの **Purchase orders**(購買オーダー)を開いて、生成されたオーダーの一覧を眺めてみましょう。
 
