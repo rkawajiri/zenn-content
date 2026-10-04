@@ -72,10 +72,10 @@ flowchart LR
 
 | 商品 | 地域 | 供給者 | リードタイム |
 |---|---|---|---|
-| plank | factory | lumber shop | 3 日 |
-| screw | factory | lumber shop | 1 日 |
+| plank | factory | lumber shop | `3 00:00:00`（3 日） |
+| screw | factory | lumber shop | `1 00:00:00`（1 日） |
 
-「リードタイム」（`leadtime`）は調達リードタイム（発注から届くまでの日数）です。
+「リードタイム」（`leadtime`）は調達リードタイム（発注から届くまでの日数）です。作業の所要時間と同じ `日 時:分:秒` の形式で入力します。`3` とだけ入れると 3 秒になるので、`3 00:00:00` と書きます。
 
 ### 3. リソース（作業台）
 

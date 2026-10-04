@@ -33,7 +33,7 @@ cd examples/frepple-api
 |---|---|
 | 地域（location） | `warehouse` |
 | 顧客（customer） | `customer B` |
-| 商品流通（item distribution） | 商品 `table`、地域（配送先）`warehouse`、起源（出発地）`factory`、リードタイム 2 日、サイズ倍数 10 |
+| 商品流通（item distribution） | 商品 `table`、地域（配送先）`warehouse`、起源（出発地）`factory`、リードタイム `2 00:00:00`（2 日）、サイズ倍数 10 |
 | 販売オーダー（demand） | `order 4`: `table` 50 個、地域 `warehouse`、顧客 `customer B`、納期は基準日の 10 日後、「ステータス」は `open` |
 
 :::message
@@ -74,7 +74,7 @@ REST API の項目名は、画面や公式ドキュメントと少し違いま�
 
 ## 輸送のリードタイムを変えてみる
 
-商品流通のリードタイムを 2 日から 5 日にして、制約あり計画をやり直します。画面の在庫メニューの **商品流通**（Item distributions）で「リードタイム」を書き換えるか、API で変更します。
+商品流通のリードタイムを 2 日から 5 日にして、制約あり計画をやり直します。画面の在庫メニューの **商品流通**（Item distributions）で「リードタイム」を `5 00:00:00` に書き換えるか、API で変更します（`5` とだけ入れると 5 秒になります。5 章の入力形式）。
 
 ```bash
 # id は商品流通の一覧か、GET /api/input/itemdistribution/ で確認する
