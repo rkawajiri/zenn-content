@@ -13,7 +13,7 @@ title: "需要予測（Forecast）"
 - 計画担当者は、統計予測を上書きして、販促などの情報を足せる
 :::
 
-2 章で見たとおり、Forecast は Community Edition にも入っています。この章は、5 章で読み込んだ `manufacturing_demo` を使います。
+2 章で見たとおり、Forecast は Community Edition にも入っています。この章は、12 章で読み込んだ `manufacturing_demo` を使います。
 
 ## 予測から計画までの流れ
 
@@ -41,7 +41,7 @@ flowchart LR
 
 ## データを用意する
 
-`manufacturing_demo` を、既存のデータを消してから読み込み直します。前の章で作ったデータは消えます。5 章と同じく、Execute 画面の「Load a dataset」で、「Purge all data before loading」にチェックを入れ、「Execute plan after loading」は外して実行します。
+`manufacturing_demo` を、既存のデータを消してから読み込み直します。前の章で作ったデータは消えます。12 章と同じく、Execute 画面の「Load a dataset」で、「Purge all data before loading」にチェックを入れ、「Execute plan after loading」は外して実行します。
 
 Web API なら、次のようにします。
 
@@ -51,7 +51,7 @@ curl -u admin:admin -X POST "http://localhost:9000/execute/api/loaddata/" \
 ```
 
 :::message alert
-5 章で紹介した `frepplectl loaddata manufacturing_demo` は、既存のデータを **消しません**（公式ドキュメントでも「読み込みは追加で、消すにはチェックボックスを使う」と説明されています）。手元では、8 章のモデルが残った状態で実行すると、受注が 4 件から 224 件に増え、`table` や `workbench` も残りました。8 章のデータがあるときは、上の画面か Web API を使ってください。
+12 章で紹介した `frepplectl loaddata manufacturing_demo` は、既存のデータを **消しません**。手元では、5 章のモデルが残った状態で実行すると、受注が 4 件から 224 件に増え、`table` や `workbench` も残りました。5 章のデータがあるときは、上の画面か Web API を使ってください。
 :::
 
 このデータには、受注が 220 件あります。うち 204 件は `closed`（過去の実績）で、これが統計予測の元になります。
@@ -62,7 +62,7 @@ Sales メニューの **Forecast**（`/data/forecast/forecast/`）を開くと�
 
 ## 予測を実行する
 
-Execute 画面の「Create a plan」カードで、**Generate forecast** にもチェックを入れて実行します。5 章では、このチェックをオフのままにしていました。
+Execute 画面の「Create a plan」カードで、**Generate forecast** にもチェックを入れて実行します。6 章では、このチェックをオフのままにしていました。
 
 ```bash
 ./plan.sh "plantype=1&constraint=capa,mfg_lt,po_lt&env=fcst,supply"
@@ -137,7 +137,7 @@ Sales メニューの **Forecast report**（`/forecast/`）を開きます。品
 
 同じデモデータで、`All customers` の行を `planned = false`（受注だけを計画する）にして、制約あり計画をやり直し、製造数量を比べました。
 
-REST API（`/api/forecast/forecast/`）には `planned` の項目がなく、手元では `PATCH` しても変わりませんでした。画面で変える操作は確認していないので、データベースを直接書き換えています。
+REST API（`/api/forecast/forecast/`）には `planned` の項目がなく、手元では `PATCH` しても変わりませんでした。画面で変える操作は確認していないので、データベースを直接書き換えています。学習用のローカル環境だけで行い、業務のデータには使わないでください。この節と次の「統計予測を上書きする」の SQL は、効果を確かめる実験として読んでください。
 
 ```bash
 docker exec frepple-community-postgres psql -U frepple -d frepple0 -c \
@@ -146,7 +146,7 @@ docker exec frepple-community-postgres psql -U frepple -d frepple0 -c \
 ```
 
 :::message
-`-d frepple0` は、メインのデータベース（default）です。シナリオの中で作業しているなら、`scenario1` は `frepple1`、`scenario2` は `frepple2` を指定し、`plan.sh` の末尾にシナリオ名を付けます（11 章）。
+`-d frepple0` は、メインのデータベース（default）です。シナリオの中で作業しているなら、`scenario1` は `frepple1`、`scenario2` は `frepple2` を指定し、`plan.sh` の末尾にシナリオ名を付けます（9 章）。
 :::
 
 | 品目 | 予測を計画する | 受注だけ |

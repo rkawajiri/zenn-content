@@ -8,15 +8,14 @@ chapters:
   - 02-overview
   - 03-public-demo
   - 04-setup
-  - 05-first-plan
-  - 06-read-reports
+  - 05-build-model
+  - 06-first-plan
   - 07-constrained-plan
-  - 08-build-model
-  - 09-adjust-plan
-  - 10-gantt-view
-  - 11-what-if
-  - 12-distribution
-  - 13-inventory
-  - 14-forecast
-  - 15-cpsat-scheduling
-  - 16-glossary
+  - 08-adjust-plan
+  - 09-what-if
+  - 10-distribution
+  - 11-inventory
+  - 12-demo-dataset
+  - 13-forecast
+  - 14-cpsat-scheduling
+  - 15-glossary
