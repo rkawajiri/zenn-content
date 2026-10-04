@@ -53,7 +53,7 @@ Inventory メニューの **Inventory planning**（`/inventoryplanning/drp/`）�
 
 品目×拠点ごとに、現在庫（On Hand）、安全在庫（Safety Stock）、発注量（Reorder Quantity）、未処理の受注、提案中のオーダーなどが 1 行に並びます。この画面は Community にはありません。サービスレベルから安全在庫を自動で計算する機能の画面です。Community では、安全在庫を自分で決めて入力します（11 章）。
 
-Inventory メニューの **Inventory report**（`/buffer/`）は Community にもあり、品目×拠点の在庫の推移が見られます（6 章）。
+Inventory メニューの **Inventory report**（`/buffer/`）は Community にもあり、品目×拠点の在庫の推移が見られます（6 章）。手元の日本語表示では、メニュー名は「在庫」、画面名は「棚卸レポート」です。
 
 ## 見てみよう 3: Distribution（拠点間の配送）
 
@@ -106,4 +106,4 @@ Enterprise 版では、このバーをドラッグして計画を動かせます
 
 - 画面が開かない・遅い: 共有の環境です。時間をおいて開き直してください。
 - 数字や日付が本文と違う: デモのデータは、時期によって変わります。
-- 画面の表記が英語: デモの言語設定は英語でした。
+- 画面の表記が英語: デモの言語設定は英語でした。この章の画面名は、デモの英語表記のまま書いています。4 章以降の手元の環境は日本語表示で、メニューは 販売（sales）/ 在庫（inventory）/ 能力（capacity）/ 購入（purchasing）/ 製造（manufacturing）/ 管理（admin）の順です。
