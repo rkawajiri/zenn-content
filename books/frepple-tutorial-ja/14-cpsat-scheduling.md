@@ -35,10 +35,11 @@ frePPLe のソルバー(ヒューリスティック)は、受注を 1 件ずつ�
 3. CP-SAT で、リソースが競合しないように、納期遅れが最小になる順序・開始時刻を求める。
 4. `--apply` を付けた場合だけ、新しい開始・終了日時を frePPLe に書き戻す。
 
-```
-frePPLe --REST API の GET (読み取り)--> optimize.py --CP-SAT--> 新しいスケジュール
-   ^                                                          |
-   +---------- REST API の PATCH (書き戻し) <-----------------+
+```mermaid
+flowchart LR
+  F[frePPLe] -->|REST API GET<br>MO を読む| O[optimize.py]
+  O -->|CP-SAT| S[新しいスケジュール]
+  S -->|"--apply 時のみ<br>REST API PATCH で書き戻し"| F
 ```
 
 :::message
