@@ -2,19 +2,11 @@
 # 5 章の最小モデル(テーブルを作る小さな工場)を、REST API でまとめて登録する。
 # 先に 5 章の手順で「Clear all data」を実行して、データを空にしておくこと。
 #
+# 使い方: ./setup-model.sh [シナリオ名](シナリオ名を省くと default に登録する)
+#
 # 環境変数: FREPPLE_URL(既定 http://localhost:9000)、FREPPLE_USER(既定 admin:admin)
-URL=${FREPPLE_URL:-http://localhost:9000}
-USER=${FREPPLE_USER:-admin:admin}
-
-post() {  # post <モデル名> <JSON>
-  code=$(curl -s -u "$USER" -H "Content-Type: application/json" -X POST \
-    "$URL/api/input/$1/?format=json" -d "$2" -o /tmp/frepple_setup.out -w "%{http_code}")
-  printf '%-20s %s\n' "$1" "$code"
-  [ "$code" = "201" ] || { cat /tmp/frepple_setup.out; echo; exit 1; }
-}
-
-# 納期は「今日」からの日数で作る
-due() { python3 -c "from datetime import date,timedelta;print((date.today()+timedelta(days=$1)).isoformat()+'T00:00:00')"; }
+. "$(dirname "$0")/common.sh"
+use_scenario "$1"
 
 post location  '[{"name":"factory"}]'
 post customer  '[{"name":"customer A"}]'

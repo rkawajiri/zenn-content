@@ -1,6 +1,6 @@
-title: "frePPLe ハンズオン（日本語）"
-summary: "オープンソースの生産計画ソフト frePPLe（Community Edition）を、全体像をつかんでから Docker で起動し、制約あり計画、ガントチャート、What-if、拠点間の配送、在庫、需要予測（Forecast）、OR-Tools CP-SAT による最適化まで順に触って学ぶ非公式ガイド。"
-topics: ["frepple", "docker", "python", "ortools", "scm"]
+title: "生産計画を手を動かして学ぶ ― OSS の frePPLe で MRP・需要予測・CP-SAT まで"
+summary: "受注から購買・製造・配送の計画がどう作られるかを、OSS の生産計画ソフト frePPLe を Docker で動かして体験する無料ハンズオンです。MRP（所要量計算）と有限能力の制約あり計画の違い、遅れの原因をたどる方法、What-if、在庫・拠点間の配送、需要予測、OR-Tools CP-SAT による最適化まで、小さなモデルから順に学べます。業務知識は不要で、最初の3章はインストールなしで読めます。非公式ガイドです。"
+topics: ["frepple", "scm", "ortools", "docker", "生産管理"]
 published: true
 price: 0
 chapters:

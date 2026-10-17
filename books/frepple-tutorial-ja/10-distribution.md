@@ -19,7 +19,7 @@ title: "拠点間の配送を設計する"
 ## 5 章のモデルに倉庫を足す
 
 :::message alert
-この章は、5 章のモデルだけがある状態から始めます。8 章で優先度、製造オーダーのステータス、リソースの「最大」などを変えているので、**5 章の「データを空にする」を実行し、`examples/frepple-api/setup-model.sh` で登録し直してから** 進めてください（または、scenario2 などのシナリオの中で作業します。9 章）。
+この章は、5 章のモデルだけがある状態から始めます。8 章で優先度、製造オーダーのステータス、リソースの「最大」などを変えているので、`examples/frepple-api` で **`./reset-model.sh`** を実行して、5 章のモデルだけの状態に戻してから進めてください（または、scenario2 などのシナリオの中で作業します。9 章）。シナリオの中で作業するときは、`./reset-model.sh scenario2` のようにシナリオ名を付けます。この章のほかのスクリプトも同じで、`./setup-distribution.sh scenario2`、`./plan.sh "…" scenario2` のように付けます。curl で API を呼ぶときは、URL を `http://localhost:9000/scenario2/api/...` のように、ポート番号の後ろにシナリオ名を入れた形にします。
 :::
 
 足すのは次の 4 つです。画面で登録する代わりに、`examples/frepple-api/setup-distribution.sh` で、まとめて登録できます。
