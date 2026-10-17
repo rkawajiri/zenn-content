@@ -6,9 +6,7 @@
 #
 # 環境変数: FREPPLE_URL(既定 http://localhost:9000)、FREPPLE_USER(既定 admin:admin)
 . "$(dirname "$0")/common.sh"
-
-# 登録先のシナリオがあるかを確かめる(P にシナリオの URL を入れる)
-request "$1" "/api/input/location/?format=json"
+use_scenario "$1"
 
 post location  '[{"name":"warehouse"}]'
 post customer  '[{"name":"customer B"}]'

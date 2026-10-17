@@ -9,6 +9,7 @@
 # 環境変数: FREPPLE_URL(既定 http://localhost:9000)、FREPPLE_USER(既定 admin:admin)
 . "$(dirname "$0")/common.sh"
 
-run_task "$2" "/execute/api/runplan/?$1" 300
+use_scenario "$2"
+run_task "/execute/api/runplan/?$1" 300
 echo "task $tid: $st (${i}s)"
 [ "$st" = "Done" ]

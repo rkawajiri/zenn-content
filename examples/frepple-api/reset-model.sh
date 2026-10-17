@@ -9,10 +9,11 @@
 # 環境変数: FREPPLE_URL(既定 http://localhost:9000)、FREPPLE_USER(既定 admin:admin)
 cd "$(dirname "$0")" || exit 1
 . ./common.sh
+use_scenario "$1"
 
 # 実行画面の「Clear all data」が既定でチェックを入れている、データ用のモデル(DATA TABLES)。
 # frePPLe の版で増減するので、実行画面の HTML から取り出す
-request "$1" "/execute/"
+request "/execute/"
 query=$(echo "$resp" | python3 -c '
 import sys
 from html.parser import HTMLParser
@@ -20,14 +21,15 @@ class P(HTMLParser):
     models = []
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
-        if tag == "input" and a.get("name") == "models" and a.get("data-tables") == "data" and a.get("value"):
+        if (tag == "input" and a.get("name") == "models" and a.get("data-tables") == "data"
+                and "checked" in a and a.get("value") and "models=" + a["value"] not in self.models):
             self.models.append("models=" + a["value"])
 p = P()
 p.feed(sys.stdin.read())
 print("&".join(p.models))')
 [ -n "$query" ] || { echo "失敗: $URL$P/execute/ の画面から、データを空にするモデルの一覧を取り出せません。frePPLe の版を確認してください(9.17.0 で確認しています)"; exit 1; }
 
-run_task "$1" "/execute/api/empty/?$query" 120
+run_task "/execute/api/empty/?$query" 120
 echo "データを空にする task $tid: $st (${i}s)"
 [ "$st" = "Done" ] || exit 1
 
