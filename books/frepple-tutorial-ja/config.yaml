@@ -1,7 +1,7 @@
 title: "frePPLe ハンズオン（日本語）"
 summary: "オープンソースの生産計画ソフト frePPLe（Community Edition）を、全体像をつかんでから Docker で起動し、制約あり計画、ガントチャート、What-if、拠点間の配送、在庫、需要予測（Forecast）、OR-Tools CP-SAT による最適化まで順に触って学ぶ非公式ガイド。"
 topics: ["frepple", "docker", "python", "ortools", "scm"]
-published: false
+published: true
 price: 0
 chapters:
   - 01-intro

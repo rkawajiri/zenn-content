@@ -41,7 +41,7 @@ flowchart LR
 
 ## データを用意する
 
-`manufacturing_demo` を、既存のデータを消してから読み込み直します。前の章で作ったデータは消えます。12 章と同じく、Execute 画面の「Load a dataset」で、「Purge all data before loading」にチェックを入れ、「Execute plan after loading」は外して実行します。
+`manufacturing_demo` を、既存のデータを消してから読み込み直します。前の章で作ったデータは消えます。12 章と同じく、実行画面の「データセットをロード」（Load a dataset）で、「Purge all data before loading」にチェックを入れ、「Execute plan after loading」は外して実行します（この 2 つは未訳で英語のままです）。
 
 Web API なら、次のようにします。
 
@@ -51,35 +51,35 @@ curl -u admin:admin -X POST "http://localhost:9000/execute/api/loaddata/" \
 ```
 
 :::message alert
-12 章で紹介した `frepplectl loaddata manufacturing_demo` は、既存のデータを **消しません**。手元では、5 章のモデルが残った状態で実行すると、受注が 4 件から 224 件に増え、`table` や `workbench` も残りました。5 章のデータがあるときは、上の画面か Web API を使ってください。
+12 章で紹介した `frepplectl loaddata manufacturing_demo` は、既存のデータを **消しません**。手元では、5 章のモデルが残った状態で実行すると、受注が 3 件から 223 件に増え、`table` や `workbench` も残りました。5 章のデータがあるときは、上の画面か Web API を使ってください。
 :::
 
 このデータには、受注が 220 件あります。うち 204 件は `closed`（過去の実績）で、これが統計予測の元になります。
 
-Sales メニューの **Forecast**（`/data/forecast/forecast/`）を開くと、予測の設定が 24 行あります。Forecast report とは別の、設定の一覧です。品目（chair、round table、square table、varnished chair）×拠点（shop 1、shop 2、warehouse）×顧客の組み合わせです。
+販売メニューの **予測**（Forecast。`/data/forecast/forecast/`）を開くと、予測の設定が 24 行あります。予測レポートとは別の、設定の一覧です。品目（chair、round table、square table、varnished chair）×拠点（shop 1、shop 2、warehouse）×顧客の組み合わせです。
 
 予測の設定は、デモデータのように最初から入れておく必要はありません。パラメータ `forecast.populateForecastTable` が `true`（既定）なら、過去の受注にある「品目・拠点・顧客」の組み合わせから、自動で作られます（公式ドキュメント `examples/forecasting/forecast-method`）。
 
 ## 予測を実行する
 
-Execute 画面の「Create a plan」カードで、**Generate forecast** にもチェックを入れて実行します。6 章では、このチェックをオフのままにしていました。
+実行画面の「計画を作成」カードで、**予測を作成**（Generate forecast）にもチェックを入れて実行します。6 章では、このチェックを外していました。
 
 ```bash
 ./plan.sh "plantype=1&constraint=capa,mfg_lt,po_lt&env=fcst,supply"
 ```
 
-`env=fcst` が Generate forecast、`env=supply` が Generate supply plan です。手元では 6 秒で終わりました。計画のログには、次の段階が出ます。
+`env=fcst` が「予測を作成」、`env=supply` が「サプライチェーンを生成」です。手元では 6 秒で終わりました。計画のログには、次の段階が出ます。
 
 - `Load forecast`（予測の設定を読み込む）
 - `Calculate statistical forecast and forecast consumption`（統計予測と、受注による消費を計算する）
 
 :::message
-Generate forecast をオフにして実行すると、統計予測と消費は再計算されず、前回の値が使われます。手元では、`env=supply` だけで実行しても、前回の予測が計画に入っていました。
+「予測を作成」をオフにして実行すると、統計予測と消費は再計算されず、前回の値が使われます。手元では、`env=supply` だけで実行しても、前回の予測が計画に入っていました。
 :::
 
 ## 予測の方法と精度
 
-予測の方法（`method`）は、既定で `automatic` です。frePPLe が複数の方法を試して、予測の誤差が小さいものを選びます。選ばれた方法は `out_method`、誤差（SMAPE）は `out_smape` に入ります。この 2 つは、計画を実行するまでは入っていません（読み込み直後は、24 行のうち `out_smape` は 0 行、`out_method` は 7 行だけでした）。手元の実行後の例です。
+予測の方法（`method`）は、既定で「自動」（`automatic`）です。frePPLe が複数の方法を試して、予測の誤差が小さいものを選びます。選ばれた方法は `out_method`、誤差（SMAPE）は `out_smape` に入ります。この 2 つは、計画を実行するまでは入っていません（読み込み直後は、24 行のうち `out_smape` は 0 行、`out_method` は 7 行だけでした）。手元の実行後の例です。
 
 | 品目 @ 拠点（All customers） | 選ばれた方法 | SMAPE（%） |
 |---|---|---|
@@ -92,22 +92,22 @@ Generate forecast をオフにして実行すると、統計予測と消費は�
 
 方法の意味は、公式ドキュメントでは次のように説明されています。
 
-| 方法 | 向いているデータ |
+| 方法（画面の表示） | 向いているデータ |
 |---|---|
 | constant | 需要が時間でほぼ変わらない |
 | trend | 増加または減少の傾向がある |
 | seasonal | 季節による周期がある |
 | intermittent | 売れない期間（ゼロ）が多い |
 | moving average | 履歴が短い（新しい品目など） |
-| manual | 統計予測を計算しない。上書きだけで予測を与える |
+| manual（「マニュアル」） | 統計予測を計算しない。上書きだけで予測を与える |
 
 SMAPE は、値が小さいほど、予測が過去の実績に近いことを表します。倉庫向けの `intermittent` は、実績がまばらなため、誤差が大きくなっています。
 
-誤差は、公式ドキュメント `a-day-in-the-life/demand-forecasting/check-forecast-accuracy` によると、Forecast editor の下の方のパラメータの枠、ホーム画面の予測誤差の推移のウィジェット、Forecast report の誤差の項目でも見られます。この本では、`out_smape` の値を、API とデータベースから読みました。
+誤差は、公式ドキュメント `a-day-in-the-life/demand-forecasting/check-forecast-accuracy` によると、予測エディタの下の方のパラメータの枠、ホーム画面の予測誤差の推移のウィジェット、予測レポートの誤差の項目でも見られます。この本では、`out_smape` の値を、API とデータベースから読みました。
 
-## Forecast report を読む
+## 予測レポートを読む
 
-Sales メニューの **Forecast report**（`/forecast/`）を開きます。品目・拠点・顧客を絞り込んで、期間ごとの値を見ます。手元の `chair @ shop 1 @ All customers` の例です（月ごとの数量。基準日は 10 月初め）。
+販売メニューの **予測レポート**（Forecast report。`/forecast/`）を開きます。品目・拠点・顧客を絞り込んで、期間ごとの値を見ます。手元の `chair @ shop 1 @ All customers` の例です（月ごとの数量。基準日は 10 月初め）。
 
 | 月 | 過去の受注（orderstotal） | 統計予測（baseline） | 合計（total） | 消費（consumed） | 正味（net） |
 |---|---|---|---|---|---|
@@ -168,7 +168,7 @@ docker exec frepple-community-postgres psql -U frepple -d frepple0 -c \
 
 統計予測が、販促や新製品などの情報を反映していないとき、計画担当者が **上書き**（`forecastoverride`）を入れます。
 
-公式ドキュメントでは、Forecast report または Forecast editor の画面で、上書き値のセルを編集します。上位の行（品目全体、拠点全体など）の編集は、下位の行へ、統計予測の比率で按分されます。Excel でダウンロードして書き換え、アップロードする方法もあります（公式ドキュメント `model-reference/forecast-plan`）。この本では、画面の編集とアップロードは試していません。
+公式ドキュメントでは、予測レポートまたは予測エディタの画面で、上書き値のセルを編集します。上位の行（品目全体、拠点全体など）の編集は、下位の行へ、統計予測の比率で按分されます。Excel でダウンロードして書き換え、アップロードする方法もあります（公式ドキュメント `model-reference/forecast-plan`）。この本では、画面の編集とアップロードは試していません。
 
 代わりに、データベースを直接書き換えて、効果を確かめました。`chair @ shop 1` の末端の行（顧客 `Customer near shop 1`）の、**2 か月先の月**（基準日が 10 月初めなら 12 月）の上書きを 400 にします。
 
@@ -198,7 +198,7 @@ docker exec frepple-community-postgres psql -U frepple -d frepple0 -c \
 | 制約なし（`plantype=2&constraint=0`） | 5486 個 | 5676 個（+190） |
 | 制約あり（`plantype=1&constraint=capa,mfg_lt,po_lt`） | 3486 個 | 3526 個（+40） |
 
-制約なしでは、予測が増えた分（約 +190）だけ製造が増えました。制約あり計画では、能力の範囲でしか作れないため、増えたのは +40 個でした。予測を上書きしても、能力が足りなければ、計画にはそのまま反映されません（そもそも、制約あり計画の製造は、制約なしより 2000 個少なくなっています）。
+制約なしでは、予測が増えた分（約 +190）だけ製造が増えました。制約あり計画では、増え方が予測の増分と一致しません。手元では +40 個でしたが、別の日に読み込んだデータでは +280 個でした。制約あり計画は、能力やリードタイムの範囲で、ほかの需要との兼ね合いを含めて組み直されるためです。予測を上書きしたら、増分を仮定せずに、計画の結果で確かめてください（そもそも、制約あり計画の製造は、制約なしより 2000 個以上少なくなっています）。
 
 確認できたら、上書きを `NULL` に戻して、計画をやり直してください。
 
@@ -211,14 +211,14 @@ docker exec frepple-community-postgres psql -U frepple -d frepple0 -c \
 
 ## 考えてみよう
 
-- `chair @ shop 1`（constant、SMAPE 7.93）と `chair @ warehouse`（intermittent、SMAPE 94.38）で、予測の信頼度が違うのはなぜでしょうか。倉庫向けの過去の受注を、Sales orders で見てみましょう。
+- `chair @ shop 1`（constant、SMAPE 7.93）と `chair @ warehouse`（intermittent、SMAPE 94.38）で、予測の信頼度が違うのはなぜでしょうか。倉庫向けの過去の受注を、販売オーダーで見てみましょう。
 - 販促で 12 月だけ需要が 2 倍になると分かっているとき、統計予測を上書きするのと、受注（`open`）として入れるのでは、何が違うでしょうか。
 
 ## つまずきポイント
 
-- Forecast report のメニューが出てこない: 予測の設定（Sales メニューの Forecast）が 1 件もないか、品目・拠点・顧客が未登録です。
-- 統計予測が出ない: 過去の受注（`closed`）があるか、Generate forecast にチェックを入れて実行したかを確認してください。
-- 予測が計画に入らない: Forecast（予測の設定）の `planned` が `true` かを確認してください。
+- 予測レポートのメニューが出てこない: 予測の設定（販売メニューの「予測」）が 1 件もないか、品目・拠点・顧客が未登録です。
+- 統計予測が出ない: 過去の受注（`closed`）があるか、「予測を作成」にチェックを入れて実行したかを確認してください。
+- 予測が計画に入らない: 予測（予測の設定）の `planned` が `true` かを確認してください。
 - 上書きしたのに合計が変わらない: 上位の行ではなく、末端の行（画面から編集するなら、按分される上位の行）を編集してください。
-- 読み込み直したのに前のデータが残っている: `frepplectl loaddata` は消しません。画面の「Purge all data before loading」か、Web API の `emptybefore=true` を使ってください。
+- 読み込み直したのに前のデータが残っている: `frepplectl loaddata` は消しません。画面の「Purge all data before loading」（英語のまま）か、Web API の `emptybefore=true` を使ってください。
 - 日付や数値が違う: デモデータは読み込んだ日を基準に日付がずれ、予測の結果も変わります。

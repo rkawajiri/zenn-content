@@ -1,6 +1,6 @@
 #!/bin/bash
-# 8 章の最小モデル(setup-model.sh で登録したもの)に、倉庫(warehouse)と、工場から倉庫への輸送を足す。
-# 先に setup-model.sh を実行しておくこと。12 章で使う。
+# 5 章の最小モデル(setup-model.sh で登録したもの)に、倉庫(warehouse)と、工場から倉庫への輸送を足す。
+# 先に setup-model.sh を実行しておくこと。10 章で使う。
 #
 # 環境変数: FREPPLE_URL(既定 http://localhost:9000)、FREPPLE_USER(既定 admin:admin)
 URL=${FREPPLE_URL:-http://localhost:9000}

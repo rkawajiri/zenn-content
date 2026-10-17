@@ -43,7 +43,7 @@ flowchart LR
 ```
 
 :::message
-書き戻しは、frePPLe の REST API で製造オーダーを **PATCH**（一部の項目だけ更新）して行います。この動作は 9.17.0 で確認しました。9.18.0 以降では、この PATCH が失敗するため、この本では 9.17.0 を使っています（4 章）。原因と、確認した内容は、この章の最後のコラムに書きました。
+書き戻しは、frePPLe の REST API で製造オーダーを **PATCH**（一部の項目だけ更新）して行います。この動作は 9.17.0 で確認しました。9.18 系（9.18.1 で確認）では、この PATCH が失敗するため、この本では 9.17.0 を使っています（4 章）。原因と、確認した内容は、この章の最後のコラムに書きました。
 :::
 
 ## どんな計画を入力にするか
@@ -53,8 +53,8 @@ CP-SAT の出番があるのは、**リソースが重なって使われてい�
 | 計画 | CP-SAT の入力として |
 |---|---|
 | 制約あり計画(7 章) | すでに能力を守っているので、CP-SAT で動かせるところがほとんどない |
-| 制約なし計画(`--plantype=2`) | リソースが重なるが、購買オーダーが **過去の日付** に出る。部品が届く前に製造を始めることになり、実行できない |
-| **能力だけ制約しない計画**(`--plantype=1 --constraint=mfg_lt,po_lt`) | リソースは重なるが、購買や製造は未来の日付。これを使う |
+| 制約なし計画(`plantype=2`) | リソースが重なるが、購入オーダーが **過去の日付** に出る。部品が届く前に製造を始めることになり、実行できない |
+| **能力だけ制約しない計画**(`plantype=1&constraint=mfg_lt,po_lt`) | リソースは重なるが、購買や製造は未来の日付。これを使う |
 
 デモデータ（12 章）にも、同じ「能力だけ制約しない計画」（`plantype=1&constraint=mfg_lt,po_lt`）をかけると、能力オーバーが 7 件出て、`optimize.py` は 26 件の MO のうち 8 件の開始時刻を動かしました（手元の 9.17.0 での例です）。ただし、この本ではモデルが小さく結果を追いやすい 5 章のモデルを使います。なお、「制約なし計画」（`plantype=2`）を入力にすると、基準日より前に始まる MO が基準日まで押し出されるだけで、リソースの重なりの解消とは別の動きになります。
 
@@ -100,7 +100,7 @@ model.Minimize(sum(tardiness))
 Python 3.9 以上が必要です。frePPLe とは別の仮想環境を作って、依存関係を入れます。
 
 ```bash
-cd examples/cpsat
+cd ../cpsat    # 6 章から続けて examples/frepple-api にいる場合
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -130,10 +130,10 @@ curl -u admin:admin "http://localhost:9000/api/input/manufacturingorder/?format=
 
 **手順 1: 能力だけ制約しない計画を作る**
 
-`plan.sh` は、6 章で紹介した `examples/frepple-api/plan.sh` です。
+`plan.sh` は、6 章で紹介した `examples/frepple-api/plan.sh` です。`examples/cpsat` から実行するので、`../frepple-api/plan.sh` と書きます。
 
 ```bash
-./plan.sh "plantype=1&constraint=mfg_lt,po_lt&env=supply"
+../frepple-api/plan.sh "plantype=1&constraint=mfg_lt,po_lt&env=supply"
 ```
 
 問題レポートには、`workbench` の `overload`(能力オーバー)が出ます。製造オーダーは、同じ作業台で時間が重なっています。
@@ -170,17 +170,23 @@ CP-SAT: OPTIMAL, 遅れ合計 22080 分(元の enddate を納期とみなした�
 python optimize.py --url http://localhost:9000 --user admin --password admin --apply --status approved
 ```
 
-Manufacturing メニューの **Manufacturing orders** で、開始時刻が動いたこと、Capacity メニューの **Resource detail** で、作業台の上でオーダーが順番に並んでいることを確認してください。手元では、書き戻した後の製造オーダー 5 件は、時間が重なる組が 0 件になり、作業台の上で順番に並びました。
+製造メニューの **製造オーダー**（Manufacturing orders）で、開始時刻が動いたこと、能力メニューの **Resource detail**（未訳で英語のまま）で、作業台の上でオーダーが順番に並んでいることを確認してください。手元では、書き戻した後の製造オーダー 5 件は、時間が重なる組が 0 件になり、作業台の上で順番に並びました。
 
 `--status approved` を付けたのは、書き戻した MO を次の `runplan` で消されないようにするためです。付けない場合は `proposed` のままで、再計画すると作り直されます。
 
 **手順 4: 再計画してみる**
 
+今度は、能力も含めて **すべての制約をオン** にして再計画します。
+
 ```bash
-./plan.sh "plantype=1&constraint=mfg_lt,po_lt&env=supply"
+../frepple-api/plan.sh "plantype=1&constraint=capa,mfg_lt,po_lt&env=supply"
 ```
 
-手元では、`approved` にした製造オーダー 5 件は、日時が変わらずに残りました。frePPLe は、それらを動かせない入力として扱い、購買オーダーなど周りを計画し直します。
+手元では、`approved` にした製造オーダーは日時が変わらずに残り、新しい製造オーダーは作られませんでした。frePPLe は、それらを動かせない入力として扱い、購入オーダーなど周りを計画し直します。受注の納品日は、CP-SAT が並べた順番どおりになります。
+
+:::message alert
+手順 1 と同じ「能力だけ制約しない計画」（`constraint=mfg_lt,po_lt`）で再計画すると、結果が変わります。`approved` の製造オーダーは納期より後に終わるので、frePPLe は納期に間に合わせるために、能力を無視した `proposed` の製造オーダーを **追加で** 作ります。手元では、受注 300 個に対して、`approved` 300 個に加えて `proposed` 238 個が作られ、作業台の上で再び重なりました。書き戻した結果を活かすときは、能力の制約を付けて再計画してください。
+:::
 
 ## サンプルの動作確認
 
@@ -206,9 +212,9 @@ CP-SAT は、先に短い `B` を置いて、次に `A` を置きます(遅れ�
 
 | 限界 | 内容と対策 |
 |---|---|
-| 再計画で上書きされる | `runplan` は proposed のオーダーを作り直します(公式ドキュメント `model-reference/manufacturing-orders`)。書き戻した結果を残したいなら、status を `approved` か `confirmed` にします (8 章)。ただし `confirmed` にすると frePPLe は動かせなくなります。 |
-| 工程の前後関係 | MO 同士の前後関係(部品の MO → 組立の MO)を考慮していません。上流の MO を遅らせると、下流の MO が部品なしで始まることになりかねません。ペギング（MO の `plan` にある情報）を使って前後関係の制約を足す必要があります。 |
-| 在庫・購買との整合 | 在庫の推移、問題レポート、制約レポートは、frePPLe の計画エンジンが出力するときに作られます。外部で日時を変えると、それらとずれます。書き戻した後に `runplan` を再実行すると、`approved` に固定した MO を入力として、購買などを計算し直せます。 |
+| 再計画で上書きされる | `runplan` は proposed のオーダーを作り直します(公式ドキュメント `model-reference/manufacturing-orders`)。書き戻した結果を残したいなら、ステータスを `approved` か `confirmed` にします (8 章)。ただし `confirmed` にすると frePPLe は動かせなくなります。 |
+| 作業の前後関係 | MO 同士の前後関係(部品の MO → 組立の MO)を考慮していません。上流の MO を遅らせると、下流の MO が部品なしで始まることになりかねません。ペギング（MO の `plan` にある情報）を使って前後関係の制約を足す必要があります。 |
+| 在庫・購買との整合 | 在庫の推移、問題レポート、条件レポートは、frePPLe の計画エンジンが出力するときに作られます。外部で日時を変えると、それらとずれます。書き戻した後に `runplan` を再実行すると、`approved` に固定した MO を入力として、購買などを計算し直せます。 |
 | カレンダー・段取り | 稼働カレンダー、段取り(setup)、スキル、代替リソースは考慮していません。所要時間は `enddate - startdate` の経過時間として固定しています。 |
 | 前倒しはしない | 開始は元の `startdate` より前にはしません。部品が届く時刻を保証するためです。 |
 
@@ -254,7 +260,7 @@ PATCH なのに部分更新として扱われず、必須項目（`item`、`cust
 
 - `ModuleNotFoundError: ortools`: 仮想環境が有効か、`pip install -r requirements.txt` を実行したかを確認してください。
 - `401` や `403` が返る: `--user` と `--password` を確認してください。REST API は Basic 認証で呼んでいます。
-- 書き戻しで HTTP 500 が返る: frePPLe の版が 9.18.0 以降ではありませんか。この本は 9.17.0 で確認しています（4 章、この章のコラム）。
+- 書き戻しで HTTP 500 が返る: frePPLe の版が 9.18 系（9.18.1 で確認）ではありませんか。この本は 9.17.0 で確認しています（4 章、この章のコラム）。
 - `proposed MO: 0 件`: 計画を実行したか、`status` が proposed のオーダーがあるかを確認してください。
 - 結果が `INFEASIBLE` になる: 固定の占有区間どうしが重なっているなど、データに矛盾がある可能性があります。
 - 実行に時間がかかる: `--time-limit` で探索時間の上限を指定してください。

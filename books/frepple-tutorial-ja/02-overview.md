@@ -8,7 +8,7 @@ title: "frePPLe の全体像"
 **この章で学べる計画の考え方**
 
 - 計画は「需要 → 在庫 → 補充（買う・作る・運ぶ）」の順につながっている
-- 補充手段は 3 種類ある。購買（PO）、製造（MO）、配送（DO）
+- 補充手段は 3 種類ある。購入（PO）、製造（MO）、流通（DO）
 - frePPLe の機能は 4 つの領域（Forecast / Inventory / Distribution / Production）に分けて考えると整理しやすい
 :::
 
@@ -35,9 +35,9 @@ flowchart LR
   O[受注<br>open] --> D
   D --> S[在庫<br>onhand / 安全在庫]
   S --> P[供給計画<br>制約を守って補充]
-  P --> PO[購買オーダー PO]
+  P --> PO[購入オーダー PO]
   P --> MO[製造オーダー MO]
-  P --> DO[配送オーダー DO]
+  P --> DO[流通オーダー DO]
   PO --> R[レポート<br>What-if]
   MO --> R
   DO --> R
@@ -53,10 +53,10 @@ flowchart LR
 
 | 領域 | 決めること | 主な入力 | 結果と画面 | この本の章 |
 |---|---|---|---|---|
-| **Forecast** | 将来の需要はどれくらいか | 過去の受注（`closed`）、予測の設定（forecast） | 統計予測、受注による消費後の正味予測（Forecast report / editor） | 13 章 |
-| **Inventory** | 品目×拠点の在庫の目標と、補充の単位 | 現在庫、安全在庫（buffer）、発注の最小・倍数（item supplier） | 在庫の推移（Inventory report） | 6 章、11 章 |
-| **Distribution** | 拠点間で何をいつ運ぶか | 輸送の条件（item distribution）、拠点（location） | 配送オーダー（DO）、Distribution order summary | 10 章 |
-| **Production** | 何をいつ作る・買うか | 部品表、工程、リソース、サプライヤー、受注 | 製造オーダー（MO）、購買オーダー（PO）、リソースレポート、constraint report | 5〜9 章、12 章 |
+| **Forecast** | 将来の需要はどれくらいか | 過去の受注（`closed`）、予測の設定（forecast） | 統計予測、受注による消費後の正味予測（予測レポート / 予測エディタ） | 13 章 |
+| **Inventory** | 品目×拠点の在庫の目標と、補充の単位 | 現在庫、安全在庫（buffer）、発注の最小・倍数（商品供給者） | 在庫の推移（棚卸レポート） | 6 章、11 章 |
+| **Distribution** | 拠点間で何をいつ運ぶか | 輸送の条件（商品流通）、地域（location） | 流通オーダー（DO）、Distribution order summary | 10 章 |
+| **Production** | 何をいつ作る・買うか | 部品表、作業、リソース、供給者、販売オーダー | 製造オーダー（MO）、購入オーダー（PO）、資源レポート、条件レポート | 5〜9 章、12 章 |
 
 4 つは独立した機能ではありません。たとえば、倉庫向けの予測（Forecast）が、倉庫の在庫（Inventory）の目標を動かし、工場から倉庫への輸送（Distribution）と、工場での製造（Production）を引き起こします。
 
@@ -66,12 +66,12 @@ flowchart LR
 
 | 分類 | 主な表 |
 |---|---|
-| 需要 | 受注（demand）、予測（forecast）、顧客（customer） |
-| 品目と拠点 | 品目（item）、拠点（location） |
+| 需要 | 販売オーダー（demand）、予測（forecast）、顧客（customer） |
+| 品目と拠点 | 商品（item）、地域（location） |
 | 在庫 | バッファ（buffer） |
-| 購買 | サプライヤー（supplier）、品目×サプライヤー（item supplier） |
-| 製造 | 工程（operation）、部品表（operation material）、リソース（resource）、カレンダー |
-| 配送 | 品目×配送（item distribution） |
+| 購入 | 供給者（supplier）、商品供給者（item supplier） |
+| 製造 | 作業（operation）、作業材料（operation material）、リソース（resource）、カレンダー |
+| 流通 | 商品流通（item distribution） |
 
 データは、画面のグリッドで入力するほか、Excel/CSV のインポートや REST API でも登録できます（5 章）。公式ドキュメントによると、ERP とつなぐ仕組み（Odoo などのコネクタ）もあります。この本では、ERP との連携は扱いません。
 
@@ -90,7 +90,7 @@ frePPLe には Community / Cloud / Enterprise の 3 つの Edition がありま�
 
 | 機能 | Community 9.17.0（この本の環境） |
 |---|---|
-| Forecast（統計予測、予測の消費） | 使える。有効になっていて、Execute 画面の「Generate forecast」で実行できることを確認しました（13 章） |
+| Forecast（統計予測、予測の消費） | 使える。有効になっていて、実行画面の「予測を作成」（Generate forecast）で実行できることを確認しました（13 章） |
 | 在庫計画（サービスレベルから安全在庫と発注量を自動計算） | **入っていません**。アプリ（`inventoryplanning`）がなく、メニューもありません。11 章で概念だけ説明します |
 | 在庫の基本設定（現在庫、安全在庫、発注の最小・倍数） | 使える（11 章） |
 | 配送（拠点間の輸送） | 使える（10 章） |

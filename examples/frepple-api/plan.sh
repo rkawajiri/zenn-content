@@ -11,8 +11,18 @@ URL=${FREPPLE_URL:-http://localhost:9000}
 USER=${FREPPLE_USER:-admin:admin}
 P=${2:+/$2}
 
-resp=$(curl -s -u "$USER" -X POST "$URL$P/execute/api/runplan/?$1")
-tid=$(echo "$resp" | python3 -c "import sys,json;print(json.load(sys.stdin)['taskid'])") || { echo "起動に失敗: $resp"; exit 1; }
+resp=$(curl -s -u "$USER" -X POST -w '\n%{http_code} %{redirect_url}' "$URL$P/execute/api/runplan/?$1")
+status=${resp##*$'\n'}
+resp=${resp%$'\n'*}
+code=${status%% *}
+case "$code:$status" in
+  401:*|302:*/login/*) echo "起動に失敗: 認証できません(HTTP $code)。パスワードを変えたときは FREPPLE_USER=admin:<パスワード> を指定してください"; exit 1 ;;
+  302:*|404:*) echo "起動に失敗: シナリオ ${2:-default} が見つかりません(HTTP $code)。シナリオの名前と、使用中になっているかを確認してください"; exit 1 ;;
+  000:*) echo "起動に失敗: $URL に接続できません。frePPLe のコンテナが起動しているか確認してください"; exit 1 ;;
+  2??:*) ;;
+  *) echo "起動に失敗: HTTP $code が返りました"; exit 1 ;;
+esac
+tid=$(echo "$resp" | python3 -c "import sys,json;print(json.load(sys.stdin)['taskid'])" 2>/dev/null) || { echo "起動に失敗(HTTP $code): $resp"; exit 1; }
 
 for i in $(seq 1 300); do
   st=$(curl -s -u "$USER" "$URL$P/execute/api/status/?id=$tid" |
