@@ -87,6 +87,8 @@ docker compose logs -f frepple    # 起動ログを確認(Ctrl+C で抜ける)
 docker exec -it frepple-community-webserver frepplectl changepassword admin
 ```
 
+パスワードを変えた場合、5 章以降で使う `examples/frepple-api/` のスクリプトには、環境変数で新しいパスワードを渡します（例: `export FREPPLE_USER=admin:<新しいパスワード>`）。渡さないと、認証できずにスクリプトが止まります。
+
 ## 画面の言語
 
 frePPLe はブラウザの言語を自動で検出するとされていますが、9.17.0 のローカル環境では日本語になりませんでした。言語は次の手順で変更できます。
