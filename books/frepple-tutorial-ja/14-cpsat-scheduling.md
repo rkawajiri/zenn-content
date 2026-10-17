@@ -176,11 +176,17 @@ python optimize.py --url http://localhost:9000 --user admin --password admin --a
 
 **手順 4: 再計画してみる**
 
+今度は、能力も含めて **すべての制約をオン** にして再計画します。
+
 ```bash
-./plan.sh "plantype=1&constraint=mfg_lt,po_lt&env=supply"
+./plan.sh "plantype=1&constraint=capa,mfg_lt,po_lt&env=supply"
 ```
 
-手元では、`approved` にした製造オーダー 5 件は、日時が変わらずに残りました。frePPLe は、それらを動かせない入力として扱い、購入オーダーなど周りを計画し直します。
+手元では、`approved` にした製造オーダーは日時が変わらずに残り、新しい製造オーダーは作られませんでした。frePPLe は、それらを動かせない入力として扱い、購入オーダーなど周りを計画し直します。受注の納品日は、CP-SAT が並べた順番どおりになります。
+
+:::message alert
+手順 1 と同じ「能力だけ制約しない計画」（`constraint=mfg_lt,po_lt`）で再計画すると、結果が変わります。`approved` の製造オーダーは納期より後に終わるので、frePPLe は納期に間に合わせるために、能力を無視した `proposed` の製造オーダーを **追加で** 作ります。手元では、受注 300 個に対して、`approved` 300 個に加えて `proposed` 238 個が作られ、作業台の上で再び重なりました。書き戻した結果を活かすときは、能力の制約を付けて再計画してください。
+:::
 
 ## サンプルの動作確認
 
