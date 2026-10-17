@@ -43,7 +43,7 @@ flowchart LR
 ```
 
 :::message
-書き戻しは、frePPLe の REST API で製造オーダーを **PATCH**（一部の項目だけ更新）して行います。この動作は 9.17.0 で確認しました。9.18.0 以降では、この PATCH が失敗するため、この本では 9.17.0 を使っています（4 章）。原因と、確認した内容は、この章の最後のコラムに書きました。
+書き戻しは、frePPLe の REST API で製造オーダーを **PATCH**（一部の項目だけ更新）して行います。この動作は 9.17.0 で確認しました。9.18 系（9.18.1 で確認）では、この PATCH が失敗するため、この本では 9.17.0 を使っています（4 章）。原因と、確認した内容は、この章の最後のコラムに書きました。
 :::
 
 ## どんな計画を入力にするか
@@ -53,8 +53,8 @@ CP-SAT の出番があるのは、**リソースが重なって使われてい�
 | 計画 | CP-SAT の入力として |
 |---|---|
 | 制約あり計画(7 章) | すでに能力を守っているので、CP-SAT で動かせるところがほとんどない |
-| 制約なし計画(`--plantype=2`) | リソースが重なるが、購入オーダーが **過去の日付** に出る。部品が届く前に製造を始めることになり、実行できない |
-| **能力だけ制約しない計画**(`--plantype=1 --constraint=mfg_lt,po_lt`) | リソースは重なるが、購買や製造は未来の日付。これを使う |
+| 制約なし計画(`plantype=2`) | リソースが重なるが、購入オーダーが **過去の日付** に出る。部品が届く前に製造を始めることになり、実行できない |
+| **能力だけ制約しない計画**(`plantype=1&constraint=mfg_lt,po_lt`) | リソースは重なるが、購買や製造は未来の日付。これを使う |
 
 デモデータ（12 章）にも、同じ「能力だけ制約しない計画」（`plantype=1&constraint=mfg_lt,po_lt`）をかけると、能力オーバーが 7 件出て、`optimize.py` は 26 件の MO のうち 8 件の開始時刻を動かしました（手元の 9.17.0 での例です）。ただし、この本ではモデルが小さく結果を追いやすい 5 章のモデルを使います。なお、「制約なし計画」（`plantype=2`）を入力にすると、基準日より前に始まる MO が基準日まで押し出されるだけで、リソースの重なりの解消とは別の動きになります。
 
@@ -100,7 +100,7 @@ model.Minimize(sum(tardiness))
 Python 3.9 以上が必要です。frePPLe とは別の仮想環境を作って、依存関係を入れます。
 
 ```bash
-cd examples/cpsat
+cd ../cpsat    # 6 章から続けて examples/frepple-api にいる場合
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -130,10 +130,10 @@ curl -u admin:admin "http://localhost:9000/api/input/manufacturingorder/?format=
 
 **手順 1: 能力だけ制約しない計画を作る**
 
-`plan.sh` は、6 章で紹介した `examples/frepple-api/plan.sh` です。
+`plan.sh` は、6 章で紹介した `examples/frepple-api/plan.sh` です。`examples/cpsat` から実行するので、`../frepple-api/plan.sh` と書きます。
 
 ```bash
-./plan.sh "plantype=1&constraint=mfg_lt,po_lt&env=supply"
+../frepple-api/plan.sh "plantype=1&constraint=mfg_lt,po_lt&env=supply"
 ```
 
 問題レポートには、`workbench` の `overload`(能力オーバー)が出ます。製造オーダーは、同じ作業台で時間が重なっています。
@@ -179,7 +179,7 @@ python optimize.py --url http://localhost:9000 --user admin --password admin --a
 今度は、能力も含めて **すべての制約をオン** にして再計画します。
 
 ```bash
-./plan.sh "plantype=1&constraint=capa,mfg_lt,po_lt&env=supply"
+../frepple-api/plan.sh "plantype=1&constraint=capa,mfg_lt,po_lt&env=supply"
 ```
 
 手元では、`approved` にした製造オーダーは日時が変わらずに残り、新しい製造オーダーは作られませんでした。frePPLe は、それらを動かせない入力として扱い、購入オーダーなど周りを計画し直します。受注の納品日は、CP-SAT が並べた順番どおりになります。
@@ -260,7 +260,7 @@ PATCH なのに部分更新として扱われず、必須項目（`item`、`cust
 
 - `ModuleNotFoundError: ortools`: 仮想環境が有効か、`pip install -r requirements.txt` を実行したかを確認してください。
 - `401` や `403` が返る: `--user` と `--password` を確認してください。REST API は Basic 認証で呼んでいます。
-- 書き戻しで HTTP 500 が返る: frePPLe の版が 9.18.0 以降ではありませんか。この本は 9.17.0 で確認しています（4 章、この章のコラム）。
+- 書き戻しで HTTP 500 が返る: frePPLe の版が 9.18 系（9.18.1 で確認）ではありませんか。この本は 9.17.0 で確認しています（4 章、この章のコラム）。
 - `proposed MO: 0 件`: 計画を実行したか、`status` が proposed のオーダーがあるかを確認してください。
 - 結果が `INFEASIBLE` になる: 固定の占有区間どうしが重なっているなど、データに矛盾がある可能性があります。
 - 実行に時間がかかる: `--time-limit` で探索時間の上限を指定してください。

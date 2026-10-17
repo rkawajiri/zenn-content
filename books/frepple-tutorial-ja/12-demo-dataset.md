@@ -120,7 +120,7 @@ http://localhost:9000/demandpegging/Demand%2007/
 
 ![Demand Gantt report（Demand 07 の「計画」タブ）。左の表が活動、右が時間軸](/images/frepple-tutorial-ja/demand-gantt.jpg)
 
-- 灰色（暗い色）の縦線: 現在日（計画基準日）
+- 黒い縦線: 現在日（計画基準日）
 - 赤い縦線: その受注の納期
 
 納期の赤い線よりも右に納品（DLVR）のバーがあれば、その受注は **遅れて** います。

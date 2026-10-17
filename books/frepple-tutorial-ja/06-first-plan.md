@@ -30,7 +30,7 @@ title: "最初の計画とレポートの読み方"
 画面の代わりに Web API でも、同じ計画を実行できます。以降の章では、繰り返し実行するので、この方法を使います。
 
 ```bash
-cd examples/frepple-api
+cd examples/frepple-api    # リポジトリのルートから。5 章で setup-model.sh を使った場合は、すでにこのフォルダにいます
 ./plan.sh "plantype=2&constraint=0&env=supply"
 # task 6: Done (6s)
 ```

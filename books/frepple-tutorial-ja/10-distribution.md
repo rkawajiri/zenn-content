@@ -25,8 +25,7 @@ title: "拠点間の配送を設計する"
 足すのは次の 4 つです。画面で登録する代わりに、`examples/frepple-api/setup-distribution.sh` で、まとめて登録できます。
 
 ```bash
-cd examples/frepple-api
-./setup-distribution.sh
+./setup-distribution.sh    # 6 章から続けて examples/frepple-api で実行する
 ```
 
 | 登録するもの | 内容 |
