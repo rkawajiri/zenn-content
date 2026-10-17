@@ -117,7 +117,7 @@ curl -u admin:admin "http://localhost:9000/api/input/manufacturingorder/?format=
 製造オーダーが JSON で返ってくれば成功です。各オーダーには `startdate` `enddate` と、使うリソースを表す `resources` が含まれます。
 
 :::message
-`admin` のパスワードを変更している場合は、`--password` にその値を渡してください。シナリオの中で作業するときは、URL にシナリオ名を付けます(`--url http://localhost:9000/scenario2`)。
+`admin` のパスワードを変更している場合は、`--password` にその値を渡してください。シナリオの中で作業するときは、URL にシナリオ名を付けます(`--url http://localhost:9000/scenario2`)。`plan.sh` と `reset-model.sh` には、最後にシナリオ名を付けます(`../frepple-api/plan.sh "…" scenario2`)。
 :::
 
 ## 実行する
@@ -125,7 +125,7 @@ curl -u admin:admin "http://localhost:9000/api/input/manufacturingorder/?format=
 5 章で作ったモデルを使います。デモデータを残したいときは、5 章の内容を scenario2 で作業してもかまいません。以下のコマンドは、5 章のモデルがある default のデータベースに対するものです。
 
 :::message alert
-8〜13 章を先に進めた場合、default のデータは変わっています（10 章は倉庫と `order 4` を足し、11 章はバッファを足し、12・13 章はデモデータを読み込みます）。この章の数値は、5 章のモデルだけがある状態の値です。`examples/frepple-api` で `./reset-model.sh` を実行して、5 章のモデルだけの状態に戻してから進めてください。
+8〜13 章を先に進めた場合、default のデータは変わっています（10 章は倉庫と `order 4` を足し、11 章はバッファを足し、12・13 章はデモデータを読み込みます）。この章の数値は、5 章のモデルだけがある状態の値です。`examples/frepple-api` で `./reset-model.sh` を実行して、5 章のモデルだけの状態に戻してから進めてください。scenario2 で作業している場合は `./reset-model.sh scenario2` とシナリオ名を付けます。付けないと、default に残したデモデータが消えます。
 :::
 
 **手順 1: 能力だけ制約しない計画を作る**
