@@ -34,7 +34,7 @@ frePPLe は、受注(需要)・在庫・購買・製造・リソース(機械や
 
 | パート | 内容 | 章 |
 |---|---|---|
-| 全体像 | frePPLe が扱う範囲と、4 つの領域（Forecast / Inventory / Distribution / Production） | 2〜3 |
+| 全体像 | frePPLe が扱う範囲と、4 つの領域（Forecast / Inventory / Distribution / Production） | 2 |
 | A. 入門 | 公開デモで各領域を見て回る、Docker で起動 | 3〜4 |
 | B. 最小モデルで基礎 | 小さなモデルを作る、制約なし計画とレポート、制約あり計画、計画の調整、What-if | 5〜9 |
 | C. 領域を広げる | 拠点間の配送、在庫の目標 | 10〜11 |

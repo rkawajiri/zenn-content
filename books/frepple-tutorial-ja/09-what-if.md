@@ -60,7 +60,7 @@ curl -u admin:admin -X POST "http://localhost:9000/execute/api/scenario_copy/?co
 
 ## 実験してみよう
 
-5 章のモデルで、次の実験をしてみましょう。
+5 章のモデルで、次の実験をしてみましょう。8 章で優先度や製造オーダーのステータスを変えたままだと、元の計画が 3 日・5 日・8 日の遅れになりません。先に **5 章の「データを空にする」を実行し、`examples/frepple-api/setup-model.sh` で登録し直して** ください。
 
 **実験 A: 作業台が 2 台になったら?**
 

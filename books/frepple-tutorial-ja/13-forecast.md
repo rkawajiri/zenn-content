@@ -51,7 +51,7 @@ curl -u admin:admin -X POST "http://localhost:9000/execute/api/loaddata/" \
 ```
 
 :::message alert
-12 章で紹介した `frepplectl loaddata manufacturing_demo` は、既存のデータを **消しません**。手元では、5 章のモデルが残った状態で実行すると、受注が 4 件から 224 件に増え、`table` や `workbench` も残りました。5 章のデータがあるときは、上の画面か Web API を使ってください。
+12 章で紹介した `frepplectl loaddata manufacturing_demo` は、既存のデータを **消しません**。手元では、5 章のモデルが残った状態で実行すると、受注が 3 件から 223 件に増え、`table` や `workbench` も残りました。5 章のデータがあるときは、上の画面か Web API を使ってください。
 :::
 
 このデータには、受注が 220 件あります。うち 204 件は `closed`（過去の実績）で、これが統計予測の元になります。
