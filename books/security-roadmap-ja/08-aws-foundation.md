@@ -139,6 +139,7 @@ CSPM のチェック基準としては、まず **AWS Foundational Security Best
 | 未使用の権限の削減 | IAM Access Analyzer の未使用アクセス検出 |
 | 一時的な権限付与 | IAM Identity Center + 申請ワークフロー |
 | インシデント初動の自動化 | 侵害されたキーの無効化、インスタンスの隔離などのプレイブック |
+| 夜間・休日も含めた検知の一次対応 | **AWS Security Incident Response**（GuardDuty の検知のトリアージ、AI による調査、AWS の専門家への 24 時間のエスカレーション。15 章） |
 | 脆弱性診断（ペネトレーションテスト） | Takumi のブラックボックス診断、AWS Security Agent（12 章）、外部の専門会社 |
 
 ## Lv4: Optimized（最終形）
