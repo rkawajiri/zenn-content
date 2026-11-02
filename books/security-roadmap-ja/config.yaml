@@ -8,16 +8,17 @@ chapters:
   - 02-why-now
   - 03-yardsticks
   - 04-self-assessment
-  - 05-tool-map
-  - 06-aws-foundation
-  - 07-satv2
-  - 08-wiz
-  - 09-github
-  - 10-ai-appsec
-  - 11-ai-risk
-  - 12-organization
-  - 13-incident-response
-  - 14-investigation
-  - 15-roadmap
-  - 16-basics
-  - 17-references
+  - 05-organization
+  - 06-tool-map
+  - 07-corporate-it
+  - 08-aws-foundation
+  - 09-satv2
+  - 10-wiz
+  - 11-github
+  - 12-ai-appsec
+  - 13-ai-risk
+  - 14-incident-response
+  - 15-investigation
+  - 16-roadmap
+  - 17-basics
+  - 18-references
