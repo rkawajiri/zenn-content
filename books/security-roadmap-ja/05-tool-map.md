@@ -36,7 +36,7 @@ title: "ツールの役割分担マップ ― 何を、どの順番で入れ、�
 |---|---|---|---|
 | ① AWS の土台と脅威の検知 | **AWS 標準**（Organizations、IAM Identity Center、CloudTrail、Config、GuardDuty、Inspector、**Security Hub**） | AWS を使うなら、まずは AWS 標準の機能 | 6 |
 | ② AWS 全体の定期点検 | **SATv2** | Prowler などの OSS、外部の診断サービス | 7 |
-| ③ クラウドのリスクの優先順位づけ | **Wiz** | CNAPP（クラウドのリスクを横断的に可視化する製品）。最初は Security Hub の露出検出で代用できる | 8 |
+| ③ クラウドのリスクの優先順位づけ | **Wiz** | CNAPP（クラウドのリスクを横断的に可視化する製品）。最初は Security Hub の「露出」の検出（攻撃につながる組み合わせの検出。6 章）で代用できる | 8 |
 | ④ コードと開発プロセスの守り | **GitHub**（Secret Protection、Code Security、Dependabot、ルールセット） | GitLab などの同等の機能、SAST / SCA の製品 | 9 |
 | ⑤ 悪性パッケージのブロック | **Takumi Guard** | パッケージのファイアウォールやプロキシの製品 | 10 |
 | ⑥ コードの継続的な診断と修正 | **Claude Security** | AI によるコード診断の製品、従来の SAST | 10 |
