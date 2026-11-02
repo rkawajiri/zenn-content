@@ -23,9 +23,9 @@ title: "参考資料・最近の発表資料"
 
 ## 経産省・IPA・政府のガイドライン
 
-- [サプライチェーン強化に向けたセキュリティ対策評価制度（SCS 評価制度）](https://www.meti.go.jp/policy/netsecurity/scs.html)（経済産業省）― ★3・★4 の要求事項・評価基準 Ver1.1 など
+- [サプライチェーン強化に向けたセキュリティ対策評価制度（SCS 評価制度）](https://www.meti.go.jp/policy/netsecurity/scs.html)（経済産業省）― ★3・★4 の要求事項・評価基準、よくあるお問い合わせ（FAQ）など
 - [SCS 評価制度に関する制度構築方針の公表](https://www.meti.go.jp/press/2025/03/20260327001/20260327001.html)（経済産業省、2026 年 3 月 27 日）
-- [サイバーセキュリティ経営ガイドライン Ver3.0](https://www.meti.go.jp/policy/netsecurity/downloadfiles/guide_v3.0.pdf)（経済産業省・IPA）
+- [サイバーセキュリティ経営ガイドライン Ver3.0](https://www.meti.go.jp/policy/netsecurity/downloadfiles/guide_v3.0.pdf)（経済産業省・IPA） ― 付録 C（インシデント発生に備えて整理しておくべき事項）、付録 F「サイバーセキュリティ体制構築・人材確保の手引き」もあわせて公開されている
 - [中小企業の情報セキュリティ対策ガイドライン](https://www.ipa.go.jp/security/keihatsu/sme/guideline/)（IPA）― 第4.0版（[プレスリリース、2026 年 3 月 27 日](https://www.ipa.go.jp/pressrelease/2025/press20260327.html)）
 - [情報セキュリティ10大脅威](https://www.ipa.go.jp/security/10threats/index.html)（IPA）― 2026 年版の解説: [ScanNetSecurity](https://scan.netsecurity.ne.jp/article/2026/02/19/54657.html)、[@IT](https://atmarkit.itmedia.co.jp/ait/articles/2603/03/news057.html)
 - AI 事業者ガイドライン（総務省・経済産業省）― 各省の公式ページで最新版を確認
