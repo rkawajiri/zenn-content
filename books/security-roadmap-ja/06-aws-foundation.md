@@ -131,6 +131,8 @@ CSPM のチェック基準としては、まず **AWS Foundational Security Best
 
 ## Lv3: Efficient（仕組み化）
 
+この本の Lv3 には、専任チームのない会社でも手が届き、効果の大きいものを選んでいます。AWS の成熟度モデルでは、設定の逸脱の自動修正と一時的な権限昇格は Optimized に分類されているので、Lv3 の中では後半に回しても構いません。
+
 | やること | 道具の例 |
 |---|---|
 | IaC のセキュリティスキャンを PR ごとに | Checkov、Trivy、Wiz Code、GitHub Code Security |
@@ -140,7 +142,7 @@ CSPM のチェック基準としては、まず **AWS Foundational Security Best
 | 一時的な権限付与 | IAM Identity Center + 申請ワークフロー |
 | インシデント初動の自動化 | 侵害されたキーの無効化、インスタンスの隔離などのプレイブック |
 | 夜間・休日も含めた検知の一次対応 | **AWS Security Incident Response**（GuardDuty の検知のトリアージ、AI による調査、AWS の専門家への 24 時間のエスカレーション。14 章） |
-| 脆弱性診断（ペネトレーションテスト） | Takumi のブラックボックス診断、AWS Security Agent（10 章）、外部の専門会社 |
+| 脆弱性診断（ペネトレーションテスト） | Takumi のブラックボックス診断、AWS Security Agent（AWS Continuum。10 章）、外部の専門会社 |
 
 ## Lv4: Optimized（最終形）
 

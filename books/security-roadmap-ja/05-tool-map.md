@@ -39,7 +39,7 @@ title: "ツールの役割分担マップ ― 入れたのに回らないのは�
 | **Takumi byGMO** | アプリケーションの診断と、パッケージの守り（Guard） | 「外から攻める診断員と、部品の検品係」 | 12 |
 | **Claude Security** | コードベースの継続的な診断と修正 | 「コードを読み続けるレビュアー」 | 12 |
 
-補足として、AWS Security Agent（AI によるペネトレーションテスト）に 10 章で、AWS Security Incident Response（検知の一次対応と調査の支援）に 14 章で触れます。
+補足として、AWS Security Agent（AI によるペネトレーションテスト。2026 年夏からは AWS Continuum の一部）に 10 章で、AWS Security Incident Response（検知の一次対応と調査の支援）に 14 章で触れます。
 
 ## 開発からクラウドまでの流れで見る
 
