@@ -94,7 +94,7 @@ title: "参考資料・最近の発表資料"
 
 ### AI とセキュリティ
 
-- [AI エージェントの開発・提供におけるセキュリティリスクの論点と対策](https://speakerdeck.com/flatt_security/security-risks-and-countermeasures-in-the-development-and-provision-of-ai-agents)（GMO Flatt Security、Product Security Square、2026 年 9 月）― OWASP Agentic Top 10 を軸にした論点整理
+- [AI エージェントの開発・提供におけるセキュリティリスクの論点と対策](https://speakerdeck.com/flatt_security/security-risks-and-countermeasures-in-the-development-and-provision-of-ai-agents)（GMO Flatt Security、Product Security Square #5、2026 年 9 月 2 日）― 4 つのリスクと 5 つの原則。付録で OWASP Agentic Top 10 との対応を整理
 - [コードを読まない時代の死角: 検出から検証へ、脆弱性診断 AI エージェントの現在地](https://speakerdeck.com/flatt_security/state-of-vulnerability-ai-agents)（GMO Flatt Security）
 - [Claude Mythos、Fable…フロンティア AI の最新動向と企業のセキュリティ対策](https://speakerdeck.com/flatt_security/latest-trends-in-frontier-ai)（GMO Flatt Security、2026 年 7 月 24 日のウェビナー）
 - [AWS セキュリティで活用する AI 機能](https://speakerdeck.com/cmusudakeisuke/aws-sekyuriti-de-katsuyou-suru-ai-kinou)（クラスメソッド）
