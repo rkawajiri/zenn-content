@@ -54,6 +54,7 @@ title: "参考資料・最近の発表資料"
 - [AWS Security Hub now provides AI inventory](https://aws.amazon.com/about-aws/whats-new/2026/07/aws-security-hub-ai/)（2026 年 7 月）
 - [Security Hub adds AI workload protection and multicloud support for Microsoft Azure](https://aws.amazon.com/blogs/security/security-hub-adds-ai-workload-protection-and-multicloud-support-for-microsoft-azure/)（AWS Security Blog）
 - [GuardDuty Runtime Monitoring is now included in the AWS Security Hub Threat Analytics plan](https://aws.amazon.com/about-aws/whats-new/2026/10/aws-security-hub-runtime-monitoring/)（2026 年 10 月）
+- ログとバックアップの保護: [Locking objects with Object Lock](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html)、[Validating CloudTrail log file integrity](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html)、[AWS Backup Vault Lock](https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html)、[Logically air-gapped vault](https://docs.aws.amazon.com/aws-backup/latest/devguide/logicallyairgappedvault.html)、[Restore testing](https://docs.aws.amazon.com/aws-backup/latest/devguide/restore-testing.html)、[AWS Control Tower の必須コントロール](https://docs.aws.amazon.com/controltower/latest/userguide/mandatory-controls.html)
 - [AWS Security Agent on-demand penetration testing is now generally available](https://aws.amazon.com/about-aws/whats-new/2026/03/aws-security-agent-ondemand-penetration)（2026 年 3 月）、[What is AWS Security Agent (now part of AWS Continuum)?](https://docs.aws.amazon.com/securityagent/latest/userguide/what-is.html)、[AWS Continuum for Penetration Testing の CI/CD 連携](https://aws.amazon.com/about-aws/whats-new/2026/10/aws-continuum-penetration-testing/)（2026 年 10 月）
 - [Security Hub の AI インベントリを試してみた](https://dev.classmethod.jp/en/articles/security-hub-ai-inventory-auto-detection/)（クラスメソッド）
 
@@ -61,6 +62,7 @@ title: "参考資料・最近の発表資料"
 
 - [Introducing GitHub Secret Protection and GitHub Code Security](https://github.blog/changelog/2025-03-04-introducing-github-secret-protection-and-github-code-security/)（GitHub Changelog）
 - [GitHub Advanced Security is here for GitHub Team organizations](https://github.blog/changelog/2025-04-01-github-advanced-security-is-here-for-github-team-organizations)（GitHub Changelog）
+- [Streaming the audit log for your enterprise](https://docs.github.com/en/enterprise-cloud@latest/admin/monitoring-activity-in-your-enterprise/reviewing-audit-logs-for-your-enterprise/streaming-the-audit-log-for-your-enterprise)（GitHub Docs）
 
 ## Wiz
 
