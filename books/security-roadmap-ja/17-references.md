@@ -17,6 +17,7 @@ title: "参考資料・最近の発表資料"
 - GMO インターネット（お名前.com デスクトップクラウド）: [「お名前.com デスクトップクラウド」に不正アクセス](https://scan.netsecurity.ne.jp/article/2026/10/26/56564.html)（ScanNetSecurity）、[GMO、不正アクセス問題で熊谷会長が謝罪](https://watch.impress.co.jp/docs/news/2153150.html)（Impress Watch）、[GMO 不正アクセスで“SNS をやめたくなった” 攻撃者の仕掛ける情報戦に企業と報道はどう向き合うべきか？](https://atmarkit.itmedia.co.jp/ait/articles/2610/31/news003.html)（@IT）
 - ラクス（ブラストメール）: [メール配信システム「ブラストメール」に不正アクセス、データ持ち出しを確認](https://scan.netsecurity.ne.jp/article/2026/10/23/56554.html)（ScanNetSecurity）
 - Black October: [Inside "Black October": AI's cyber scare delivers a Y2K lesson](https://www.axios.com/2026/10/28/cybersecurity-black-october-ai-hacks)（Axios、2026 年 10 月）
+- 侵害調査・フォレンジック: [ランサムウェア被害時のフォレンジック調査はどう進む？ 費用・期間・対応フローと平時の備え](https://www.businesslawyers.jp/articles/1558)（BUSINESS LAWYERS）、「不正アクセス発生時のフォレンジック調査の有効活用に向けた着眼点」（個人情報保護委員会ほか、2026 年 1 月）、[AWS Security Incident Response ユーザーガイド](https://docs.aws.amazon.com/ja_jp/security-ir/latest/userguide/monitoring-and-investigation.html)、[JPCERT/CC 注意喚起の解説](https://scan.netsecurity.ne.jp/article/2026/10/13/56428.html)（ScanNetSecurity）
 - npm のサプライチェーン攻撃: [npm の脅威の状況: アタックサーフェスと緩和策](https://unit42.paloaltonetworks.com/ja/monitoring-npm-supply-chain-attacks/)（Unit 42）
 - AI コーディングエージェントへの攻撃: [Agentjacking: Sentry MCP Injection Hijacks AI Coding Agents](https://labs.cloudsecurityalliance.org/research/csa-research-note-agentjacking-sentry-mcp-20260614-csa-style/)（Cloud Security Alliance、2026 年 6 月）
 
