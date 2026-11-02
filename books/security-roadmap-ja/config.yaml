@@ -1,5 +1,5 @@
-title: "専任チームのない会社のセキュリティ体制づくり ― 現在地・次の一手・最終形"
-summary: "セキュリティ専門チームがまだない事業会社が、AWS と GitHub を中心にセキュリティ体制を順番に作っていくための自分用テキストです。基礎知識、経産省・IPA のガイドライン（サイバーセキュリティ経営ガイドライン、中小企業の情報セキュリティ対策ガイドライン、SCS 評価制度）、AWS セキュリティ成熟度モデル をもとに、自社の現在地・次にやること・目指す姿をレベルで整理します。SATv2、Security Hub / GuardDuty、Wiz、GitHub、Takumi、Claude Security などのツールの組み合わせ方と、AI 時代の新しいリスクと対策もまとめます（2026年11月時点の情報）。"
+title: "セキュリティ、どこまでやれば十分？ ― 一人目の担当者のための現在地・次の一手・最終形（AWS・GitHub・AI）"
+summary: "「うちのセキュリティ、大丈夫？」と聞かれて答えに詰まったことはありませんか。セキュリティ専任チームのない会社で、最初にセキュリティを任された人のためのテキストです。経産省・IPA のガイドライン（サイバーセキュリティ経営ガイドライン、中小企業の情報セキュリティ対策ガイドライン、SCS 評価制度）と AWS セキュリティ成熟度モデルを物差しに、自社の現在地を Lv0〜Lv4 で測り、次の一手と最終形を描きます。AWS（Security Hub / GuardDuty）、SATv2、Wiz、GitHub、Takumi byGMO、Claude Security の役割分担と、AI 時代の新しいリスクへの備えもまとめます。3 分でできる簡易チェック付き（2026 年 11 月時点の情報）。"
 topics: ["security", "aws", "github", "ai", "セキュリティ"]
 published: false
 price: 0
@@ -9,12 +9,13 @@ chapters:
   - 03-guidelines
   - 04-maturity
   - 05-self-assessment
-  - 06-aws-foundation
-  - 07-satv2
-  - 08-wiz
-  - 09-github
-  - 10-ai-appsec
-  - 11-ai-risk
-  - 12-organization
-  - 13-roadmap
-  - 14-references
+  - 06-tool-map
+  - 07-aws-foundation
+  - 08-satv2
+  - 09-wiz
+  - 10-github
+  - 11-ai-appsec
+  - 12-ai-risk
+  - 13-organization
+  - 14-roadmap
+  - 15-references
