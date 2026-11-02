@@ -1,0 +1,20 @@
+title: "専任チームのない会社のセキュリティ体制づくり ― 現在地・次の一手・最終形"
+summary: "セキュリティ専門チームがまだない事業会社が、AWS と GitHub を中心にセキュリティ体制を順番に作っていくための自分用テキストです。基礎知識、経産省・IPA のガイドライン（サイバーセキュリティ経営ガイドライン、中小企業の情報セキュリティ対策ガイドライン、SCS 評価制度）、AWS セキュリティ成熟度モデル をもとに、自社の現在地・次にやること・目指す姿をレベルで整理します。SATv2、Security Hub / GuardDuty、Wiz、GitHub、Takumi、Claude Security などのツールの組み合わせ方と、AI 時代の新しいリスクと対策もまとめます（2026年11月時点の情報）。"
+topics: ["security", "aws", "github", "ai", "セキュリティ"]
+published: false
+price: 0
+chapters:
+  - 01-intro
+  - 02-basics
+  - 03-guidelines
+  - 04-maturity
+  - 05-self-assessment
+  - 06-aws-foundation
+  - 07-satv2
+  - 08-wiz
+  - 09-github
+  - 10-ai-appsec
+  - 11-ai-risk
+  - 12-organization
+  - 13-roadmap
+  - 14-references
