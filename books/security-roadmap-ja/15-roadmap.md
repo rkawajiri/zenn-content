@@ -135,43 +135,65 @@ gantt
 
 ## 最終形の全体像
 
+最終形を、開発・クラウド・運用と統治の 3 つに分けて描きます。
+
+**開発**: コードが書かれてから本番に出るまでに、問題が見つかり、持ち主に届く
+
 ```mermaid
+%%{init: {"themeVariables": {"fontSize": "18px"}, "flowchart": {"wrappingWidth": 400}}}%%
 flowchart TB
-  subgraph Gov[統治]
-    Mgmt[経営会議<br>四半期レビュー・指標]
-    Team[専任 2〜4 名 + セキュリティチャンピオン + 外部パートナー]
-    Rules[規程・リスク登録簿・SLA・SCS ★4]
-  end
-  subgraph Dev[開発]
-    IDE[開発者 + AI コーディングエージェント<br>サンドボックス・管理された設定]
-    Guard[Takumi Guard<br>悪性パッケージのブロック]
-    GH[GitHub<br>プッシュ保護・CodeQL・Autofix・ルールセット]
-    AIScan[Claude Security / Takumi<br>継続診断・修正 PR]
-    Pentest[Takumi<br>ブラックボックス診断]
-  end
-  subgraph Cloud[クラウド]
-    CT[Organizations / Control Tower<br>SCP・RCP・IAM Identity Center]
-    Det[GuardDuty・Inspector・Config]
-    SH[Security Hub<br>露出検出・AI インベントリ]
-    Wiz[Wiz<br>攻撃経路・コードへのトレース]
-    Backup[AWS Backup<br>別アカウント・ボールトロック]
-  end
-  subgraph Ops[運用]
-    Triage[AI エージェントによるトリアージ]
-    Ticket[チケット・SLA 管理]
-    IR[インシデント対応・プレイブック・訓練]
-  end
-  IDE --> Guard --> GH --> AIScan
-  GH --> CT
+  IDE["開発者 + AI コーディングエージェント<br>サンドボックス・管理された設定"]:::dev
+  Guard["パッケージの守り<br>悪性パッケージをブロック"]:::dev
+  GH["GitHub<br>プッシュ保護・CodeQL・ルールセット"]:::dev
+  AIScan["AI による継続診断<br>修正 PR まで"]:::ops
+  Pentest["動いているアプリへの診断"]:::cloud
+  Ticket["持ち主のチーム<br>チケット・SLA"]:::gov
+  IDE --> Guard --> GH --> AIScan --> Ticket
   Pentest --> Ticket
-  AIScan --> Ticket
-  Det --> SH --> Triage
-  Wiz --> Triage
-  Triage --> Ticket --> Team
-  SH --> IR
-  Team --> Mgmt
-  Rules --> Team
+  classDef dev fill:#dbeafe,stroke:#1d4ed8,color:#1e3a8a,stroke-width:2px
+  classDef ops fill:#ede9fe,stroke:#6d28d9,color:#4c1d95,stroke-width:2px
+  classDef cloud fill:#ffedd5,stroke:#c2410c,color:#7c2d12,stroke-width:2px
+  classDef gov fill:#dcfce7,stroke:#15803d,color:#14532d,stroke-width:2px
 ```
+
+**クラウド**: 検知と優先順位づけが組織全体で回り、ログとバックアップは消されない場所にある
+
+```mermaid
+%%{init: {"themeVariables": {"fontSize": "18px"}, "flowchart": {"wrappingWidth": 400}}}%%
+flowchart TB
+  CT["Organizations / Control Tower<br>SCP・RCP・SSO"]:::cloud
+  Det["GuardDuty・Inspector・Config"]:::cloud
+  SH["Security Hub<br>露出の検出・AI インベントリ"]:::cloud
+  CNAPP["CNAPP<br>攻撃経路・コードへのトレース"]:::ops
+  Triage["AI エージェントによるトリアージ"]:::ops
+  Backup["ログとバックアップ<br>別アカウント・消せない設定"]:::gray
+  CT --> Det --> SH --> Triage
+  CNAPP --> Triage
+  CT --> Backup
+  classDef cloud fill:#ffedd5,stroke:#c2410c,color:#7c2d12,stroke-width:2px
+  classDef ops fill:#ede9fe,stroke:#6d28d9,color:#4c1d95,stroke-width:2px
+  classDef gray fill:#f3f4f6,stroke:#6b7280,color:#374151,stroke-width:2px
+```
+
+**運用と統治**: 見つかった問題が期限つきで処理され、経営に報告される
+
+```mermaid
+%%{init: {"themeVariables": {"fontSize": "18px"}, "flowchart": {"wrappingWidth": 400}}}%%
+flowchart TB
+  Ticket["チケット・SLA 管理"]:::gov
+  Team["専任 2〜4 名 + セキュリティチャンピオン<br>+ 外部パートナー"]:::gov
+  Mgmt["経営会議<br>四半期レビュー・指標"]:::gov
+  Rules["規程・リスク登録簿・SLA・SCS ★4"]:::q
+  IR["インシデント対応<br>プレイブック・訓練"]:::red
+  Ticket --> Team --> Mgmt
+  Rules --> Team
+  Team --> IR
+  classDef gov fill:#dcfce7,stroke:#15803d,color:#14532d,stroke-width:2px
+  classDef q fill:#fef9c3,stroke:#a16207,color:#713f12,stroke-width:2px
+  classDef red fill:#fde2e2,stroke:#c0392b,color:#7b1d1d,stroke-width:2px
+```
+
+色の意味: 青＝開発、オレンジ＝クラウド、紫＝優先順位づけ・分析、緑＝人・チーム・経営、黄＝ルール、赤＝インシデント対応、灰色＝保管。
 
 最終形のポイントは次の 3 つです。
 

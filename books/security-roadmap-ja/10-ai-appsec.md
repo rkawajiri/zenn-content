@@ -84,17 +84,25 @@ Takumi も Claude Security も「AI で脆弱性を見つけて直す」道具�
 | 設計段階のリスク洗い出し | **Claude Security** のチームで編集できる脅威モデル | Lv4 の脅威モデリングの土台にする |
 
 ```mermaid
-flowchart LR
-  Dev[開発者<br>Claude Code] -->|コーディング中| Plugin[Claude Security<br>プラグイン]
-  Dev -->|パッケージのインストール| Guard[Takumi Guard]
-  Dev -->|PR| GH[CodeQL / Autofix<br>+ Claude Action]
-  GH --> Main[main ブランチ]
-  Main --> CS[Claude Security<br>継続的スキャン]
-  Main --> Deploy[デプロイ]
-  Deploy --> TK[Takumi<br>ブラックボックス診断]
-  CS --> Ticket[持ち主のチーム<br>チケット・期限]
+%%{init: {"themeVariables": {"fontSize": "18px"}, "flowchart": {"wrappingWidth": 400}}}%%
+flowchart TB
+  Dev["開発者（Claude Code）"]:::dev
+  Local["コーディング中<br>Claude Security プラグイン"]:::dev
+  Guard["パッケージのインストール<br>Takumi Guard"]:::dev
+  PRc["PR<br>CodeQL・Autofix・Claude の Action"]:::dev
+  CS["main ブランチ<br>Claude Security の継続的スキャン"]:::ops
+  TK["デプロイ後<br>Takumi のブラックボックス診断"]:::cloud
+  Ticket["持ち主のチーム<br>チケット・期限"]:::gov
+  Dev --> Local --> Guard --> PRc --> CS --> TK
+  CS --> Ticket
   TK --> Ticket
+  classDef dev fill:#dbeafe,stroke:#1d4ed8,color:#1e3a8a,stroke-width:2px
+  classDef ops fill:#ede9fe,stroke:#6d28d9,color:#4c1d95,stroke-width:2px
+  classDef cloud fill:#ffedd5,stroke:#c2410c,color:#7c2d12,stroke-width:2px
+  classDef gov fill:#dcfce7,stroke:#15803d,color:#14532d,stroke-width:2px
 ```
+
+色の意味: 青＝開発の流れ、紫＝継続的なスキャン、オレンジ＝動いている環境への診断、緑＝持ち主のチーム。
 
 ### 補足: AWS Security Agent（AWS Continuum）
 

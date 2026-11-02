@@ -186,11 +186,22 @@ AI を業務で使うだけの会社でも「AI 利用者」として、社内�
 ## 4 つのガイドラインの関係
 
 ```mermaid
+%%{init: {"themeVariables": {"fontSize": "18px"}, "flowchart": {"wrappingWidth": 400}}}%%
 flowchart TB
-  A[サイバーセキュリティ経営ガイドライン<br>経営として何を指示するか] --> C[自社のセキュリティ方針・体制・計画]
-  B[中小企業の情報セキュリティ対策ガイドライン<br>最低限やるべきことのチェック] --> C
-  D[AI 事業者ガイドライン<br>AI の使い方・作り方] --> C
-  C --> E[SCS 評価制度 ★3 / ★4<br>取引先に示す水準]
+  A["サイバーセキュリティ経営ガイドライン<br>経営として何を指示するか"]:::gov
+  B["中小企業の情報セキュリティ対策ガイドライン<br>最低限やるべきことのチェック"]:::gov
+  D["AI 事業者ガイドライン<br>AI の使い方・作り方"]:::gov
+  C["自社のセキュリティ方針・体制・計画"]:::q
+  E["SCS 評価制度 ★3 / ★4<br>取引先に示す水準"]:::cloud
+  subgraph G["ガイドライン"]
+    direction TB
+    A ~~~ B ~~~ D
+  end
+  G --> C --> E
+  style G fill:#f8fafc,stroke:#94a3b8
+  classDef gov fill:#dcfce7,stroke:#15803d,color:#14532d,stroke-width:2px
+  classDef q fill:#fef9c3,stroke:#a16207,color:#713f12,stroke-width:2px
+  classDef cloud fill:#ffedd5,stroke:#c2410c,color:#7c2d12,stroke-width:2px
 ```
 
 - **経営ガイドライン** で「経営として何を決めるか」を押さえ
@@ -241,11 +252,19 @@ AWS が公開している、AWS 上のセキュリティ対策を段階的に進
 上のモデルはそれぞれ切り口が違うので、そのままでは「自社はいまどこか」を一言で言いにくいです。そこでこの本では、次の 5 段階に整理し直します。
 
 ```mermaid
-flowchart LR
-  L0[Lv0<br>未着手] --> L1[Lv1<br>衛生]
-  L1 --> L2[Lv2<br>基盤]
-  L2 --> L3[Lv3<br>仕組み化]
-  L3 --> L4[Lv4<br>最適化<br>＝最終形]
+%%{init: {"themeVariables": {"fontSize": "18px"}, "flowchart": {"wrappingWidth": 400}}}%%
+flowchart TB
+  L0["Lv0 未着手<br>属人的・誰も全体を知らない"]:::lv0
+  L1["Lv1 衛生<br>致命傷を防ぐ"]:::lv1
+  L2["Lv2 基盤<br>土台と運用ができた（SCS ★3 相当）"]:::lv2
+  L3["Lv3 仕組み化<br>見つけて直すが回り続ける（SCS ★4 相当）"]:::lv3
+  L4["Lv4 最適化＝最終形<br>指標で改善し、外に示せる"]:::lv4
+  L0 --> L1 --> L2 --> L3 --> L4
+  classDef lv0 fill:#e5e7eb,stroke:#6b7280,color:#374151,stroke-width:2px
+  classDef lv1 fill:#fef9c3,stroke:#a16207,color:#713f12,stroke-width:2px
+  classDef lv2 fill:#ecfccb,stroke:#4d7c0f,color:#365314,stroke-width:2px
+  classDef lv3 fill:#bbf7d0,stroke:#15803d,color:#14532d,stroke-width:2px
+  classDef lv4 fill:#166534,stroke:#14532d,color:#ffffff,stroke-width:2px
 ```
 
 | レベル | 一言でいうと | 状態 | 対応するモデル |

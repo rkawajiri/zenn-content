@@ -56,34 +56,43 @@ title: "ツールの役割分担マップ ― 何を、どの順番で入れ、�
 
 ## 開発からクラウドまでの流れで見る
 
+**開発側**: コードを書いてから、リポジトリに入るまで
+
 ```mermaid
-flowchart LR
-  subgraph Code[コードを書く]
-    IDE[開発者 + AI エージェント]
-  end
-  subgraph Build[入れる・まとめる]
-    Guard[Takumi Guard<br>悪性パッケージ]
-    GH[GitHub<br>プッシュ保護・CodeQL]
-    CS[Claude Security<br>継続診断]
-  end
-  subgraph Run[動かす]
-    AWS[AWS<br>GuardDuty・Inspector・Config]
-    TK[Takumi<br>アプリの診断]
-  end
-  subgraph Decide[優先順位をつける]
-    SH[Security Hub<br>AWS の検知の集約]
-    Wiz[Wiz<br>攻撃経路で優先順位]
-  end
-  IDE --> Guard --> GH --> AWS
-  CS -.-> GH
-  TK -.-> AWS
-  AWS --> SH --> Wiz
-  Wiz --> Owner[持ち主のチーム<br>チケット・期限]
-  GH --> Owner
+%%{init: {"themeVariables": {"fontSize": "18px"}, "flowchart": {"wrappingWidth": 400}}}%%
+flowchart TB
+  IDE["開発者 + AI エージェント"]:::dev
+  Guard["⑤ パッケージの守り<br>Takumi Guard"]:::dev
+  GH["④ コードの守り<br>GitHub（プッシュ保護・CodeQL）"]:::dev
+  CS["⑥ コードの継続診断<br>Claude Security"]:::dev
+  Owner["持ち主のチーム<br>チケット・期限"]:::gov
+  IDE --> Guard --> GH --> Owner
   CS --> Owner
-  TK --> Owner
-  SAT[SATv2<br>定期点検] -.確かめる.-> AWS
+  classDef dev fill:#dbeafe,stroke:#1d4ed8,color:#1e3a8a,stroke-width:2px
+  classDef gov fill:#dcfce7,stroke:#15803d,color:#14532d,stroke-width:2px
 ```
+
+**クラウド側**: 動いている環境の検知と、優先順位づけ
+
+```mermaid
+%%{init: {"themeVariables": {"fontSize": "18px"}, "flowchart": {"wrappingWidth": 400}}}%%
+flowchart TB
+  AWS["① AWS の土台と検知<br>GuardDuty・Inspector・Config"]:::cloud
+  SH["① Security Hub<br>AWS の検知の集約"]:::cloud
+  Wiz["③ 優先順位づけ<br>Wiz（CNAPP）"]:::ops
+  TK["⑦ 動いているアプリへの診断<br>Takumi"]:::cloud
+  SAT["② 定期点検<br>SATv2"]:::gray
+  Owner["持ち主のチーム<br>チケット・期限"]:::gov
+  AWS --> SH --> Wiz --> Owner
+  TK --> Owner
+  SAT -.確かめる.-> AWS
+  classDef cloud fill:#ffedd5,stroke:#c2410c,color:#7c2d12,stroke-width:2px
+  classDef ops fill:#ede9fe,stroke:#6d28d9,color:#4c1d95,stroke-width:2px
+  classDef gray fill:#f3f4f6,stroke:#6b7280,color:#374151,stroke-width:2px
+  classDef gov fill:#dcfce7,stroke:#15803d,color:#14532d,stroke-width:2px
+```
+
+色の意味: 青＝開発、オレンジ＝クラウド、紫＝優先順位づけ・分析、緑＝人・チーム、灰色＝定期点検。番号は上の表の役割です。
 
 ポイントは、すべての検知結果が最終的に **「持ち主のチーム」** に、期限つきで届くことです。ツールはそこに至るまでの「見つける」「絞る」部分を担当します。
 

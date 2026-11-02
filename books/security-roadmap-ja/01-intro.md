@@ -60,25 +60,40 @@ AWS 以外のクラウドや、GitHub 以外のサービスを使っている場
 この本では、セキュリティ体制の成熟度を **5 つのレベル** で表します。
 
 ```mermaid
-flowchart LR
-  L0["Lv0 未着手<br>属人的・誰も全体を知らない"] --> L1["Lv1 衛生<br>致命傷を防ぐ"]
-  L1 --> L2["Lv2 基盤<br>土台と運用ができた<br>（SCS ★3 相当）"]
-  L2 --> L3["Lv3 仕組み化<br>見つけて直すが回り続ける<br>（SCS ★4 相当）"]
-  L3 --> L4["Lv4 最適化＝最終形<br>指標で改善し、外に示せる"]
+%%{init: {"themeVariables": {"fontSize": "18px"}, "flowchart": {"wrappingWidth": 400}}}%%
+flowchart TB
+  L0["Lv0 未着手<br>属人的・誰も全体を知らない"]:::lv0
+  L1["Lv1 衛生<br>致命傷を防ぐ"]:::lv1
+  L2["Lv2 基盤<br>土台と運用ができた（SCS ★3 相当）"]:::lv2
+  L3["Lv3 仕組み化<br>見つけて直すが回り続ける（SCS ★4 相当）"]:::lv3
+  L4["Lv4 最適化＝最終形<br>指標で改善し、外に示せる"]:::lv4
+  L0 --> L1 --> L2 --> L3 --> L4
+  classDef lv0 fill:#e5e7eb,stroke:#6b7280,color:#374151,stroke-width:2px
+  classDef lv1 fill:#fef9c3,stroke:#a16207,color:#713f12,stroke-width:2px
+  classDef lv2 fill:#ecfccb,stroke:#4d7c0f,color:#365314,stroke-width:2px
+  classDef lv3 fill:#bbf7d0,stroke:#15803d,color:#14532d,stroke-width:2px
+  classDef lv4 fill:#166534,stroke:#14532d,color:#ffffff,stroke-width:2px
 ```
 
 そして、最終的に目指す姿（Lv4）はこうです。
 
 ```mermaid
-flowchart LR
-  Dev["開発<br>GitHub + AI 診断<br>（Takumi / Claude Security）"] --> Find["見つける"]
-  Cloud["クラウド<br>AWS + Security Hub<br>+ Wiz"] --> Find
-  Find --> Triage["AI エージェントが<br>優先順位づけ・修正案"]
-  Triage --> Fix["担当チームが直す<br>（期限つき）"]
-  Fix --> Check["確かめる<br>SATv2・指標"]
-  Check --> Report["経営に報告し<br>外に示す"]
-  Report --> Find
+%%{init: {"themeVariables": {"fontSize": "18px"}, "flowchart": {"wrappingWidth": 400}}}%%
+flowchart TB
+  Find["① 見つける<br>コード：GitHub・AI 診断<br>クラウド：AWS・CNAPP"]:::dev
+  Triage["② 優先順位をつける<br>AI エージェントが修正案まで"]:::ops
+  Fix["③ 直す<br>持ち主のチームが期限つきで"]:::cloud
+  Check["④ 確かめる<br>定期点検・指標"]:::ops
+  Report["⑤ 経営に報告し、外に示す"]:::gov
+  Find --> Triage --> Fix --> Check --> Report
+  Report -.次の四半期.-> Find
+  classDef dev fill:#dbeafe,stroke:#1d4ed8,color:#1e3a8a,stroke-width:2px
+  classDef ops fill:#ede9fe,stroke:#6d28d9,color:#4c1d95,stroke-width:2px
+  classDef cloud fill:#ffedd5,stroke:#c2410c,color:#7c2d12,stroke-width:2px
+  classDef gov fill:#dcfce7,stroke:#15803d,color:#14532d,stroke-width:2px
 ```
+
+色の意味: 青＝開発、紫＝優先順位づけ・確認、オレンジ＝修正、緑＝経営・報告。
 
 **見つける → 直す → 確かめる** が人の手をなるべく使わずに回り、人は「何を受け入れ、どこに投資するか」の判断に集中している。数百名規模の会社なら、専任者は数名で、各部門の兼務者・AI エージェント・外部パートナーと一緒に回している。それが、この本の考える **「十分」** です。
 

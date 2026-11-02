@@ -17,25 +17,38 @@ title: "AWS の土台をつくる ― Organizations・Security Hub・GuardDuty"
 ## 全体像
 
 ```mermaid
+%%{init: {"themeVariables": {"fontSize": "18px"}, "flowchart": {"wrappingWidth": 400}}}%%
 flowchart TB
-  subgraph Org[AWS Organizations / Control Tower]
-    MGMT[管理アカウント<br>請求と Organizations だけ]
-    subgraph Sec[Security OU]
-      AUDIT[セキュリティ/監査アカウント<br>GuardDuty・Security Hub・<br>Inspector の委任管理者]
-      LOG[ログアーカイブアカウント<br>CloudTrail・Config のログ]
-    end
-    subgraph Wl[Workloads OU]
-      PROD[本番アカウント群]
-      STG[検証アカウント群]
-    end
-    SBX[Sandbox OU<br>個人の検証用]
+  IdP["IdP（Entra ID / Google など）"]:::gov
+  IIC["IAM Identity Center（SSO）"]:::gov
+  subgraph Wl["Workloads OU"]
+    direction LR
+    PROD["本番アカウント群"]:::cloud
+    STG["検証アカウント群"]:::cloud
   end
-  IdP[IdP<br>Entra ID / Google など] -->|SSO| IIC[IAM Identity Center]
-  IIC --> PROD
-  IIC --> STG
-  PROD -->|ログ| LOG
-  PROD -->|検知結果| AUDIT
+  subgraph Sec["Security OU"]
+    direction LR
+    LOG["ログアーカイブ<br>アカウント"]:::ops
+    AUDIT["監査<br>アカウント"]:::ops
+  end
+  subgraph Other["そのほか"]
+    direction LR
+    MGMT["管理アカウント<br>請求と組織の管理だけ"]:::gray
+    SBX["Sandbox OU<br>個人の検証用"]:::gray
+  end
+  IdP --> IIC --> Wl
+  Wl -->|ログ・検知結果| Sec
+  Sec ~~~ Other
+  style Wl fill:#fff7ed,stroke:#fb923c
+  style Sec fill:#f5f3ff,stroke:#8b5cf6
+  style Other fill:#f9fafb,stroke:#9ca3af
+  classDef gov fill:#dcfce7,stroke:#15803d,color:#14532d,stroke-width:2px
+  classDef cloud fill:#ffedd5,stroke:#c2410c,color:#7c2d12,stroke-width:2px
+  classDef ops fill:#ede9fe,stroke:#6d28d9,color:#4c1d95,stroke-width:2px
+  classDef gray fill:#f3f4f6,stroke:#6b7280,color:#374151,stroke-width:2px
 ```
+
+色の意味: 緑＝ID（人の入口）、オレンジ＝ワークロード、紫＝ログと検知を集めるアカウント（監査アカウントは GuardDuty・Security Hub・Inspector の委任管理者）、灰色＝そのほか。すべて AWS Organizations / Control Tower の中にあります。
 
 ポイントは次の 3 つです。
 

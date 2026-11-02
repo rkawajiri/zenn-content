@@ -86,19 +86,26 @@ GitHub Advanced Security は 2025 年 4 月に 2 つの製品に分かれ、GitH
 ### PR ごとの自動チェック
 
 ```mermaid
-flowchart LR
-  Dev[開発者 / AI エージェント] -->|push| PP{プッシュ保護}
-  PP -->|シークレットあり| Block[ブロック]
-  PP -->|OK| PR[Pull Request]
-  PR --> CQ[CodeQL<br>コードスキャン]
-  PR --> DR[依存関係レビュー]
-  PR --> IaC[IaC スキャン]
-  PR --> AI[AI 診断<br>Takumi / Claude Security]
-  CQ --> AF[Copilot Autofix<br>修正案]
-  AI --> FIX[修正案 / 修正 PR]
-  CQ & DR & IaC & AI --> Review[人のレビュー]
-  Review --> Merge[マージ]
+%%{init: {"themeVariables": {"fontSize": "18px"}, "flowchart": {"wrappingWidth": 400}}}%%
+flowchart TB
+  Dev["開発者 / AI エージェント"]:::dev
+  PP{"プッシュ保護<br>シークレットはないか"}:::q
+  Block["ブロック<br>キーを無効化"]:::red
+  PR["Pull Request"]:::dev
+  Checks["自動チェック<br>CodeQL・依存関係レビュー・IaC スキャン・AI 診断"]:::ops
+  Fix["修正案<br>Copilot Autofix・AI の修正 PR"]:::ops
+  Review["人のレビュー → マージ"]:::gov
+  Dev --> PP
+  PP -->|あり| Block
+  PP -->|なし| PR --> Checks --> Fix --> Review
+  classDef dev fill:#dbeafe,stroke:#1d4ed8,color:#1e3a8a,stroke-width:2px
+  classDef q fill:#fef9c3,stroke:#a16207,color:#713f12,stroke-width:2px
+  classDef red fill:#fde2e2,stroke:#c0392b,color:#7b1d1d,stroke-width:2px
+  classDef ops fill:#ede9fe,stroke:#6d28d9,color:#4c1d95,stroke-width:2px
+  classDef gov fill:#dcfce7,stroke:#15803d,color:#14532d,stroke-width:2px
 ```
+
+色の意味: 青＝開発者の操作、黄＝判定、赤＝止める、紫＝自動のチェック、緑＝人の判断。
 
 - **CodeQL**: 既知のパターンの脆弱性（SQL インジェクション、XSS など）を検出する。デフォルト設定（default setup）なら数クリックで有効にできる
 - **Copilot Autofix**: CodeQL の検出結果に対して、AI が修正案を出す

@@ -39,13 +39,22 @@ title: "付録: セキュリティの基礎知識と用語"
 対策を漏れなく考えるための枠組みとして、米国 NIST の **サイバーセキュリティフレームワーク（CSF）2.0** がよく使われます。CSF 2.0 は、対策を次の 6 つの機能に分けています。
 
 ```mermaid
-flowchart LR
-  GV[統治<br>Govern] --> ID[識別<br>Identify]
-  ID --> PR[防御<br>Protect]
-  PR --> DE[検知<br>Detect]
-  DE --> RS[対応<br>Respond]
-  RS --> RC[復旧<br>Recover]
-  RC --> ID
+%%{init: {"themeVariables": {"fontSize": "18px"}, "flowchart": {"wrappingWidth": 400}}}%%
+flowchart TB
+  GV["統治 Govern<br>方針・体制・責任を決める"]:::gov
+  ID["識別 Identify<br>守るものとリスクを知る"]:::q
+  PR["防御 Protect<br>被害を防ぐ"]:::dev
+  DE["検知 Detect<br>異常に気づく"]:::ops
+  RS["対応 Respond<br>起きたことに対処する"]:::red
+  RC["復旧 Recover<br>元に戻す"]:::cloud
+  GV --> ID --> PR --> DE --> RS --> RC
+  RC -.改善.-> ID
+  classDef gov fill:#dcfce7,stroke:#15803d,color:#14532d,stroke-width:2px
+  classDef q fill:#fef9c3,stroke:#a16207,color:#713f12,stroke-width:2px
+  classDef dev fill:#dbeafe,stroke:#1d4ed8,color:#1e3a8a,stroke-width:2px
+  classDef ops fill:#ede9fe,stroke:#6d28d9,color:#4c1d95,stroke-width:2px
+  classDef red fill:#fde2e2,stroke:#c0392b,color:#7b1d1d,stroke-width:2px
+  classDef cloud fill:#ffedd5,stroke:#c2410c,color:#7c2d12,stroke-width:2px
 ```
 
 | 機能 | 何をするか | この本での例 |

@@ -20,15 +20,20 @@ title: "体制とルール ― 誰が責任を持ち、誰が直すか"
 ### 最初の形（Lv1〜Lv2）
 
 ```mermaid
+%%{init: {"themeVariables": {"fontSize": "18px"}, "flowchart": {"wrappingWidth": 400}}}%%
 flowchart TB
-  CEO[経営会議] --> CISO[セキュリティ責任者<br>CISO 相当・役員または部長]
-  CISO --> Lead[セキュリティ推進リーダー<br>実務の中心・稼働 50% 以上が理想]
-  Lead --> V[兼務チーム（バーチャルチーム）]
-  V --> Infra[インフラ / クラウド担当]
-  V --> Dev[各開発チームの代表]
-  V --> IT[情報システム担当]
-  V --> Legal[法務・総務]
-  Lead -.相談・支援.-> Ext[外部パートナー<br>診断会社・MSSP・弁護士]
+  CEO["経営会議"]:::gov
+  CISO["セキュリティ責任者<br>CISO 相当・役員または部長"]:::gov
+  Lead["セキュリティ推進リーダー<br>実務の中心・稼働 50% 以上が理想"]:::q
+  Ext["外部パートナー<br>診断会社・MSSP・弁護士"]:::gray
+  V["兼務チーム（バーチャルチーム）"]:::ops
+  M["インフラ / クラウド担当・各開発チームの代表<br>情報システム担当・法務 / 総務"]:::ops
+  CEO --> CISO --> Lead --> V --> M
+  Lead -.相談・支援.-> Ext
+  classDef gov fill:#dcfce7,stroke:#15803d,color:#14532d,stroke-width:2px
+  classDef q fill:#fef9c3,stroke:#a16207,color:#713f12,stroke-width:2px
+  classDef gray fill:#f3f4f6,stroke:#6b7280,color:#374151,stroke-width:2px
+  classDef ops fill:#ede9fe,stroke:#6d28d9,color:#4c1d95,stroke-width:2px
 ```
 
 | 役割 | 担うこと |

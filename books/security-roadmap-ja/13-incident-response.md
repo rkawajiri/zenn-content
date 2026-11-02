@@ -17,13 +17,20 @@ title: "インシデント対応 ― 初動、発信、訓練"
 ## 最低限の初動手順（Lv1〜Lv2）
 
 ```mermaid
-flowchart LR
-  A[検知・報告] --> B[第一報<br>推進リーダーと責任者へ]
-  B --> C[状況の把握<br>何が・いつから・どこまで]
-  C --> D[封じ込め<br>キーの無効化・隔離]
-  D --> E[根絶と復旧]
-  E --> F[報告<br>経営・顧客・当局]
-  F --> G[振り返り]
+%%{init: {"themeVariables": {"fontSize": "18px"}, "flowchart": {"wrappingWidth": 400}}}%%
+flowchart TB
+  A["① 検知・報告"]:::red
+  B["② 第一報<br>推進リーダーと責任者へ（15 分以内）"]:::red
+  C["③ 状況の把握<br>何が・いつから・どこまで"]:::ops
+  D["④ 封じ込め<br>キーの無効化・隔離"]:::ops
+  E["⑤ 根絶と復旧"]:::cloud
+  F["⑥ 報告<br>経営・顧客・当局"]:::gov
+  G["⑦ 振り返り"]:::gov
+  A --> B --> C --> D --> E --> F --> G
+  classDef red fill:#fde2e2,stroke:#c0392b,color:#7b1d1d,stroke-width:2px
+  classDef ops fill:#ede9fe,stroke:#6d28d9,color:#4c1d95,stroke-width:2px
+  classDef cloud fill:#ffedd5,stroke:#c2410c,color:#7c2d12,stroke-width:2px
+  classDef gov fill:#dcfce7,stroke:#15803d,color:#14532d,stroke-width:2px
 ```
 
 1. **第一報は早く、不完全でよい**: 「おかしい」と思ったら、確証がなくても 15 分以内に推進リーダーに連絡する。報告した人を責めない
