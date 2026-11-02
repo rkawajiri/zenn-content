@@ -25,6 +25,12 @@ title: "参考資料・最近の発表資料"
 
 - [サプライチェーン強化に向けたセキュリティ対策評価制度（SCS 評価制度）](https://www.meti.go.jp/policy/netsecurity/scs.html)（経済産業省）― ★3・★4 の要求事項・評価基準、よくあるお問い合わせ（FAQ）など
 - [SCS 評価制度に関する制度構築方針の公表](https://www.meti.go.jp/press/2025/03/20260327001/20260327001.html)（経済産業省、2026 年 3 月 27 日）
+- [SCS 評価制度 公式サイト](https://www.ipa.go.jp/security/scs/)・[よくある質問](https://www.ipa.go.jp/security/scs/faq.html)（IPA）、[★3・★4 要求事項・評価基準 Ver1.1](https://www.meti.go.jp/policy/netsecurity/docs/scs/SCS-400-criteria-v1.1.xlsx)（経済産業省、2026 年 10 月 28 日）、[SCS 評価制度に係る不適切な勧誘に御注意ください](https://www.meti.go.jp/policy/netsecurity/20260427_scs.html)（経済産業省、2026 年 4 月 27 日）
+- [サイバー攻撃被害に係る情報の共有・公表ガイダンス](https://www.meti.go.jp/policy/netsecurity/incident.html#id02)（2024 年 3 月）、[初動対応支援を行う専門組織（相談窓口）](https://www.meti.go.jp/policy/netsecurity/incident.html#id01)（経済産業省）
+- [ASM（Attack Surface Management）導入ガイダンス](https://www.meti.go.jp/policy/netsecurity/reinforce.html#id12)（経済産業省、2023 年 5 月）
+- [情報セキュリティサービス審査登録制度](https://www.meti.go.jp/policy/netsecurity/vendor.html#id08)（経済産業省）― 基準に適合したサービスのリストは IPA が公開
+- [高性能 AI への対応に関して経済産業大臣が重要インフラ事業者との意見交換を実施](https://www.meti.go.jp/press/2026/05/20260501001/20260501001.html)（経済産業省、2026 年 5 月 1 日）
+- [不正アクセスによる情報漏えい等の事案を踏まえた注意喚起及び情報提供に係る協力依頼](https://www.meti.go.jp/policy/netsecurity/pdf/20261009_chuuikanki.pdf)（経済産業省、2026 年 10 月 9 日）
 - [サイバーセキュリティ経営ガイドライン Ver3.0](https://www.meti.go.jp/policy/netsecurity/downloadfiles/guide_v3.0.pdf)（経済産業省・IPA） ― 付録 C（インシデント発生に備えて整理しておくべき事項）、付録 F「サイバーセキュリティ体制構築・人材確保の手引き」もあわせて公開されている
 - [中小企業の情報セキュリティ対策ガイドライン](https://www.ipa.go.jp/security/keihatsu/sme/guideline/)（IPA）― 第4.0版（[プレスリリース、2026 年 3 月 27 日](https://www.ipa.go.jp/pressrelease/2025/press20260327.html)）
 - [情報セキュリティ10大脅威](https://www.ipa.go.jp/security/10threats/index.html)（IPA）― 2026 年版の解説: [ScanNetSecurity](https://scan.netsecurity.ne.jp/article/2026/02/19/54657.html)、[@IT](https://atmarkit.itmedia.co.jp/ait/articles/2603/03/news057.html)
