@@ -4,6 +4,17 @@ title: "参考資料・最近の発表資料"
 
 この本を書くときに参照した一次情報と、最近の発表資料です（2026 年 11 月時点）。製品の機能や制度の詳細は変化が速いため、判断の前には必ず最新の情報を確認してください。
 
+## 2025〜2026 年の主なできごと（2 章・各章のコラム）
+
+- アサヒグループ: [サイバー攻撃の調査結果を公表](https://www.advertimes.com/20251127/article525539/)（AdverTimes、2025 年 11 月）、[191.4 万件の個人情報が漏えいした可能性](https://scan.netsecurity.ne.jp/article/2025/12/05/54174.html)（ScanNetSecurity）
+- アスクル: [個人情報 74 万件の漏えいと調査報告](https://internet.watch.impress.co.jp/docs/news/2071318.html)（INTERNET Watch、2025 年 12 月）、[報告書から見える構造的な課題](https://www.sbbit.jp/article/cont1/176950)（ビジネス+IT）
+- IDC フロンティア: [495 社・自治体に影響](https://atmarkit.itmedia.co.jp/ait/articles/2610/09/news036.html)（@IT、2026 年 10 月）、[突かれたのは OSS の脆弱性](https://atmarkit.itmedia.co.jp/ait/articles/2610/29/news044.html)（@IT、2026 年 10 月）
+- 警察庁: [令和 8 年上半期におけるサイバー空間をめぐる脅威の情勢等について](https://www.npa.go.jp/publications/statistics/cybersecurity/data/R8kami/R08_kami_cyber_jousei.pdf)、[解説](https://atmarkit.itmedia.co.jp/ait/articles/2609/17/news010.html)（@IT）
+- Claude Mythos: [1 万件以上の脆弱性を発見、しかし修正追い付かず](https://www.itmedia.co.jp/news/articles/2605/25/news130.html)（ITmedia、2026 年 5 月）、[「脆弱性の嵐」に備えよ、専門家 250 人が対策を提言](https://xtech.nikkei.com/atcl/nxt/column/18/00676/050700224/)（日経クロステック）、[Claude Mythos 騒動をまとめる](https://www.dir.co.jp/report/column/20260521_012427.html)（大和総研、2026 年 5 月）
+- 能動的サイバー防御: [10 月始動「能動的サイバー防御」で何が変わる？](https://atmarkit.itmedia.co.jp/ait/articles/2610/03/news001.html)（@IT、2026 年 10 月）、[関連法の概要と民間企業への影響](https://www.businesslawyers.jp/articles/1465)（BUSINESS LAWYERS）
+- npm のサプライチェーン攻撃: [npm の脅威の状況: アタックサーフェスと緩和策](https://unit42.paloaltonetworks.com/ja/monitoring-npm-supply-chain-attacks/)（Unit 42）
+- AI コーディングエージェントへの攻撃: [Agentjacking: Sentry MCP Injection Hijacks AI Coding Agents](https://labs.cloudsecurityalliance.org/research/csa-research-note-agentjacking-sentry-mcp-20260614-csa-style/)（Cloud Security Alliance、2026 年 6 月）
+
 ## 経産省・IPA・政府のガイドライン
 
 - [サプライチェーン強化に向けたセキュリティ対策評価制度（SCS 評価制度）](https://www.meti.go.jp/policy/netsecurity/scs.html)（経済産業省）― ★3・★4 の要求事項・評価基準 Ver1.1 など
