@@ -39,7 +39,7 @@ title: "ツールの役割分担マップ ― 入れたのに回らないのは�
 | **Takumi byGMO** | アプリケーションの診断と、パッケージの守り（Guard） | 「外から攻める診断員と、部品の検品係」 | 12 |
 | **Claude Security** | コードベースの継続的な診断と修正 | 「コードを読み続けるレビュアー」 | 12 |
 
-補足として、AWS Security Agent（AI によるペネトレーションテスト）に 12 章で、AWS Security Incident Response（検知の一次対応と調査の支援）に 15 章で触れます。
+補足として、AWS Security Agent（AI によるペネトレーションテスト）に 10 章で、AWS Security Incident Response（検知の一次対応と調査の支援）に 14 章で触れます。
 
 ## 開発からクラウドまでの流れで見る
 
@@ -83,7 +83,7 @@ flowchart LR
 | Security Hub と Wiz（クラウドの設定ミス・脆弱性） | **優先順位づけと開発チームへの割り振りは Wiz を正** にする。Security Hub は AWS の検知の集約と、GuardDuty の脅威検知・自動修復の起点として使う |
 | Inspector と Wiz（ワークロードの脆弱性） | 一覧と優先順位は Wiz で見る。Inspector は Security Hub 側の情報源として残す |
 | CodeQL と Claude Security / Takumi（コードの脆弱性） | **PR ごとの定型チェックは CodeQL**、パターンにない脆弱性（認可の不備、業務ロジック）の発見は **Claude Security / Takumi** と分ける |
-| Claude Security と Takumi（AI による診断） | **コードを読む継続診断は Claude Security**、**動いているアプリへの診断（ブラックボックス）と報告書は Takumi** と分ける（12 章） |
+| Claude Security と Takumi（AI による診断） | **コードを読む継続診断は Claude Security**、**動いているアプリへの診断（ブラックボックス）と報告書は Takumi** と分ける（10 章） |
 | Dependabot と Takumi Guard（依存パッケージ） | **既知の脆弱性は Dependabot**、**悪性パッケージのブロックは Takumi Guard** |
 | SATv2 と Security Hub / Wiz（AWS の設定点検） | 常時の点検は Security Hub / Wiz。SATv2 は **別の目による定期点検** と、改善の推移を示すための記録 |
 
@@ -110,8 +110,8 @@ flowchart LR
 ツールの組み合わせが決まったら、最低限、次の 3 つを決めます。これがないと、どんなに良いツールでも「入れたのに回らない」に戻ります。
 
 1. **週次レビュー**: 毎週 30 分、新しく出た重大な検知結果を見る時間を、カレンダーに固定する。見る画面は Wiz（クラウド）と GitHub / Claude Security（コード）に絞る
-2. **持ち主と期限**: 検知結果は、AWS アカウントやリポジトリの持ち主のチームに割り振り、重大度別の期限（14 章の SLA）をつける
-3. **四半期の測定**: 6 章のチェックシートと SATv2 の件数推移で、前の四半期と比べる。結果を経営に 1 枚で報告する
+2. **持ち主と期限**: 検知結果は、AWS アカウントやリポジトリの持ち主のチームに割り振り、重大度別の期限（12 章の SLA）をつける
+3. **四半期の測定**: 4 章のチェックシートと SATv2 の件数推移で、前の四半期と比べる。結果を経営に 1 枚で報告する
 
 ## 導入済みのツールを「棚卸し」する
 

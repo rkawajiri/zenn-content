@@ -58,10 +58,10 @@ AWS セキュリティ成熟度モデルの Quick Wins に相当する対策で�
 | 7 | **IAM Access Analyzer** を有効化 | 外部に公開されているリソースを見つける |
 | 8 | **請求アラート**（AWS Budgets / Cost Anomaly Detection） | 乗っ取られてマイニングされたとき、最初に気づけるのは請求額のことが多い |
 | 9 | 使っていない IAM ユーザー・アクセスキーの削除 | 漏れて困るものを減らす |
-| 10 | **SATv2 で健康診断**（9 章） | 上の項目の漏れを一気に点検する |
+| 10 | **SATv2 で健康診断**（7 章） | 上の項目の漏れを一気に点検する |
 
 :::message
-**GuardDuty の通知先を決めることまでが Quick Win です。** 有効にしただけで誰も見ていなければ、検知していないのと同じです。最低限、重大度「高」の検知を EventBridge 経由でチャット（Slack / Teams）に通知し、通知を受けた人が何をするか（14 章の初動手順）を決めておきます。
+**GuardDuty の通知先を決めることまでが Quick Win です。** 有効にしただけで誰も見ていなければ、検知していないのと同じです。最低限、重大度「高」の検知を EventBridge 経由でチャット（Slack / Teams）に通知し、通知を受けた人が何をするか（13 章の初動手順）を決めておきます。
 :::
 
 ## Lv2: Foundational（基盤）
@@ -89,7 +89,7 @@ SCP は、アカウントの中でどんなに強い権限を持っていても�
 
 - IdP（Entra ID / Google Workspace / Okta など）と **IAM Identity Center** を連携し、人のアクセスは SSO に統一する
 - 権限セット（Permission Set）を「閲覧」「開発者」「管理者」などに標準化し、本番の管理者権限は人数を絞る
-- CI/CD（GitHub Actions）から AWS へのアクセスは **OIDC** で一時的な認証情報を使う（11 章）
+- CI/CD（GitHub Actions）から AWS へのアクセスは **OIDC** で一時的な認証情報を使う（9 章）
 - アプリケーションの認証情報は **Secrets Manager** に置き、コードや環境変数に直書きしない
 
 ### 4. ログと検知の集約
@@ -139,8 +139,8 @@ CSPM のチェック基準としては、まず **AWS Foundational Security Best
 | 未使用の権限の削減 | IAM Access Analyzer の未使用アクセス検出 |
 | 一時的な権限付与 | IAM Identity Center + 申請ワークフロー |
 | インシデント初動の自動化 | 侵害されたキーの無効化、インスタンスの隔離などのプレイブック |
-| 夜間・休日も含めた検知の一次対応 | **AWS Security Incident Response**（GuardDuty の検知のトリアージ、AI による調査、AWS の専門家への 24 時間のエスカレーション。15 章） |
-| 脆弱性診断（ペネトレーションテスト） | Takumi のブラックボックス診断、AWS Security Agent（12 章）、外部の専門会社 |
+| 夜間・休日も含めた検知の一次対応 | **AWS Security Incident Response**（GuardDuty の検知のトリアージ、AI による調査、AWS の専門家への 24 時間のエスカレーション。14 章） |
+| 脆弱性診断（ペネトレーションテスト） | Takumi のブラックボックス診断、AWS Security Agent（10 章）、外部の専門会社 |
 
 ## Lv4: Optimized（最終形）
 
