@@ -6,18 +6,18 @@ price: 0
 chapters:
   - 01-intro
   - 02-why-now
-  - 03-basics
-  - 04-guidelines
-  - 05-maturity
-  - 06-self-assessment
-  - 07-tool-map
-  - 08-aws-foundation
-  - 09-satv2
-  - 10-wiz
-  - 11-github
-  - 12-ai-appsec
-  - 13-ai-risk
-  - 14-organization
-  - 15-investigation
-  - 16-roadmap
+  - 03-yardsticks
+  - 04-self-assessment
+  - 05-tool-map
+  - 06-aws-foundation
+  - 07-satv2
+  - 08-wiz
+  - 09-github
+  - 10-ai-appsec
+  - 11-ai-risk
+  - 12-organization
+  - 13-incident-response
+  - 14-investigation
+  - 15-roadmap
+  - 16-basics
   - 17-references
