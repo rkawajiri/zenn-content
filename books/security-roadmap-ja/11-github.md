@@ -26,22 +26,22 @@ GitHub Advanced Security は 2025 年 4 月に 2 つの製品に分かれ、GitH
 
 | 製品 | 主な機能 | 価格（2025 年発表時） |
 |---|---|---|
-| **GitHub Secret Protection** | シークレットスキャン、**プッシュ保護**、AI によるシークレット検出、カスタムパターン、検出したシークレットが有効かの確認 | アクティブなコミッター 1 人あたり月 19 ドル |
-| **GitHub Code Security** | CodeQL によるコードスキャン、**Copilot Autofix**（修正案の自動生成）、依存関係レビュー、セキュリティキャンペーン | アクティブなコミッター 1 人あたり月 30 ドル |
+|GitHub Secret Protection| シークレットスキャン、プッシュ保護、AI によるシークレット検出、カスタムパターン、検出したシークレットが有効かの確認 | アクティブなコミッター 1 人あたり月 19 ドル |
+|GitHub Code Security| CodeQL によるコードスキャン、Copilot Autofix（修正案の自動生成）、依存関係レビュー、セキュリティキャンペーン | アクティブなコミッター 1 人あたり月 30 ドル |
 
 - 課金対象の「アクティブなコミッター」は、有効にしたリポジトリに直近 90 日以内にコミットをプッシュした人です。
 - **Dependabot**（依存関係の脆弱性アラートと更新 PR）は、追加料金なしで使えます。
 - パブリックリポジトリでは、シークレットスキャンやコードスキャンを無料で使えます。
-- 2026 年には、AI によるスキャンやエージェント型の Autofix、プッシュ保護での AI 検出など、**使った分だけ課金される AI 機能** が追加されています。料金体系の変化が速いので、契約前に公式の料金ページを確認してください。
+- 2026 年には、AI によるスキャンやエージェント型の Autofix、プッシュ保護での AI 検出など、使った分だけ課金される AI 機能が追加されています。料金体系の変化が速いので、契約前に公式の料金ページを確認してください。
 
 ## Lv1: まずやること
 
 | # | やること | 場所 |
 |---|---|---|
-| 1 | 組織のメンバーに **2 段階認証を必須** にする | Organization settings → Authentication security |
-| 2 | **シークレットスキャンとプッシュ保護** を全リポジトリで有効にする | Organization settings → Code security → Configurations |
-| 3 | **Dependabot アラート** を全リポジトリで有効にする | 同上 |
-| 4 | 組織の **基本権限（Base permissions）** を「なし」または「読み取り」にする | Organization settings → Member privileges |
+| 1 | 組織のメンバーに 2 段階認証を必須にする | Organization settings → Authentication security |
+| 2 |シークレットスキャンとプッシュ保護を全リポジトリで有効にする | Organization settings → Code security → Configurations |
+| 3 |Dependabot アラートを全リポジトリで有効にする | 同上 |
+| 4 | 組織の基本権限（Base permissions）を「なし」または「読み取り」にする | Organization settings → Member privileges |
 | 5 | 退職者・不要な外部コラボレーターを削除する | People / Outside collaborators |
 | 6 | 組織にインストールされている GitHub App と、承認済みの OAuth App を点検する | Third-party access |
 
@@ -61,23 +61,23 @@ GitHub Advanced Security は 2025 年 4 月に 2 つの製品に分かれ、GitH
 
 ### ID の統合
 
-- GitHub Enterprise Cloud を使っている場合は、IdP と **SAML SSO** で連携し、退職時に GitHub へのアクセスも自動で止まるようにする（Enterprise Managed Users にすると、アカウント自体を会社が管理できる）
-- 個人アクセストークン（PAT）は **細かい権限のトークン（fine-grained PAT）** に寄せ、組織として承認制・有効期限つきにする。従来型の PAT は制限する
+- GitHub Enterprise Cloud を使っている場合は、IdP と SAML SSO で連携し、退職時に GitHub へのアクセスも自動で止まるようにする（Enterprise Managed Users にすると、アカウント自体を会社が管理できる）
+- 個人アクセストークン（PAT）は細かい権限のトークン（fine-grained PAT）に寄せ、組織として承認制・有効期限つきにする。従来型の PAT は制限する
 
 ### ブランチとリリースの保護
 
 - **ルールセット（Rulesets）** で、デフォルトブランチへの直接プッシュ禁止、レビュー必須、ステータスチェック必須、強制プッシュ禁止を組織全体に適用する
-- 本番デプロイは GitHub Actions の **Environments** を使い、承認者と保護ルールを設定する
+- 本番デプロイは GitHub Actions の Environments を使い、承認者と保護ルールを設定する
 - CODEOWNERS で、重要なディレクトリ（IaC、認証まわりなど）のレビュー担当を決める
 
 ### GitHub Actions の安全な使い方
 
 | 対策 | 理由 |
 |---|---|
-| AWS へのアクセスは **OIDC**（`aws-actions/configure-aws-credentials` + IAM ロール）にし、長期のアクセスキーをシークレットに置かない | 漏れても短時間で失効する |
-| IAM ロールの信頼ポリシーで、**リポジトリとブランチ / 環境を限定** する | 他のリポジトリやフォークから使われないようにする |
+| AWS へのアクセスは OIDC（`aws-actions/configure-aws-credentials` + IAM ロール）にし、長期のアクセスキーをシークレットに置かない | 漏れても短時間で失効する |
+| IAM ロールの信頼ポリシーで、リポジトリとブランチ / 環境を限定する | 他のリポジトリやフォークから使われないようにする |
 | ワークフローの `permissions` を既定で `contents: read` にし、必要な権限だけ追加する | `GITHUB_TOKEN` の悪用を防ぐ |
-| サードパーティのアクションは **コミット SHA で固定** し、Dependabot で更新する | タグの書き換えによる改ざんを防ぐ |
+| サードパーティのアクションはコミット SHA で固定し、Dependabot で更新する | タグの書き換えによる改ざんを防ぐ |
 | `pull_request_target` と、PR の内容（タイトル、ブランチ名など）をスクリプトに直接埋め込む書き方を避ける | フォークからの PR でコードやコマンドを注入される |
 | 使ってよいアクションを組織の設定で制限する | 野良アクションの利用を防ぐ |
 
@@ -120,12 +120,12 @@ flowchart TB
 
 - 依存パッケージのロックファイルを必ずコミットし、CI では `npm ci` のようにロックファイル通りにインストールする
 - 公開直後のパッケージをすぐに使わない（クールダウン期間を設ける）
-- 悪性パッケージをインストール時にブロックする仕組みを入れる（12 章の **Takumi Guard** など）
+- 悪性パッケージをインストール時にブロックする仕組みを入れる（12 章の Takumi Guard など）
 - コンテナのベースイメージは、脆弱性の少ない最小構成のイメージを使う（Takumi Images などの選択肢もある）
 
 ## Lv4: 最終形
 
 - 新機能の設計時に脅威モデリングを行い、その結果をセキュリティ要件として Issue に落とす
 - SBOM を生成し、リリースごとに保管する。ビルドの来歴（Artifact attestations）を記録する
-- 開発チームごとに **セキュリティチャンピオン** を置き、アラートの一次対応をチーム内で完結させる
+- 開発チームごとにセキュリティチャンピオンを置き、アラートの一次対応をチーム内で完結させる
 - 監査ログを SIEM などに送り、不審な操作（大量のクローン、権限変更など）を検知する
