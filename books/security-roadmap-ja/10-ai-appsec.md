@@ -1,5 +1,5 @@
 ---
-title: "Takumi と Claude Security による AI 脆弱性診断"
+title: "アプリの脆弱性を AI で見つけて直す ― Takumi と Claude Security"
 ---
 
 :::message

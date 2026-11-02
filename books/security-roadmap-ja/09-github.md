@@ -1,5 +1,5 @@
 ---
-title: "GitHub でコードとサプライチェーンを守る"
+title: "コードと開発プロセスを守る ― GitHub"
 ---
 
 :::message

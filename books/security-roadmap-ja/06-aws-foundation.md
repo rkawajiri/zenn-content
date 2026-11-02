@@ -1,5 +1,5 @@
 ---
-title: "AWS の土台づくり"
+title: "AWS の土台をつくる ― Organizations・Security Hub・GuardDuty"
 ---
 
 :::message

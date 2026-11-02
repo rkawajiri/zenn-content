@@ -1,5 +1,5 @@
 ---
-title: "SATv2 による定期的な健康診断"
+title: "AWS 全体を定期的に健康診断する ― SATv2"
 ---
 
 :::message
