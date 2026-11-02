@@ -46,6 +46,12 @@ title: "参考資料・最近の発表資料"
 - OWASP SAMM（OWASP）
 - CIS Controls v8.1（CIS）
 
+## 社内 IT（7 章）
+
+- [令和 8 年上半期におけるサイバー空間をめぐる脅威の情勢等について](https://www.npa.go.jp/publications/statistics/cybersecurity/data/R8kami/R08_kami_cyber_jousei.pdf)（警察庁）― ランサムウェアの侵入経路は VPN 機器が約 5 割
+- [メール送信者のガイドライン](https://support.google.com/a/answer/81126?hl=ja)（Google）― 1 日 5,000 通を超える送信者への SPF・DKIM・DMARC の要件
+- [情報セキュリティ 6 か条](https://www.ipa.go.jp/security/guide/sme/about.html)（IPA、中小企業の情報セキュリティ対策ガイドライン 第4.0版）
+
 ## AWS
 
 - [awslabs/aws-security-assessment-solution（SATv2）](https://github.com/awslabs/aws-security-assessment-solution)
