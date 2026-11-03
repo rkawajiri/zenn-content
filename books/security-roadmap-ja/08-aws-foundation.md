@@ -141,6 +141,15 @@ CSPM のチェック基準としては、まず **AWS Foundational Security Best
 - 管理用の SSH / RDP は開けず、Systems Manager Session Manager を使う
 - 公開する Web アプリには AWS WAF を入れる
 - EC2 のインスタンスメタデータは IMDSv2 を必須にする
+- セキュリティグループのインバウンドのルールを決めて、許可したもの以外を遮断し、不要になったルールは消す。SCS 評価制度の解説書は、クラウドサービスのセキュリティグループを、ファイアウォールと同等の機能を提供する技術の例として挙げ、★3 の評価基準 4-5-1-4・4-5-1-5（インバウンドの遮断とルールの決定）とあわせて説明している（[SCS-620 解説書](https://www.ipa.go.jp/security/scs/rcu1hd0000007a2i-att/SCS-620-handbook-v1.0.pdf) の 3.3.3）。オフィスのファイアウォールと同じように管理する
+
+### 7. サーバのマルウェア対策と変更管理
+
+SCS 評価制度の ★3 は、PC だけでなく **すべてのサーバ** にマルウェア対策を求め（4-4-5）、サーバとネットワーク機器の設定変更を申請・承認制にすることも求めています（4-4-1）。[SCS-620 解説書](https://www.ipa.go.jp/security/scs/rcu1hd0000007a2i-att/SCS-620-handbook-v1.0.pdf)で評価基準を確かめてください。
+
+- EC2 には、[GuardDuty の EC2 向けマルウェア保護](https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection.html)や、エージェント型のマルウェア対策製品を使う。GuardDuty のほうは、EC2 に付いている EBS ボリュームをエージェントなしでスキャンする。スキャンが始まるのは、GuardDuty がマルウェアの存在を疑う検知結果を出したとき（GuardDuty-initiated malware scan）と、インスタンスを指定して手動で始めたとき（On-demand malware scan）の 2 通り
+- ★3 は、スキャンの範囲と頻度を決めることも求めている。GuardDuty のスキャンは検知をきっかけに動くので、定期的なスキャンが必要なら、オンデマンドのスキャンを定期的に実行する仕組みを作るか、エージェント型の製品を使う。どちらにしても、いつ何をスキャンするかを書いておく
+- 本番の設定変更は、変更のチケットや IaC の PR レビューで承認を残す。IaC がまだなくても、チケットでの申請・承認から始められる
 
 ## Lv3: Efficient（仕組み化）
 
@@ -228,3 +237,19 @@ CSPM のチェック基準としては、まず **AWS Foundational Security Best
 - **Security Hub のスコアを上げること自体が目的になる**: スコアは目安です。自社にとって意味の小さいチェックに時間を使うより、ルートの保護や公開設定など、影響の大きいものから直します。
 - **全部のアラートを Slack に流す**: 通知が多すぎると誰も見なくなります。チャットには重大度「高」以上だけを流し、残りは週次のレビューで見ます。
 - **管理アカウントでワークロードを動かす**: 管理アカウントは請求と Organizations の管理だけに使い、それ以外のリソースは置きません。
+
+## AWS 以外のクラウドでの読み替え
+
+この章の考え方（アカウントを分ける、人は SSO で入る、ログと検知を別の場所に集める、消せないバックアップを持つ）は、ほかのクラウドでもそのまま使えます。おおよその対応は次のとおりです。Google の「[AWS、Azure、Google Cloud のサービス比較](https://docs.cloud.google.com/docs/get-started/aws-azure-gcp-service-comparison)」と、Microsoft の「[AWS と Azure のサービスの比較](https://learn.microsoft.com/azure/architecture/aws-professional/)」をもとにしています。機能の範囲は完全には一致しないので、各社のドキュメントで確かめてください。
+
+| この章の AWS の機能 | Google Cloud | Microsoft Azure |
+|---|---|---|
+| Organizations / OU | Resource Manager（組織・フォルダ・プロジェクト） | 管理グループ・サブスクリプション |
+| SCP（組織としての禁止） | [組織のポリシー](https://docs.cloud.google.com/organization-policy/overview) | [Azure Policy](https://learn.microsoft.com/azure/governance/policy/overview) |
+| IAM Identity Center（SSO） | Cloud Identity | Microsoft Entra ID |
+| CloudTrail | Cloud Audit Logs | アクティビティ ログ |
+| GuardDuty・Security Hub | Security Command Center | Microsoft Defender for Cloud（Microsoft の比較表では、GuardDuty は Microsoft Sentinel に対応づけられている） |
+| AWS Config | Cloud Asset Inventory | Azure Policy・Azure Resource Graph |
+| KMS | Cloud KMS | Key Vault |
+| AWS Backup（ボールトロック） | Backup and DR Service | Azure Backup（[immutable vault](https://learn.microsoft.com/azure/backup/backup-azure-immutable-vault-concept)） |
+| S3 オブジェクトロック | [Cloud Storage のバケットロック](https://docs.cloud.google.com/storage/docs/bucket-lock) | [Blob Storage の不変ストレージ](https://learn.microsoft.com/azure/storage/blobs/immutable-storage-overview) |

@@ -127,6 +127,19 @@ IPA が毎年公表している「情報セキュリティ10大脅威」の 2026
 | EDR | Endpoint Detection and Response。PC やサーバーでの不審な動きを検知・対応する仕組み |
 | SSO / MFA | シングルサインオン / 多要素認証 |
 | IaC | Infrastructure as Code。Terraform や CloudFormation でインフラをコード管理すること |
+| IdP | Identity Provider。社員の ID を一元管理し、各サービスへのログイン（SSO）を提供する仕組み（Entra ID、Google Workspace、Okta など） |
+| CISO | Chief Information Security Officer。セキュリティの責任者。専任チームがない会社では、役員や部長が兼ねる「CISO 相当」でよい |
+| OU | Organizational Unit。AWS Organizations で、アカウントをまとめる単位（本番、検証など） |
+| SCP / RCP | Service Control Policy / Resource Control Policy。AWS Organizations で、アカウントの中の誰にも許さない操作や、組織の外からのアクセスを、組織としてまとめて禁止する仕組み |
+| OIDC | OpenID Connect。GitHub Actions などが、長期のキーを持たずに AWS の一時的な認証情報を受け取るために使う認証の仕組み |
+| CVSS | 脆弱性の深刻度を 0.0〜10.0 で表す共通の指標。7.0〜8.9 が High、9.0〜10.0 が Critical（[FIRST の CVSS v3.1 仕様](https://www.first.org/cvss/v3.1/specification-document)） |
+| KEV | Known Exploited Vulnerabilities。米国 CISA が公開している、実際に悪用が確認された脆弱性の[カタログ](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) |
+| SLA | Service Level Agreement。この本では、脆弱性や検知結果を重大度ごとに何日以内に直すかの期限（5 章） |
+| RTO / RPO | 目標復旧時間 / 目標復旧時点。どれだけの時間で戻すか / どの時点のデータまで戻せればよいか |
+| WORM | Write Once Read Many。一度書いたら、決めた期間は誰も変更・削除できない保存のしかた（S3 オブジェクトロック、ボールトロックなど） |
+| SPF / DKIM / DMARC | 送信ドメイン認証。メールが本当にそのドメインから送られたかを、受け取り側が確かめるための設定（7 章） |
+| SIEM | Security Information and Event Management。複数のログを集めて検索・相関分析し、アラートを出す製品（15 章） |
+| MSSP / MDR | Managed Security Service Provider / Managed Detection and Response。監視や検知後の一次対応を代わりに行う外部のサービス |
 | プロンプトインジェクション | AI への入力（Web ページやメールなど、AI が読む内容を含む）に命令を紛れ込ませて、AI を意図しない動作に誘導する攻撃 |
 
 ## 基準と成熟度モデルの詳細（3 章の補足）
