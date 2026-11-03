@@ -52,7 +52,7 @@ title: "ツールの役割分担マップ ― 何を、どの順番で入れ、�
 | ⑦ コードと開発プロセスの守り | GitHub（Secret Protection、Code Security、Dependabot、ルールセット） | GitLab などの同等の機能、SAST / SCA の製品 | 12 |
 | ⑧ 悪性パッケージのブロック | Takumi Guard | パッケージのファイアウォールやプロキシの製品 | 13 |
 | ⑨ コードの継続的な診断と修正 | Claude Security | AI によるコード診断の製品、従来の SAST | 13 |
-| ⑩ 動いているアプリへの診断 | Takumi（ブラックボックス診断） | DAST、AI ペネトレーションテスト（AWS Security Agent など）、外部の診断会社 | 13 |
+| ⑩ 動いているアプリへの診断 | Takumi（ブラックボックス診断） | DAST、AI ペネトレーションテスト（AWS Security Agent、Wiz の Red Agent など）、外部の診断会社 | 13 |
 
 AWS Security Agent（AI によるペネトレーションテスト。2026 年夏からは AWS Continuum の一部）には 13 章で触れます。
 

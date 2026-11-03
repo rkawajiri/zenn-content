@@ -88,8 +88,17 @@ title: "参考資料・最近の発表資料"
 
 ## Wiz
 
-- [Introducing Wiz Agents & Workflows](https://www.wiz.io/es-es/blog/introducing-wiz-agents)（Wiz Blog）
+- [Introducing Wiz Agents & Workflows](https://www.wiz.io/blog/introducing-wiz-agents)（Wiz Blog、2026 年 3 月 23 日）
+- [Google Completes Acquisition of Wiz](https://www.googlecloudpresscorner.com/2026-03-11-Google-Completes-Acquisition-of-Wiz)（Google、2026 年 3 月 11 日）― ブランドの維持と、AWS・Azure・Oracle Cloud での提供継続
 - [Google Completes $32 Billion Acquisition of Wiz](https://www.clearygottlieb.com/news-and-insights/news-listing/google-completes-32-billion-acquisition-of-wiz)（2026 年 3 月）
+- [Wiz Defend](https://www.wiz.io/platform/wiz-defend)（Wiz）― Wiz Sensor、クラウドと SaaS のテレメトリ、Security Graph を組み合わせた検知と対応
+- [Identity Threat Detection and Response Tools](https://www.wiz.io/academy/detection-and-response/identity-threat-detection-and-response-itdr-tools)（Wiz Academy）― Wiz Defend が CloudTrail などの管理操作のログと IdP のログを取り込むこと、センサーがオプションであること
+- [Wiz CDR and Amazon GuardDuty](https://www.wiz.io/blog/wiz-cdr-and-amazon-guardduty-contextualize-and-prioritize-threat-detection)（Wiz Blog、2022 年）― GuardDuty の検知結果の取り込みと優先度づけ
+- [The Wiz Blue Agent, now Generally Available](https://www.wiz.io/blog/wiz-blue-agent-generally-available)（Wiz Blog、2026 年 3 月 30 日）
+- [Introducing the Green Agent](https://www.wiz.io/blog/introducing-wiz-green-agent)（Wiz Blog、2026 年 3 月 26 日。パブリックプレビュー）
+- [The Wiz Red Agent is Now Generally Available](https://www.wiz.io/blog/wiz-red-agent-is-ga)（Wiz Blog、2026 年 7 月 29 日）
+- [Wiz at Black Hat 2026](https://www.wiz.io/blog/wiz-at-black-hat-2026)（Wiz Blog、2026 年 8 月 4 日）― Wiz Workflows の一般提供
+- [Wiz Code Week Recap](https://www.wiz.io/blog/wiz-code-week-recap)（Wiz Blog、2026 年 4 月 29 日）― Claude Code・Cursor 向けのプラグインとスキル
 - [Wiz expands AI security coverage across cloud & edge](https://itbrief.com.au/story/wiz-expands-ai-security-coverage-across-cloud-edge)（IT Brief）
 
 ## Takumi byGMO（GMO Flatt Security）

@@ -26,7 +26,9 @@ Security Hub、Inspector、GitHub、AI 診断と道具が増えると、次に�
 
 ## Wiz とは
 
-Wiz は、クラウド環境全体のリスクを可視化する **CNAPP**（クラウドネイティブアプリケーション保護プラットフォーム）の代表的な製品です。2026 年 3 月に Google による買収が完了して Google Cloud の一部になりましたが、ブランドは維持され、AWS・Azure・Google Cloud などのマルチクラウドに引き続き対応しています。
+Wiz は、クラウド環境全体のリスクを可視化する **CNAPP**（クラウドネイティブアプリケーション保護プラットフォーム）の代表的な製品です。2026 年 3 月 11 日に Google による買収が完了して Google Cloud の一部になりましたが、Google はブランドを維持し、AWS・Azure・Google Cloud・Oracle Cloud で引き続き使えるとしています（[Google の発表](https://www.googlecloudpresscorner.com/2026-03-11-Google-Completes-Acquisition-of-Wiz)）。
+
+クラウドの設定ミスや脆弱性の把握は、サーバーにエージェントを入れずに、クラウドの API 経由で行います（エージェントレス）。動いているワークロードの中の動きを見たいときだけ、後で述べる Wiz Sensor を入れます。
 
 ### セキュリティグラフと「有害な組み合わせ」
 
@@ -41,13 +43,21 @@ Wiz の中心にあるのは **Security Graph** です。クラウドのリソ�
 | 名前 | 役割 |
 |---|---|
 |Wiz Cloud| CSPM・脆弱性管理・CIEM（権限の分析）・DSPM（データの把握）・AI-SPM（AI 資産の把握）など |
-|Wiz Code| コード・IaC・コンテナイメージをスキャンし、クラウドで見つかったリスクを原因となったコードまでたどる。Claude Code や Cursor などの AI 開発環境向けのスキルもある |
-|Wiz Defend| 実行時の脅威の検知と調査 |
-|Red Agent| AI の攻撃者として、Web アプリケーションや API のロジックの脆弱性を探し、悪用できるかを確かめる |
+|Wiz Code| コード・IaC・コンテナイメージをスキャンし、クラウドで見つかったリスクを原因となったコードまでたどる。Claude Code や Cursor 向けのプラグインとスキルで、コミット前のチェックや、Wiz の検出結果の修正を AI 開発環境の中で行える |
+|Wiz Defend| いま起きている攻撃の検知・調査・対応（CDR）。クラウドの管理操作のログ（CloudTrail など）や IdP のログを取り込んで検知する。オプションの Wiz Sensor（eBPF を使う軽量なセンサー）を入れると、VM・コンテナ・サーバーレスの中の動きを監視し、不審なプロセスを止められる |
+|Wiz Workflows| 検知から対応までの手順を、エージェントの判断と人の承認を組み合わせて自動化する |
+|Red Agent| AI の攻撃者として、外部に公開している Web アプリケーションや API のロジックの脆弱性を探し、悪用できるかを確かめる |
 |Blue Agent| クラウドのテレメトリ、実行時のシグナル、ID の情報から証拠を集め、検知した脅威の深刻度を調べる |
 |Green Agent| 重大な問題を調べ、根本原因（コード、IaC、コンテナイメージ）と担当者を特定し、修正の方法を示す |
 
-（エージェントは 2026 年 3 月に発表されたもので、Red Agent と Blue Agent（Wiz Defend の利用者向け）は一般提供、Green Agent は発表時点でパブリックプレビューでした。提供状況は変わるので、契約内容とあわせて確認してください。）
+エージェントと Workflows は 2026 年 3 月に発表されました。その後の提供状況は次のとおりです（2026 年 11 月時点で確認できた Wiz の発表による）。
+
+- **Blue Agent**: 2026 年 3 月 30 日に、Wiz Defend の利用者向けに一般提供（[発表](https://www.wiz.io/blog/wiz-blue-agent-generally-available)）
+- **Green Agent**: 2026 年 3 月 26 日にパブリックプレビュー（[発表](https://www.wiz.io/blog/introducing-wiz-green-agent)）。一般提供の発表は確認できていない
+- **Red Agent**: 2026 年 4 月にパブリックプレビュー、7 月 29 日に一般提供（[発表](https://www.wiz.io/blog/wiz-red-agent-is-ga)）
+- **Wiz Workflows**: 2026 年 8 月に一般提供（[発表](https://www.wiz.io/blog/wiz-at-black-hat-2026)）
+
+提供状況や、どの契約に含まれるかは変わるので、契約内容とあわせて確認してください。
 
 ## AWS の標準機能との分担
 
@@ -57,8 +67,8 @@ Wiz の機能の多くは、AWS の標準機能と重なります。6 章で決�
 |---|---|---|---|
 | 設定ミスと脆弱性 | Wiz Cloud | Security Hub、Inspector | 一覧・優先順位・開発チームへの割り振りは Wiz を正にする。Security Hub と Inspector は AWS の中の情報源と、自動修復の起点として残す |
 | 権限 | Wiz Cloud（CIEM） | IAM Access Analyzer | 攻撃経路の一部として見るのは Wiz。未使用の権限を減らす作業は、IAM Access Analyzer の結果でも進められる |
-| 実行時の脅威 | Wiz Defend | GuardDuty | 両方の知らせを見張り（15 章）に流してよいが、同じ攻撃が二重に届くので、重複を誰がまとめるかを決める。最初は GuardDuty の重大度「高」だけを流し、Wiz Defend は慣れてから足す |
-| 調査 | Blue Agent | GuardDuty の拡張脅威検出、Amazon Detective、AWS Security Incident Response | 検知を調べる手順の中で、どれを最初に開くかを決めておく（17 章） |
+| 実行時の脅威 | Wiz Defend（センサーを入れればワークロードの中も） | GuardDuty（ワークロードの中は Runtime Monitoring） | 両方の知らせを見張り（15 章）に流してよいが、同じ攻撃が二重に届くので、重複を誰がまとめるかを決める。最初は GuardDuty の重大度「高」だけを流し、Wiz Defend は慣れてから足す。Wiz には GuardDuty の検知結果を取り込み、攻撃経路の文脈で優先度をつける連携もある（[Wiz のブログ](https://www.wiz.io/blog/wiz-cdr-and-amazon-guardduty-contextualize-and-prioritize-threat-detection)） |
+| 調査 | Blue Agent（Wiz Defend の利用者向け） | GuardDuty の拡張脅威検出、Amazon Detective、AWS Security Incident Response | 検知を調べる手順の中で、どれを最初に開くかを決めておく（17 章） |
 
 | | Wiz | Security Hub（+ GuardDuty） |
 |---|---|---|
@@ -104,11 +114,11 @@ Wiz（または同じ役割の道具）が「入れただけ」になってい�
 - **Wiz Code** で、クラウドの問題がどのリポジトリのどの IaC から来たかをたどる
 - **Green Agent** で、根本原因の調査と修正案づくりまで自動化する
 - **Red Agent** で、直す前に「本当に悪用できるか」を確かめ、優先順位の精度を上げる
-- AI 開発環境向けのスキルを使い、開発者が Claude Code の中から Wiz の検出結果を参照して直せるようにする
+- AI 開発環境向けのスキルを使い、開発者が Claude Code や Cursor の中から Wiz の検出結果を取り出し、Green Agent の修正案を当てられるようにする（[Wiz のブログ](https://www.wiz.io/blog/wiz-code-week-recap)）
 
 ## AI 資産の把握
 
-AI-SPM の機能で、クラウド上の AI サービス（Bedrock、SageMaker など）、モデル、AI エージェントの使われ方を把握し、AI 固有の設定ミス（公開されたエンドポイント、過剰な権限など）を見つけます。AWS では Security Hub の AI インベントリでも把握できるので、ここでも「一覧と優先順位は Wiz」と決めておくと二重管理を避けられます（14 章）。
+AI-SPM の機能（Wiz は現在、AI-SPM を含む AI 向けの機能をまとめて AI-APP と呼んでいます）で、クラウド上の AI サービス（Bedrock、SageMaker など）、モデル、AI エージェントの使われ方を把握し、AI 固有の設定ミス（公開されたエンドポイント、過剰な権限など）を見つけます。AWS では Security Hub の AI インベントリでも把握できるので、ここでも「一覧と優先順位は Wiz」と決めておくと二重管理を避けられます（14 章）。
 
 ## よくある落とし穴
 
