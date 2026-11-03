@@ -15,7 +15,7 @@ title: "端末・メール・ネットワーク・SaaS を守る ― PC・EDR・
 ## 社内 IT の入口
 
 ```mermaid
-%%{init: {"themeVariables": {"fontSize": "18px"}, "flowchart": {"wrappingWidth": 400}}}%%
+%%{init: {"themeVariables": {"fontSize": "18px", "titleColor": "#1f2937"}, "flowchart": {"wrappingWidth": 400}}}%%
 flowchart TB
   ATK["攻撃者"]:::red
   subgraph Doors["社内 IT の入口"]

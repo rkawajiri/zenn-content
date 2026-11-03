@@ -79,7 +79,7 @@ AWS Security Agent（AI によるペネトレーションテスト。2026 年夏
 **社内 IT**: 社員の ID と端末から、見張りまで
 
 ```mermaid
-%%{init: {"themeVariables": {"fontSize": "18px"}, "flowchart": {"wrappingWidth": 400}}}%%
+%%{init: {"themeVariables": {"fontSize": "18px", "titleColor": "#1f2937"}, "flowchart": {"wrappingWidth": 400}}}%%
 flowchart TB
   Emp["社員・委託先"]:::gov
   IdP["① ID の集約と認証<br>IdP・MFA"]:::corp
