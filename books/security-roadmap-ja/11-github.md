@@ -45,9 +45,7 @@ GitHub Advanced Security は 2025 年 4 月に 2 つの製品に分かれ、GitH
 | 5 | 退職者・不要な外部コラボレーターを削除する | People / Outside collaborators |
 | 6 | 組織にインストールされている GitHub App と、承認済みの OAuth App を点検する | Third-party access |
 
-:::message
-**セキュリティ構成（Security configurations）を使う**: 組織の設定で、GitHub が推奨するセキュリティ構成（GitHub-recommended）を全リポジトリに一括で適用できます。新しいリポジトリにも自動で適用されるようにしておくと、設定漏れが起きません。
-:::
+組織の設定で、GitHub が推奨するセキュリティ構成（GitHub-recommended）を全リポジトリに一括で適用できます。新しいリポジトリにも自動で適用されるようにしておくと、設定漏れが起きません。
 
 ### シークレットが漏れたときのルール
 

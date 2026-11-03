@@ -52,9 +52,7 @@ Wiz の中心にあるのは **Security Graph** です。クラウドのリソ�
 | 週次レビューで見るもの | 新しい Critical の攻撃経路（Issues） | GuardDuty の重大度「高」の検知 |
 | 得意なこと | 攻撃経路、コードまでのトレース、マルチクラウド | AWS のサービスとの深い統合、EventBridge による自動化 |
 
-:::message
-**Security Hub をやめない**: Wiz は GuardDuty の脅威検知や、AWS の中での自動修復を置き換えるものではありません。「どれから直すか」は Wiz、「いま攻撃されていないか」は GuardDuty、と役割で分けます。
-:::
+Wiz は GuardDuty の脅威検知や、AWS の中での自動修復を置き換えるものではありません。「どれから直すか」は Wiz、「いま攻撃されていないか」は GuardDuty、と役割で分けます。
 
 ## 使いこなしの 4 段階
 

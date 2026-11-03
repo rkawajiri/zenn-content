@@ -110,9 +110,7 @@ flowchart TB
 | Dependabot と Takumi Guard（依存パッケージ） |既知の脆弱性は Dependabot、悪性パッケージのブロックは Takumi Guard|
 | SATv2 と Security Hub / Wiz（AWS の設定点検） | 常時の点検は Security Hub / Wiz。SATv2 は別の目による定期点検と、改善の推移を示すための記録 |
 
-:::message
 **この表は、組み合わせが違っても作れます。** 大事なのは、どのツールを使うかより「重なりごとに、正とするものを 1 つ決めて書いておく」ことです。この表を社内の Wiki に置き、新しいツールを入れるたびに更新します。
-:::
 
 ## 抜けを確かめる
 
