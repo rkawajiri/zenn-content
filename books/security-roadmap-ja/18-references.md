@@ -45,6 +45,7 @@ title: "参考資料・最近の発表資料"
 - NIST Cybersecurity Framework 2.0（NIST）
 - OWASP SAMM（OWASP）
 - CIS Controls v8.1（CIS）
+- [OWASP API Security Top 10 2023](https://owasp.org/API-Security/editions/2023/en/0x11-t10/)（OWASP。12 章）
 
 ## 社内 IT（7 章）
 
