@@ -5,7 +5,7 @@ title: "AWS の土台をつくる ― Organizations・Security Hub・GuardDuty"
 :::message
 **最近のニュースから**
 
-**IDC フロンティア（2026 年 10 月）** の IDCF クラウドでは、顧客向けポータルの認証で使われていたオープンソースソフトウェアの脆弱性が悪用され、仮想化基盤の管理者権限が奪われました。東日本リージョン 1 の仮想サーバーが暗号化され、495 の企業・自治体に影響が出ています。
+**IDC フロンティア（2026 年 10 月）** の IDCF クラウドでは、顧客向けポータルの認証で使われていたオープンソースソフトウェアの脆弱性が悪用され、仮想化基盤の管理者権限が奪われました。東日本リージョン 1 の一部の仮想サーバーが暗号化され、495 の企業・自治体に影響が出ています。
 
 クラウドの基盤そのものが攻撃されることもあります。利用者として守れるのは、自分のアカウントの **管理の権限（ルートユーザー、管理者の ID）を固く守ること** と、クラウド事業者やリージョンが止まっても戻せるバックアップを持つことです。
 
@@ -17,7 +17,7 @@ title: "AWS の土台をつくる ― Organizations・Security Hub・GuardDuty"
 ## 全体像
 
 ```mermaid
-%%{init: {"themeVariables": {"fontSize": "18px"}, "flowchart": {"wrappingWidth": 400}}}%%
+%%{init: {"themeVariables": {"fontSize": "18px", "titleColor": "#1f2937"}, "flowchart": {"wrappingWidth": 400}}}%%
 flowchart TB
   IdP["IdP（Entra ID / Google など）"]:::gov
   IIC["IAM Identity Center（SSO）"]:::gov
@@ -143,9 +143,9 @@ CSPM のチェック基準としては、まず **AWS Foundational Security Best
 - EC2 のインスタンスメタデータは IMDSv2 を必須にする
 - セキュリティグループのインバウンドのルールを決めて、許可したもの以外を遮断し、不要になったルールは消す。SCS 評価制度の解説書は、クラウドサービスのセキュリティグループを、ファイアウォールと同等の機能を提供する技術の例として挙げ、★3 の評価基準 4-5-1-4・4-5-1-5（インバウンドの遮断とルールの決定）とあわせて説明している（[SCS-620 解説書](https://www.ipa.go.jp/security/scs/rcu1hd0000007a2i-att/SCS-620-handbook-v1.0.pdf) の 3.3.3）。オフィスのファイアウォールと同じように管理する
 
-### 7. サーバのマルウェア対策と変更管理
+### 7. サーバーのマルウェア対策と変更管理
 
-SCS 評価制度の ★3 は、PC だけでなく **すべてのサーバ** にマルウェア対策を求め（4-4-5）、サーバとネットワーク機器の設定変更を申請・承認制にすることも求めています（4-4-1）。[SCS-620 解説書](https://www.ipa.go.jp/security/scs/rcu1hd0000007a2i-att/SCS-620-handbook-v1.0.pdf)で評価基準を確かめてください。
+SCS 評価制度の ★3 は、PC だけでなく **すべてのサーバー** にマルウェア対策を求め（4-4-5）、サーバーとネットワーク機器の設定変更を申請・承認制にすることも求めています（4-4-1）。[SCS-620 解説書](https://www.ipa.go.jp/security/scs/rcu1hd0000007a2i-att/SCS-620-handbook-v1.0.pdf)で評価基準を確かめてください。
 
 - EC2 には、[GuardDuty の EC2 向けマルウェア保護](https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection.html)や、エージェント型のマルウェア対策製品を使う。GuardDuty のほうは、EC2 に付いている EBS ボリュームをエージェントなしでスキャンする。スキャンが始まるのは、GuardDuty がマルウェアの存在を疑う検知結果を出したとき（GuardDuty-initiated malware scan）と、インスタンスを指定して手動で始めたとき（On-demand malware scan）の 2 通り
 - ★3 は、スキャンの範囲と頻度を決めることも求めている。GuardDuty のスキャンは検知をきっかけに動くので、定期的なスキャンが必要なら、オンデマンドのスキャンを定期的に実行する仕組みを作るか、エージェント型の製品を使う。どちらにしても、いつ何をスキャンするかを書いておく

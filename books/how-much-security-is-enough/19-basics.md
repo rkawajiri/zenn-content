@@ -120,12 +120,20 @@ IPA が毎年公表している「情報セキュリティ10大脅威」の 2026
 |---|---|
 | CSPM | Cloud Security Posture Management。クラウドの設定ミスを検出する仕組み |
 | CNAPP | Cloud-Native Application Protection Platform。CSPM、脆弱性管理、ワークロード保護などを統合した製品分野（Wiz など） |
+| CIEM / DSPM / AI-SPM | 権限の分析 / 機密データの把握 / AI 資産の把握と設定ミスの検出。CNAPP に含まれることが多い機能（11 章） |
+| CDR | Cloud Detection and Response。クラウドで、いま起きている攻撃を検知し、調べ、対応する仕組み（11 章） |
 | SAST / DAST | 静的解析（ソースコードを読んで診断）/ 動的解析（動いているアプリに外から攻撃を試して診断） |
 | SCA | Software Composition Analysis。依存ライブラリの既知の脆弱性を調べること |
 | SBOM | Software Bill of Materials。ソフトウェアの部品表 |
 | CSIRT | Computer Security Incident Response Team。インシデント対応の担当チーム |
 | EDR | Endpoint Detection and Response。PC やサーバーでの不審な動きを検知・対応する仕組み |
+| MDM | Mobile Device Management。会社の PC やスマートフォンを一覧で管理し、設定を配り、紛失時に遠隔で消去する仕組み（8 章） |
+| BYOD | Bring Your Own Device。社員の私物の端末を業務に使うこと（8 章） |
+| UTM / IPS | Unified Threat Management / Intrusion Prevention System。社内ネットワークの境界で、不正な通信を検知・遮断する機器や機能（8 章） |
 | SSO / MFA | シングルサインオン / 多要素認証 |
+| パスキー / FIDO2 | フィッシングに強い認証の方式。偽のログイン画面では使えない（7 章） |
+| break-glass | IdP が使えないときに備えた、緊急用の管理者アカウント（7 章） |
+| OAuth アプリ | 社員の同意で、外部のアプリにメールやファイルへのアクセスを許す仕組み。不審なアプリに同意すると、パスワードを変えても、同意を取り消すまでアクセスが残ることがある（8 章） |
 | IaC | Infrastructure as Code。Terraform や CloudFormation でインフラをコード管理すること |
 | IdP | Identity Provider。社員の ID を一元管理し、各サービスへのログイン（SSO）を提供する仕組み（Entra ID、Google Workspace、Okta など） |
 | CISO | Chief Information Security Officer。セキュリティの責任者。専任チームがない会社では、役員や部長が兼ねる「CISO 相当」でよい |
@@ -140,6 +148,8 @@ IPA が毎年公表している「情報セキュリティ10大脅威」の 2026
 | SPF / DKIM / DMARC | 送信ドメイン認証。メールが本当にそのドメインから送られたかを、受け取り側が確かめるための設定（8 章） |
 | SIEM | Security Information and Event Management。複数のログを集めて検索・相関分析し、アラートを出す製品（15 章） |
 | MSSP / MDR | Managed Security Service Provider / Managed Detection and Response。監視や検知後の一次対応を代わりに行う外部のサービス（15 章） |
+| SOC | Security Operations Center。アラートを監視し、一次対応をする組織やサービス（15 章） |
+| OCSF | Open Cybersecurity Schema Framework。セキュリティのログを共通の形式にそろえるための規格（15 章） |
 | プロンプトインジェクション | AI への入力（Web ページやメールなど、AI が読む内容を含む）に命令を紛れ込ませて、AI を意図しない動作に誘導する攻撃 |
 
 ## 基準と成熟度モデルの詳細（3 章の補足）

@@ -24,7 +24,7 @@ title: "社員の ID を守る ― IdP・MFA・入社と退職・委託先のア
 ## ID を 1 か所に集める
 
 ```mermaid
-%%{init: {"themeVariables": {"fontSize": "18px"}, "flowchart": {"wrappingWidth": 400}}}%%
+%%{init: {"themeVariables": {"fontSize": "18px", "titleColor": "#1f2937"}, "flowchart": {"wrappingWidth": 400}}}%%
 flowchart TB
   User["社員・委託先"]:::gov
   IdP["IdP<br>MFA・入退社・権限"]:::ops
