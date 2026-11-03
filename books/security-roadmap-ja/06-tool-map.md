@@ -148,7 +148,7 @@ flowchart TB
 | EDR とウイルス対策ソフト | 使っている EDR にウイルス対策の機能が含まれているかを確かめ、重ねて入れるかを決める。端末の種類（PC、サーバー）ごとに、どれを正とするかを書いておく |
 | 社内と外部の監視サービス（EDR・IdP の知らせ） | 外部に見てもらうなら、どの知らせを外部が見て、どれを社内が見るかを分ける。両方が「相手が見ている」と思い込むのが一番危ない（15 章） |
 | Security Hub と Wiz（クラウドの設定ミス・脆弱性） | 優先順位づけと開発チームへの割り振りは Wiz を正にする。Security Hub は AWS の検知の集約と、GuardDuty の脅威検知・自動修復の起点として使う |
-| GuardDuty と Wiz Defend（実行時の脅威の検知） | Wiz Defend を使うなら、どちらの知らせを見張り（15 章）に流すかを決める。使わないなら GuardDuty を正にする（11 章） |
+| GuardDuty と Wiz Defend（実行時の脅威の検知） | 両方の知らせを見張り（15 章）に流してよいが、重複を誰がまとめるかを決める。最初は GuardDuty の重大度「高」だけを流し、Wiz Defend は慣れてから足す（11 章） |
 | Inspector と Wiz（ワークロードの脆弱性） | 一覧と優先順位は Wiz で見る。Inspector は Security Hub 側の情報源として残す |
 | CodeQL と Claude Security / Takumi（コードの脆弱性） | PR ごとの定型チェックは CodeQL、パターンにない脆弱性（認可の不備、業務ロジック）の発見は Claude Security / Takumi と分ける |
 | Claude Security と Takumi（AI による診断） | コードを読む継続診断は Claude Security、動いているアプリへの診断（ブラックボックス）と報告書は Takumi と分ける（13 章） |

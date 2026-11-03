@@ -57,7 +57,7 @@ Wiz の機能の多くは、AWS の標準機能と重なります。6 章で決�
 |---|---|---|---|
 | 設定ミスと脆弱性 | Wiz Cloud | Security Hub、Inspector | 一覧・優先順位・開発チームへの割り振りは Wiz を正にする。Security Hub と Inspector は AWS の中の情報源と、自動修復の起点として残す |
 | 権限 | Wiz Cloud（CIEM） | IAM Access Analyzer | 攻撃経路の一部として見るのは Wiz。未使用の権限を減らす作業は、IAM Access Analyzer の結果でも進められる |
-| 実行時の脅威 | Wiz Defend | GuardDuty | どちらの知らせを見張り（15 章）に流すかを決める。両方を流すと、同じ攻撃が二重に届く。Wiz Defend を使わないなら、GuardDuty を正にする |
+| 実行時の脅威 | Wiz Defend | GuardDuty | 両方の知らせを見張り（15 章）に流してよいが、同じ攻撃が二重に届くので、重複を誰がまとめるかを決める。最初は GuardDuty の重大度「高」だけを流し、Wiz Defend は慣れてから足す |
 | 調査 | Blue Agent | GuardDuty の拡張脅威検出、Amazon Detective、AWS Security Incident Response | 検知を調べる手順の中で、どれを最初に開くかを決めておく（17 章） |
 
 | | Wiz | Security Hub（+ GuardDuty） |
@@ -66,7 +66,7 @@ Wiz の機能の多くは、AWS の標準機能と重なります。6 章で決�
 | 週次レビューで見るもの | 新しい Critical の攻撃経路（Issues） | GuardDuty の重大度「高」の検知 |
 | 得意なこと | 攻撃経路、コードまでのトレース、マルチクラウド | AWS のサービスとの深い統合、EventBridge による自動化 |
 
-Wiz を入れても、GuardDuty を止める必要はありません。GuardDuty は AWS のログを直接見ており、Wiz とは見ているものが一部違います。重なりを整理したうえで、「どれから直すか」は Wiz、「いま攻撃されていないか」は GuardDuty か Wiz Defend のどちらかを正、と役割で分けます。
+Wiz を入れても、GuardDuty を止める必要はありません。GuardDuty は AWS のログを直接見ており、Wiz とは見ているものが一部違います。重なりを整理したうえで、「どれから直すか」は Wiz、「いま攻撃されていないか」は GuardDuty から始めて Wiz Defend を足す、と役割と順番で分けます。
 
 ## 段階的な使い方
 
