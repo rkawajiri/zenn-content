@@ -13,14 +13,15 @@ chapters:
   - 07-identity
   - 08-endpoint-network
   - 09-aws-foundation
-  - 10-cloud-posture
-  - 11-github
-  - 12-ai-appsec
-  - 13-ai-risk
-  - 14-monitoring
-  - 15-incident-response
-  - 16-investigation
-  - 17-roadmap
-  - 18-basics
-  - 19-star3-checklist
-  - 20-references
+  - 10-satv2
+  - 11-wiz
+  - 12-github
+  - 13-ai-appsec
+  - 14-ai-risk
+  - 15-monitoring
+  - 16-incident-response
+  - 17-investigation
+  - 18-roadmap
+  - 19-basics
+  - 20-star3-checklist
+  - 21-references

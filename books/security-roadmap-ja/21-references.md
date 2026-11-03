@@ -25,7 +25,7 @@ title: "参考資料・最近の発表資料"
 
 - [サプライチェーン強化に向けたセキュリティ対策評価制度（SCS 評価制度）](https://www.meti.go.jp/policy/netsecurity/scs.html)（経済産業省）― ★3・★4 の要求事項・評価基準、よくあるお問い合わせ（FAQ）など
 - [SCS 評価制度に関する制度構築方針の公表](https://www.meti.go.jp/press/2025/03/20260327001/20260327001.html)（経済産業省、2026 年 3 月 27 日）
-- [SCS 評価制度 公式サイト](https://www.ipa.go.jp/security/scs/)・[よくある質問](https://www.ipa.go.jp/security/scs/faq.html)（IPA）、[★3・★4 要求事項・評価基準 Ver1.1](https://www.meti.go.jp/policy/netsecurity/docs/scs/SCS-400-criteria-v1.1.xlsx)（経済産業省、2026 年 10 月 28 日）、[SCS-620 ★3・★4 要求事項・評価基準 解説書](https://www.ipa.go.jp/security/scs/rcu1hd0000007a2i-att/SCS-620-handbook-v1.0.pdf)（IPA、2026 年 10 月 28 日。19 章の ★3 準備チェック表の出典）、[SCS 評価制度に係る不適切な勧誘に御注意ください](https://www.meti.go.jp/policy/netsecurity/20260427_scs.html)（経済産業省、2026 年 4 月 27 日）
+- [SCS 評価制度 公式サイト](https://www.ipa.go.jp/security/scs/)・[よくある質問](https://www.ipa.go.jp/security/scs/faq.html)（IPA）、[★3・★4 要求事項・評価基準 Ver1.1](https://www.meti.go.jp/policy/netsecurity/docs/scs/SCS-400-criteria-v1.1.xlsx)（経済産業省、2026 年 10 月 28 日）、[SCS-620 ★3・★4 要求事項・評価基準 解説書](https://www.ipa.go.jp/security/scs/rcu1hd0000007a2i-att/SCS-620-handbook-v1.0.pdf)（IPA、2026 年 10 月 28 日。20 章の ★3 準備チェック表の出典）、[SCS 評価制度に係る不適切な勧誘に御注意ください](https://www.meti.go.jp/policy/netsecurity/20260427_scs.html)（経済産業省、2026 年 4 月 27 日）
 - [サイバー攻撃被害に係る情報の共有・公表ガイダンス](https://www.meti.go.jp/policy/netsecurity/incident.html#id02)（2024 年 3 月）、[初動対応支援を行う専門組織（相談窓口）](https://www.meti.go.jp/policy/netsecurity/incident.html#id01)（経済産業省）
 - [ASM（Attack Surface Management）導入ガイダンス](https://www.meti.go.jp/policy/netsecurity/reinforce.html#id12)（経済産業省、2023 年 5 月）
 - [情報セキュリティサービス審査登録制度](https://www.meti.go.jp/policy/netsecurity/vendor.html#id08)（経済産業省）― 基準に適合したサービスのリストは IPA が公開
@@ -45,7 +45,7 @@ title: "参考資料・最近の発表資料"
 - NIST Cybersecurity Framework 2.0（NIST）
 - OWASP SAMM（OWASP）
 - CIS Controls v8.1（CIS）
-- [OWASP API Security Top 10 2023](https://owasp.org/API-Security/editions/2023/en/0x11-t10/)（OWASP。12 章）
+- [OWASP API Security Top 10 2023](https://owasp.org/API-Security/editions/2023/en/0x11-t10/)（OWASP。13 章）
 
 ## 社内 IT（7・8 章）
 
@@ -53,7 +53,7 @@ title: "参考資料・最近の発表資料"
 - [メール送信者のガイドライン](https://support.google.com/a/answer/81126?hl=ja)（Google）― 1 日 5,000 通を超える送信者への SPF・DKIM・DMARC の要件
 - [情報セキュリティ 6 か条](https://www.ipa.go.jp/security/guide/sme/about.html)（IPA、中小企業の情報セキュリティ対策ガイドライン 第4.0版）
 
-## 見張り（14 章）
+## 見張り（15 章）
 
 - [Generating sample findings in GuardDuty](https://docs.aws.amazon.com/guardduty/latest/ug/sample_findings.html)（AWS。通知の経路を確かめるためのサンプルの検知結果）
 - [Download Anti Malware Testfile](https://www.eicar.org/download-anti-malware-testfile/)（EICAR。ウイルス対策ソフトや EDR の検知を確かめるテスト用ファイル）
