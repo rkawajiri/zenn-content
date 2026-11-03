@@ -212,7 +212,7 @@ AWS Security Incident Response は調査会社の代わりではなく、AWS の
 | 段階 | やり方 | 向いている状態 |
 |---|---|---|
 | Lv2 | ログを S3 などの消せない場所に集め、必要なときに Athena や CloudTrail Lake で検索する。リアルタイムの検知は GuardDuty と IdP・EDR の標準のアラートに任せる | まず「調べられる」ことが目標のとき |
-| Lv3 | AWS・IdP・EDR・SaaS のログをまたいで相関を見たくなったら、SIEM を検討する。AWS なら、Amazon Security Lake で OCSF 形式にそろえてから SIEM に渡す方法もある | 週次レビューが回り、複数のログを突き合わせる必要が出てきたとき |
+| Lv3 | AWS・IdP・EDR・SaaS のログをまたいで相関を見たくなったら、SIEM を検討する。AWS なら、[Amazon Security Lake](https://docs.aws.amazon.com/security-lake/latest/userguide/what-is-security-lake.html) でログを OCSF（共通のスキーマ）にそろえてから、SIEM に購読させる方法もある | 週次レビューが回り、複数のログを突き合わせる必要が出てきたとき |
 | Lv3〜Lv4 | 24 時間の監視が必要なら、SIEM を自分で運用するより、MDR / MSSP に監視ごと任せる | 夜間・休日の検知に人を割けないとき |
 
 SIEM は、取り込むログの量に応じて費用が大きくなり、検知ルールを育てる人も必要です。「SIEM を入れたが、誰もアラートを見ていない」は、6 章の「入れたのに回らない」の典型です。入れる前に、誰がアラートを見るかを決めます。
