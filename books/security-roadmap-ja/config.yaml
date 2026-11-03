@@ -1,5 +1,5 @@
 title: "セキュリティ、どこまでやれば十分？ ― 一人目の担当者のための現在地・次の一手・最終形"
-summary: "専任チームのない会社で、最初にセキュリティを任された人のための本です。役員に「うちは大丈夫？」と聞かれても、「どこまでやれば十分か」の基準がなければ答えられません。経産省・IPA のガイドラインと SCS 評価制度、AWS のセキュリティ成熟度モデルをもとに、自社の現在地を Lv0〜Lv4 で測り、自社にとっての目標レベルを決め、次の一手と最終形を描きます。社内 IT、AWS、GitHub、AI 時代のリスク、インシデント対応、最初の 90 日のロードマップまで扱います。3 分でできる簡易チェック付き（2026 年 11 月時点）。"
+summary: "専任チームのない会社で、最初にセキュリティを任された人のための本です。役員に「うちは大丈夫？」と聞かれても、「どこまでやれば十分か」の基準がなければ答えられません。経産省・IPA のガイドラインと SCS 評価制度、AWS のセキュリティ成熟度モデルをもとに、自社の現在地を Lv0〜Lv4 で測り、自社にとっての目標レベルを決め、次の一手と最終形を描きます。社内 IT、AWS、GitHub、AI 時代のリスク、夜間・休日の見張り、インシデント対応、最初の 90 日のロードマップまで扱います。3 分でできる簡易チェック付き（2026 年 11 月時点）。"
 topics: ["security", "aws", "github", "ai", "情シス"]
 published: false
 price: 0
@@ -10,16 +10,17 @@ chapters:
   - 04-self-assessment
   - 05-organization
   - 06-tool-map
-  - 07-corporate-it
-  - 08-aws-foundation
-  - 09-satv2
-  - 10-wiz
+  - 07-identity
+  - 08-endpoint-network
+  - 09-aws-foundation
+  - 10-cloud-posture
   - 11-github
   - 12-ai-appsec
   - 13-ai-risk
-  - 14-incident-response
-  - 15-investigation
-  - 16-roadmap
-  - 17-basics
-  - 18-star3-checklist
-  - 19-references
+  - 14-monitoring
+  - 15-incident-response
+  - 16-investigation
+  - 17-roadmap
+  - 18-basics
+  - 19-star3-checklist
+  - 20-references
