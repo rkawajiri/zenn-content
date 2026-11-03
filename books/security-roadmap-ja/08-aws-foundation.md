@@ -146,7 +146,8 @@ CSPM のチェック基準としては、まず **AWS Foundational Security Best
 
 SCS 評価制度の ★3 は、PC だけでなく **すべてのサーバ** にマルウェア対策を求め（4-4-5）、サーバとネットワーク機器の設定変更を申請・承認制にすることも求めています（4-4-1）。[SCS-620 解説書](https://www.ipa.go.jp/security/scs/rcu1hd0000007a2i-att/SCS-620-handbook-v1.0.pdf)で評価基準を確かめてください。
 
-- EC2 には、[GuardDuty の EC2 向けマルウェア保護](https://docs.aws.amazon.com/guardduty/latest/ug/gdu-malware-protection-ec2.html)（EBS ボリュームをエージェントなしでスキャンする）や、エージェント型のマルウェア対策製品を使う。★3 はスキャンの範囲と頻度を決めることも求めているので、どちらを使うにしても、いつ何をスキャンするかを書いておく
+- EC2 には、[GuardDuty の EC2 向けマルウェア保護](https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection.html)や、エージェント型のマルウェア対策製品を使う。GuardDuty のほうは、EC2 に付いている EBS ボリュームをエージェントなしでスキャンする。スキャンが始まるのは、GuardDuty がマルウェアの存在を疑う検知結果を出したとき（GuardDuty-initiated malware scan）と、インスタンスを指定して手動で始めたとき（On-demand malware scan）の 2 通り
+- ★3 は、スキャンの範囲と頻度を決めることも求めている。GuardDuty のスキャンは検知をきっかけに動くので、定期的なスキャンが必要なら、オンデマンドのスキャンを定期的に実行する仕組みを作るか、エージェント型の製品を使う。どちらにしても、いつ何をスキャンするかを書いておく
 - 本番の設定変更は、変更のチケットや IaC の PR レビューで承認を残す。IaC がまだなくても、チケットでの申請・承認から始められる
 
 ## Lv3: Efficient（仕組み化）
@@ -243,7 +244,7 @@ SCS 評価制度の ★3 は、PC だけでなく **すべてのサーバ** に�
 | この章の AWS の機能 | Google Cloud | Microsoft Azure |
 |---|---|---|
 | Organizations / OU | Resource Manager（組織・フォルダ・プロジェクト） | 管理グループ・サブスクリプション |
-| SCP（組織としての禁止） | [組織のポリシー](https://docs.cloud.google.com/resource-manager/docs/organization-policy/overview) | [Azure Policy](https://learn.microsoft.com/azure/governance/policy/overview) |
+| SCP（組織としての禁止） | [組織のポリシー](https://docs.cloud.google.com/organization-policy/overview) | [Azure Policy](https://learn.microsoft.com/azure/governance/policy/overview) |
 | IAM Identity Center（SSO） | Cloud Identity | Microsoft Entra ID |
 | CloudTrail | Cloud Audit Logs | アクティビティ ログ |
 | GuardDuty・Security Hub | Security Command Center | Microsoft Defender for Cloud（Microsoft の比較表では、GuardDuty は Microsoft Sentinel に対応づけられている） |
