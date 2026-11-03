@@ -132,8 +132,8 @@ IPA が毎年公表している「情報セキュリティ10大脅威」の 2026
 | OU | Organizational Unit。AWS Organizations で、アカウントをまとめる単位（本番、検証など） |
 | SCP / RCP | Service Control Policy / Resource Control Policy。AWS Organizations で、アカウントの中の誰にも許さない操作や、組織の外からのアクセスを、組織としてまとめて禁止する仕組み |
 | OIDC | OpenID Connect。GitHub Actions などが、長期のキーを持たずに AWS の一時的な認証情報を受け取るために使う認証の仕組み |
-| CVSS | 脆弱性の深刻度を 0.0〜10.0 で表す共通の指標。7.0 以上が High、9.0 以上が Critical |
-| KEV | Known Exploited Vulnerabilities。米国 CISA が公開している、実際に悪用が確認された脆弱性のカタログ |
+| CVSS | 脆弱性の深刻度を 0.0〜10.0 で表す共通の指標。7.0〜8.9 が High、9.0〜10.0 が Critical（[FIRST の CVSS v3.1 仕様](https://www.first.org/cvss/v3.1/specification-document)） |
+| KEV | Known Exploited Vulnerabilities。米国 CISA が公開している、実際に悪用が確認された脆弱性の[カタログ](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) |
 | SLA | Service Level Agreement。この本では、脆弱性や検知結果を重大度ごとに何日以内に直すかの期限（5 章） |
 | RTO / RPO | 目標復旧時間 / 目標復旧時点。どれだけの時間で戻すか / どの時点のデータまで戻せればよいか |
 | WORM | Write Once Read Many。一度書いたら、決めた期間は誰も変更・削除できない保存のしかた（S3 オブジェクトロック、ボールトロックなど） |

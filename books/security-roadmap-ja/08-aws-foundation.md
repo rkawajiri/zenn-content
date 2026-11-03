@@ -231,16 +231,16 @@ CSPM のチェック基準としては、まず **AWS Foundational Security Best
 
 ## AWS 以外のクラウドでの読み替え
 
-この章の考え方（アカウントを分ける、人は SSO で入る、ログと検知を別の場所に集める、消せないバックアップを持つ）は、ほかのクラウドでもそのまま使えます。おおよその対応は次のとおりです。機能の範囲は完全には一致しないので、各社のドキュメントで確かめてください。
+この章の考え方（アカウントを分ける、人は SSO で入る、ログと検知を別の場所に集める、消せないバックアップを持つ）は、ほかのクラウドでもそのまま使えます。おおよその対応は次のとおりです。Google の「[AWS、Azure、Google Cloud のサービス比較](https://docs.cloud.google.com/docs/get-started/aws-azure-gcp-service-comparison)」と、Microsoft の「[AWS と Azure のサービスの比較](https://learn.microsoft.com/azure/architecture/aws-professional/)」をもとにしています。機能の範囲は完全には一致しないので、各社のドキュメントで確かめてください。
 
 | この章の AWS の機能 | Google Cloud | Microsoft Azure |
 |---|---|---|
-| Organizations / OU | 組織・フォルダ・プロジェクト | 管理グループ・サブスクリプション |
-| SCP（組織としての禁止） | 組織のポリシー | Azure Policy |
-| IAM Identity Center（SSO） | Cloud Identity / Workforce Identity 連携 | Microsoft Entra ID |
+| Organizations / OU | Resource Manager（組織・フォルダ・プロジェクト） | 管理グループ・サブスクリプション |
+| SCP（組織としての禁止） | [組織のポリシー](https://docs.cloud.google.com/resource-manager/docs/organization-policy/overview) | [Azure Policy](https://learn.microsoft.com/azure/governance/policy/overview) |
+| IAM Identity Center（SSO） | Cloud Identity | Microsoft Entra ID |
 | CloudTrail | Cloud Audit Logs | アクティビティ ログ |
-| GuardDuty・Security Hub | Security Command Center | Microsoft Defender for Cloud |
-| AWS Config | Cloud Asset Inventory | Azure Policy・Resource Graph |
+| GuardDuty・Security Hub | Security Command Center | Microsoft Defender for Cloud（Microsoft の比較表では、GuardDuty は Microsoft Sentinel に対応づけられている） |
+| AWS Config | Cloud Asset Inventory | Azure Policy・Azure Resource Graph |
 | KMS | Cloud KMS | Key Vault |
-| AWS Backup（ボールトロック） | Backup and DR Service | Azure Backup（イミュータブル ボールト） |
-| S3 オブジェクトロック | Cloud Storage のバケットロック | Blob Storage の不変ストレージ |
+| AWS Backup（ボールトロック） | Backup and DR Service | Azure Backup（[immutable vault](https://learn.microsoft.com/azure/backup/backup-azure-immutable-vault-concept)） |
+| S3 オブジェクトロック | [Cloud Storage のバケットロック](https://docs.cloud.google.com/storage/docs/bucket-lock) | [Blob Storage の不変ストレージ](https://learn.microsoft.com/azure/storage/blobs/immutable-storage-overview) |

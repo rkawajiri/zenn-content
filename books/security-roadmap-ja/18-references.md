@@ -25,7 +25,7 @@ title: "参考資料・最近の発表資料"
 
 - [サプライチェーン強化に向けたセキュリティ対策評価制度（SCS 評価制度）](https://www.meti.go.jp/policy/netsecurity/scs.html)（経済産業省）― ★3・★4 の要求事項・評価基準、よくあるお問い合わせ（FAQ）など
 - [SCS 評価制度に関する制度構築方針の公表](https://www.meti.go.jp/press/2025/03/20260327001/20260327001.html)（経済産業省、2026 年 3 月 27 日）
-- [SCS 評価制度 公式サイト](https://www.ipa.go.jp/security/scs/)・[よくある質問](https://www.ipa.go.jp/security/scs/faq.html)（IPA）、[★3・★4 要求事項・評価基準 Ver1.1](https://www.meti.go.jp/policy/netsecurity/docs/scs/SCS-400-criteria-v1.1.xlsx)（経済産業省、2026 年 10 月 28 日）、[SCS 評価制度に係る不適切な勧誘に御注意ください](https://www.meti.go.jp/policy/netsecurity/20260427_scs.html)（経済産業省、2026 年 4 月 27 日）
+- [SCS 評価制度 公式サイト](https://www.ipa.go.jp/security/scs/)・[よくある質問](https://www.ipa.go.jp/security/scs/faq.html)（IPA）、[★3・★4 要求事項・評価基準 Ver1.1](https://www.meti.go.jp/policy/netsecurity/docs/scs/SCS-400-criteria-v1.1.xlsx)（経済産業省、2026 年 10 月 28 日）、[SCS-620 ★3・★4 要求事項・評価基準 解説書](https://www.ipa.go.jp/security/scs/rcu1hd0000007a2i-att/SCS-620-handbook-v1.0.pdf)（IPA、2026 年 10 月 28 日。4 章の〔★3: 番号〕の出典）、[SCS 評価制度に係る不適切な勧誘に御注意ください](https://www.meti.go.jp/policy/netsecurity/20260427_scs.html)（経済産業省、2026 年 4 月 27 日）
 - [サイバー攻撃被害に係る情報の共有・公表ガイダンス](https://www.meti.go.jp/policy/netsecurity/incident.html#id02)（2024 年 3 月）、[初動対応支援を行う専門組織（相談窓口）](https://www.meti.go.jp/policy/netsecurity/incident.html#id01)（経済産業省）
 - [ASM（Attack Surface Management）導入ガイダンス](https://www.meti.go.jp/policy/netsecurity/reinforce.html#id12)（経済産業省、2023 年 5 月）
 - [情報セキュリティサービス審査登録制度](https://www.meti.go.jp/policy/netsecurity/vendor.html#id08)（経済産業省）― 基準に適合したサービスのリストは IPA が公開
@@ -52,6 +52,16 @@ title: "参考資料・最近の発表資料"
 - [令和 8 年上半期におけるサイバー空間をめぐる脅威の情勢等について](https://www.npa.go.jp/publications/statistics/cybersecurity/data/R8kami/R08_kami_cyber_jousei.pdf)（警察庁）― ランサムウェアの侵入経路は VPN 機器が約 5 割
 - [メール送信者のガイドライン](https://support.google.com/a/answer/81126?hl=ja)（Google）― 1 日 5,000 通を超える送信者への SPF・DKIM・DMARC の要件
 - [情報セキュリティ 6 か条](https://www.ipa.go.jp/security/guide/sme/about.html)（IPA、中小企業の情報セキュリティ対策ガイドライン 第4.0版）
+
+## 脆弱性情報の情報源（5 章）
+
+- [JPCERT/CC 注意喚起](https://www.jpcert.or.jp/at/)、[IPA 重要なセキュリティ情報](https://www.ipa.go.jp/security/security-alert/index.html)、[JVN](https://jvn.jp/)、[CISA Known Exploited Vulnerabilities Catalog](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)
+- [CVSS v3.1 Specification](https://www.first.org/cvss/v3.1/specification-document)（FIRST）
+
+## AWS 以外のクラウド（8 章）
+
+- [AWS、Azure、Google Cloud のサービス比較](https://docs.cloud.google.com/docs/get-started/aws-azure-gcp-service-comparison)（Google Cloud）
+- [Azure for AWS Professionals](https://learn.microsoft.com/azure/architecture/aws-professional/)（Microsoft）
 
 ## AWS
 
